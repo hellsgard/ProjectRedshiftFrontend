@@ -14,12 +14,12 @@ const Home = () => {
 
     return ( 
         <div>
-<<<<<<< HEAD
+
              <Nav></Nav>
             <h3>Suspect </h3>
             <h3>Incident </h3>
             <h3>Suspect Flees</h3>
-=======
+
            <h3> Suspect </h3>
             <form>
             <input type="text" placeholder="Forename" name="Forename"></input>
@@ -45,8 +45,7 @@ const Home = () => {
             <button type="submit" >Submit</button>
             <button >Reset</button> 
             </form>
-    
->>>>>>> 70f79a144000d9382038245aac74ded4fd8f437c
+
         </div>
      );
 }
