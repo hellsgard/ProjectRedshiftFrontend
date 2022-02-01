@@ -9,7 +9,7 @@ let tempPassword;
     return ( 
         <div>
             <h1>Redshift logo</h1>
-
+        <form>
         <h3> Username </h3>
             <input type="text" name="username"
 
@@ -48,6 +48,7 @@ let tempPassword;
 
             <button type="submit" >Login</button>
         <button >Reset</button> 
+        </form>
         </div>
      );
 }
