@@ -4,13 +4,13 @@ const Nav = () => {
     return ( 
         <div>
             <h2> This is the nav bar </h2>
-            <Link to="/Welcome">
+            <Link to="/home">
                 <h4> Home </h4>
                 </Link>
-            <Link to="/Lock">
+            <Link to="/lock">
                 <h4> Lock console </h4>
             </Link>
-                <Link to="/Logout">
+                <Link to="/logout">
                 <h4> Logout </h4>
                 </Link>
         </div>

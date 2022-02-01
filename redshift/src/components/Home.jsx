@@ -14,11 +14,13 @@ const Home = () => {
 
     return ( 
         <div>
+             <Nav></Nav>
             <h3>Suspect </h3>
             <h3>Incident </h3>
             <h3>Suspect Flees</h3>
         </div>
      );
 }
+
  
 export default Home;
