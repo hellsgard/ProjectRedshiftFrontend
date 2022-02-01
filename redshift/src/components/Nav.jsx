@@ -9,7 +9,7 @@ const Nav = () => {
                 </Link>
             <Link to="/Lock">
                 <h4> Lock console </h4>
-                </Link>
+            </Link>
                 <Link to="/Logout">
                 <h4> Logout </h4>
                 </Link>
