@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './CSS/App.css';
+import Nav from './components/Nav.jsx';
+import Login from './components/Login.jsx';
+import Logout from './components/Logout.jsx';
+import Scenario1 from './components/Scenario1';
+import Scenario2 from './components/Scenario2';
+import Scenario3 from './components/Scenario3';
+
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <h1> This is the redshift logo</h1>
+        <h2>
+         The redshift login page
+        </h2>
+        
+        <form> 
+        <label for="username">username</label>
+        <input type="text" id="username" name="username"/>
+        <label for="password">password</label>
+        <input type="password" id="password" name="password"/> 
+        <button type="submit" >Login</button>
+        <button >Reset</button>
+        </form>
+
     </div>
   );
 }
