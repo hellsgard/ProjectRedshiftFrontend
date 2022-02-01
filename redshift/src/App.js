@@ -7,7 +7,7 @@ import Lock from './components/Lock.jsx';
 import Scenario1 from './components/Scenario1.jsx';
 import Scenario2 from './components/Scenario2.jsx';
 import Scenario3 from './components/Scenario3.jsx';
-import Welcome from './components/Welcome.jsx';
+import Home from './components/Home.jsx';
 
 import {
   BrowserRouter,
@@ -26,7 +26,7 @@ function App() {
         <Route path='/scenario1' element = {<Scenario1/>}></Route>
         <Route path='/scenario2' element = {<Scenario2/>}></Route>
         <Route path='/scenario3' element = {<Scenario3/>}></Route>
-        <Route path='/welcome' element = {<Welcome/>}></Route>
+        <Route path='/home' element = {<Home/>}></Route>
         </Routes>
         </BrowserRouter>
 
