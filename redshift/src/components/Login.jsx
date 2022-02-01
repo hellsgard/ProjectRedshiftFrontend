@@ -10,8 +10,7 @@ let tempPassword;
         <div>
             <h1>Redshift logo</h1>
         <form>
-        <h3> Username </h3>
-            <input type="text" name="username"
+            <input type="text" placeholder="Username" name="username" 
 
             // When the Input field detects a change (new key being pressed)
             onChange={(event) => {
@@ -27,9 +26,7 @@ let tempPassword;
             }} />
             
             <h3>{username} </h3>   
-
-            <h3> Password </h3>
-            <input type="text" name="Password"
+            <input type="text" placeholder="Password" name="Password"
 
             // When the Input field detects a change (new key being pressed)
             onChange={(event) => {
