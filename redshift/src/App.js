@@ -13,12 +13,14 @@ import axios from 'axios';
 import BankDetails from './components/BankDetails';
 import AtmTransactions from './components/AtmTransactions';
 import AtmPoint from './components/AtmPoint';
+import Vehicles from './components/Vehicles';
 
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
+
 
 
 
@@ -38,6 +40,7 @@ function App() {
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
         <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
+        <Route path='/vehicles' element = {<Vehicles/>}></Route>
         </Routes>
         </BrowserRouter>
 
