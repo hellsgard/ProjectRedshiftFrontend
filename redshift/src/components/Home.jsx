@@ -1,6 +1,7 @@
 import Nav from './Nav.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Suspect from './Suspect.jsx';
 
 const Home = () => {
 
@@ -15,6 +16,8 @@ const Home = () => {
     const [vehicleReg, setVehicleReg] = useState("");
     const [fleesTimeStamp, setFleesTimeStamp] = useState("");
 
+    const [suspects, setSuspects] = useState([]);
+ 
    
 
 
@@ -31,6 +34,9 @@ const createQueryPerson = () =>{
     axios.get("http://localhost:8080/queryPerson/person",{params: queryPerson})
     .then((response) => {
         console.log(response); 
+        // setSuspects(response.data);
+        // console.log(suspects);
+        setData(response);
     })
     .catch((error) => {
         console.log(error);
@@ -77,6 +83,11 @@ const clearFields = () => {
     console.log("function to clear search fields");
 }
 
+        function setData(res) {
+            setSuspects(res.data);
+            console.log(suspects);
+        }
+
     return ( 
         <div>
              <Nav></Nav>
@@ -108,6 +119,12 @@ const clearFields = () => {
             <button type="button" onClick={() => createQuerySuspectFlees()}>Submit</button>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </form>
+
+            {suspects.map((suspect) => {
+                return <Suspect forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>
+            })}
+
+
 
         </div>
      );
