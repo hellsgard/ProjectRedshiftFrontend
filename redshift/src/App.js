@@ -12,12 +12,14 @@ import Login2 from './components/Login2.jsx';
 import axios from 'axios';
 import BankDetails from './components/BankDetails';
 import AtmTransactions from './components/AtmTransactions';
+import AtmPoint from './components/AtmPoint';
 
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
+
 
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
         <Route path='/login2' element = {<Login2/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
+        <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
         </Routes>
         </BrowserRouter>
 

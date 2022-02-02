@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
 
-const atmPointDetails = () => {
+const AtmPoint = () => {
 
 const [atmPointData, setAtmPointData] = useState([]);
 
@@ -34,4 +34,4 @@ useEffect(() => {
 ); 
 }
  
-export default atmPointDetails;
+export default AtmPoint;
