@@ -14,13 +14,13 @@ import BankDetails from './components/BankDetails';
 import AtmTransactions from './components/AtmTransactions';
 import AtmPoint from './components/AtmPoint';
 import Vehicles from './components/Vehicles';
-
+import BankCards from './components/BankCards';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
-import BankCards from './components/BankCards';
+
 
 
 
@@ -40,14 +40,10 @@ function App() {
         <Route path='/home' element = {<Home/>}></Route>
         <Route path='/login2' element = {<Login2/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
-
         <Route path='/bankCards' element = {<BankCards/>}></Route>
-
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
         <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
         <Route path='/vehicles' element = {<Vehicles/>}></Route>
-        <Route path='/AtmPoint' element = {<AtmPoint/>}></Route>
-        <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
         </Routes>
         </BrowserRouter>
 
