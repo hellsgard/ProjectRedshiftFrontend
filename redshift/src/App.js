@@ -11,12 +11,14 @@ import Home from './components/Home.jsx';
 import Login2 from './components/Login2.jsx';
 import axios from 'axios';
 import BankDetails from './components/BankDetails';
+import AtmTransactions from './components/AtmTransactions';
 
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
+
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
         <Route path='/home' element = {<Home/>}></Route>
         <Route path='/login2' element = {<Login2/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
+        <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
         </Routes>
         </BrowserRouter>
 
