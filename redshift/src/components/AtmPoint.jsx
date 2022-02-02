@@ -1,11 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
 
-<<<<<<< HEAD:redshift/src/components/AtmPoint.jsx
-const atmPoint = () => {
-=======
 const AtmPoint = () => {
->>>>>>> 1775f4f802a1aada400a8b5ba5fe3ab7ea91105b:redshift/src/components/atmPointRoute.jsx
 
 const [atmPointData, setAtmPointData] = useState([]);
 
@@ -37,9 +33,5 @@ useEffect(() => {
     
 ); 
 }
- 
-<<<<<<< HEAD:redshift/src/components/AtmPoint.jsx
-export default atmPoint;
-=======
+
 export default AtmPoint;
->>>>>>> 1775f4f802a1aada400a8b5ba5fe3ab7ea91105b:redshift/src/components/atmPointRoute.jsx
