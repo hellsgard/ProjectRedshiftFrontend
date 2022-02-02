@@ -19,6 +19,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import BankCards from './components/BankCards';
+
 
 
 function App() {
@@ -35,8 +37,15 @@ function App() {
         <Route path='/home' element = {<Home/>}></Route>
         <Route path='/login2' element = {<Login2/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
+
+        <Route path='/bankCards' element = {<BankCards/>}></Route>
+
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
+<<<<<<< HEAD
         <Route path='/AtmPoint' element = {<AtmPoint/>}></Route>
+=======
+        <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
+>>>>>>> 1775f4f802a1aada400a8b5ba5fe3ab7ea91105b
         </Routes>
         </BrowserRouter>
 
