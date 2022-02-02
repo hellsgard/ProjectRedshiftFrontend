@@ -8,6 +8,14 @@ const Home = () => {
     const [forename, setForename] = useState("");
     const [surname, setSurname] = useState("");
     const [DOB, setDOB] = useState("");
+    const [timeDate, setTimeDate] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
+    const [radius, setRadius] = useState("");
+    const [vehicleReg, setVehicleReg] = useState("");
+    const [fleesTimeStamp, setFleesTimeStamp] = useState("");
+
+   
 
 
 
@@ -31,16 +39,40 @@ const createQueryPerson = () =>{
 
 const createQueryIncident = () => {
     console.log("incident");
-    // const queryIncident = {
-    // };
-    // console.log(queryIncident);
-}
+    const queryIncident = {
+        timeDate: timeDate,
+        latitude: latitude,
+        longitude: longitude,
+        radius: radius
+    }; 
+    console.log(queryIncident);
+    console.log("sending to back end");
+    axios.get("http://localhost:8080/queryIncident/incident", {params: queryIncident})
+    .then((response) => {
+        console.log(response); 
+    })
+    .catch((error) => {
+        console.log(error);
+    })};
 
-const createQuerySuspectFlees = () => {
-    console.log("suspect flees");
-    // const querySuspectFlees = {
-    // }
-}
+
+    const createQuerySuspectFlees = () => {
+        console.log("suspect flees");
+        const queryFlees = {
+            timestamp: fleesTimeStamp,
+            vehicleReg: vehicleReg
+        }; 
+        console.log(queryFlees);
+        console.log("sending to back end");
+        axios.get("http://localhost:8080/queryFlees/flees", {params: queryFlees})
+        .then((response) => {
+            console.log(response); 
+        })
+        .catch((error) => {
+            console.log(error);
+        })};
+
+
 const clearFields = () => {
     console.log("function to clear search fields");
 }
@@ -61,24 +93,25 @@ const clearFields = () => {
 
             <h3> Incident </h3>
             <form>
-            <input type="text" placeholder="Time/Date" name="Time/Date"></input>
-            <input type="text" placeholder="Location" name="Location"></input>
-            <input type="number" placeholder="Radius" name="Radius"></input>
+            <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
+            <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
+            <input type="text" placeholder="Longitude" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}></input>
+            <input type="number" placeholder="Radius" name="Radius" value={radius} onChange={(e) => setRadius(e.target.value)}></input>
             <button type="button" onClick={() => createQueryIncident()}>Submit</button>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </form>
 
             <h3> Suspect Flees </h3>
             <form>
-            <input type="text" placeholder="Vehicle Reg" name="Vehicle Reg"></input>
-            <input type="text" placeholder="Time/date" name="Time/date"></input>
+            <input type="text" placeholder="Vehicle Reg" name="Vehicle Reg" value={vehicleReg} onChange={(e) => setVehicleReg(e.target.value)}></input>
+            <input type="text" placeholder="Timestamp" name="Time/date" value={fleesTimeStamp} onChange={(e) => setFleesTimeStamp(e.target.value)}></input>
             <button type="button" onClick={() => createQuerySuspectFlees()}>Submit</button>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </form>
 
         </div>
      );
-}
+    }
 
  
 export default Home;
