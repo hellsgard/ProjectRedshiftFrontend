@@ -41,6 +41,7 @@ function App() {
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
         <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
         <Route path='/vehicles' element = {<Vehicles/>}></Route>
+        <Route path='/AtmPoint' element = {<AtmPoint/>}></Route>
         </Routes>
         </BrowserRouter>
 
