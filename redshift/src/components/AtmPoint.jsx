@@ -33,5 +33,4 @@ useEffect(() => {
     
 ); 
 }
- 
 export default AtmPoint;
