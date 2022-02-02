@@ -1,4 +1,6 @@
 import { useState } from "react";
+import React from "react";
+
 const Login = () => {
 
 const [username, setUsername] = useState("");
@@ -7,9 +9,17 @@ let tempUser;
 let tempPassword;
 
     return ( 
-        <div>
-            <h1>Redshift logo</h1>
-        <form>
+        <div id="main-div" className="d-grid h-100">
+        <form className="text-center w-100">
+        <img  
+        src="/images/RedShift.png" 
+        alt=""></img>
+        <br>
+        </br>
+        <br></br>
+        <h3 className="fs-3 fw-normal"> Please sign in </h3>
+        <br>
+        </br>
             <input type="text" placeholder="Username" name="username" 
 
             // When the Input field detects a change (new key being pressed)

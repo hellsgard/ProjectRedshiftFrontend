@@ -1,4 +1,16 @@
-.App {
+#main-div {
+  place-items: center center;
+}
+
+/* #sign-in-form {
+  max-width: 330px;
+} */
+
+img {
+  height: 200px;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -13,7 +25,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -34,5 +46,4 @@
   }
   to {
     transform: rotate(360deg);
-  }
-}
+  } */
