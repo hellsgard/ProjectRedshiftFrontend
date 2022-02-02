@@ -1,6 +1,9 @@
 import Nav from "./Nav.jsx";
 
 const Scenario1 = () => {
+
+
+
   return (
     <div>
       <Nav></Nav>
