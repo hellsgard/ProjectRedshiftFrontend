@@ -1,5 +1,6 @@
 import Nav from "./Nav.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {useParams} from 'react-router-dom';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
 const Scenario1 = () => {
