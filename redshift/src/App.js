@@ -31,7 +31,7 @@ function App() {
         <Route path='/' element = {<Login/>}></Route>
         <Route path='/logout' element = {<Logout/>}></Route>
         <Route path='/lock' element = {<Lock/>}></Route>
-        <Route path='/scenario1' element = {<Scenario1/>}></Route>
+        <Route path='/scenario1/:id' element = {<Scenario1/>}></Route>
         <Route path='/scenario2' element = {<Scenario2/>}></Route>
         <Route path='/scenario3' element = {<Scenario3/>}></Route>
         <Route path='/home' element = {<Home/>}></Route>
