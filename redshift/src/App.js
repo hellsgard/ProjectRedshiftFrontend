@@ -9,7 +9,6 @@ import Scenario2 from './components/Scenario2.jsx';
 import Scenario3 from './components/Scenario3.jsx';
 import Home from './components/Home.jsx';
 import Login2 from './components/Login2.jsx';
-import axios from 'axios';
 import BankDetails from './components/BankDetails';
 import AtmTransactions from './components/AtmTransactions';
 import AtmPoint from './components/AtmPoint';
@@ -21,7 +20,6 @@ import BankCards from "./components/BankCards";
 import Card from 'react-bootstrap/Card';
 
 
-
 function App() {
   return (
     <div>
@@ -29,6 +27,8 @@ function App() {
         <Routes>
 
         <Route path='/' element = {<Login/>}></Route>
+
+        <Route path='/login' element = {<Login/>}></Route>
         <Route path='/logout' element = {<Logout/>}></Route>
         <Route path='/lock' element = {<Lock/>}></Route>
         <Route path='/scenario1' element = {<Scenario1/>}></Route>
@@ -38,7 +38,6 @@ function App() {
         <Route path='/login2' element = {<Login2/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
         <Route path='/bankCards' element = {<BankCards/>}></Route>
-
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
         <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
         <Route path='/vehicles' element = {<Vehicles/>}></Route>
