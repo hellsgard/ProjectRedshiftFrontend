@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 const Scenario1 = () => {
 
+
 const center = [51.505, -0.09]
 const rectangle = [
   [51.49, -0.08],
@@ -13,6 +14,8 @@ const fillBlueOptions = { fillColor: 'blue' }
 const fillRedOptions = { fillColor: 'red' }
 const greenOptions = { color: 'green', fillColor: 'green' }
 const purpleOptions = { color: 'purple' }
+
+
 
 
   return (
