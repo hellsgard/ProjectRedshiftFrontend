@@ -18,9 +18,10 @@ const BasicInformation = () => {
     
         useEffect(() => {
             
-                axios.get("http://localhost:8080/suspectProfile/basicInfo")) // this needs to change
+                axios.get("http://localhost:8080/suspectProfile/basicInfo") // this needs to change
                 .then((response) => {
                 // What does the data look like when pulling it
+                console.log("hello");
                 setBasicData(response.data)
                 console.log("=======BasicData==========");
                 console.log(basicData);
@@ -45,14 +46,14 @@ const BasicInformation = () => {
                 <div>
                     <h2> Loads if the data is fine! </h2>
 
-                    {basicData.map((basic) => {
+                    {/* {basicData.map((basic) => {
                         console.log(`name: ${basic.name}`);
                         return <BasicData name={basic.name} DOB={basic.dob} postcode={BasicData.postcode} nationality={BasicData.nationality}/>
-                    })}
+                    })} */}
                 </div>
             )
         }
              
-    }
+}
  
 export default BasicInformation;
