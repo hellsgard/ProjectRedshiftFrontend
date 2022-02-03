@@ -15,8 +15,10 @@ const fillRedOptions = { fillColor: 'red' }
 const greenOptions = { color: 'green', fillColor: 'green' }
 const purpleOptions = { color: 'purple' }
 
-  let{citizenID} = useParams();
 
+  
+  const citizenID = useParams().id;
+  
   return (
     <div>
       <Nav></Nav>
@@ -24,7 +26,8 @@ const purpleOptions = { color: 'purple' }
       <body>
         <h2>HTML Iframes for information</h2>
 
-        <h2>{citizenID}</h2>
+        
+        <h2> test {citizenID}</h2>
 
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
   <TileLayer
