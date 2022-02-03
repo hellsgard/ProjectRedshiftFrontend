@@ -1,6 +1,6 @@
 import Nav from "./Nav.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import {useParams} from "react-router-dom";
+import {useParams} from 'react-router-dom';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
 const Scenario1 = () => {
@@ -16,8 +16,9 @@ const Scenario1 = () => {
   const purpleOptions = { color: "purple" };
 
 
+  let citizenID = useParams().id;
 
-  
+
 
   
 
@@ -58,9 +59,10 @@ const Scenario1 = () => {
 
         <h2>HTML Iframes for information</h2>
 
-        
-        <h2> test {}</h2>
 
+        <h2>tets {citizenID}</h2>
+        
+       
 
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
           <TileLayer
