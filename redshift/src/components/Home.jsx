@@ -2,6 +2,11 @@ import Nav from './Nav.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Suspect from './Suspect.jsx';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button'
+
 
 const Home = () => {
 
@@ -120,10 +125,28 @@ const clearFields = () => {
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </form>
 
-            {suspects.map((suspect) => {
-                return <Suspect forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>
-            })}
-
+            
+        
+         
+        <Row >    
+            {suspects.map((suspect) => {  
+                return(
+                    
+                    <Col>
+                        <Suspect citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
+                        
+                    </Col>
+                  
+            )})}
+        </Row>
+                
+            
+                
+            {/* {suspects.map((suspect) => {  
+                        return <Suspect forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
+            })} */}
+                
+            
 
 
         </div>
