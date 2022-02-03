@@ -15,7 +15,14 @@ const Scenario1 = () => {
   const greenOptions = { color: "green", fillColor: "green" };
   const purpleOptions = { color: "purple" };
 
-  const citizenID = useParams().id;
+
+
+  
+
+  
+
+
+
 
   return (
     <div>
@@ -47,6 +54,14 @@ const Scenario1 = () => {
             </p>
             
         {/* MapContainer is for Leaflet */}
+
+
+        <h2>HTML Iframes for information</h2>
+
+        
+        <h2> test {}</h2>
+
+
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
