@@ -16,7 +16,7 @@ const Scenario1 = () => {
   const greenOptions = { color: "green", fillColor: "green" };
   const purpleOptions = { color: "purple" };
 
-  let{citizenID} = useParams();
+  let citizenID = useParams().id;
 
 
   return (
@@ -53,7 +53,7 @@ const Scenario1 = () => {
 
         <h2>HTML Iframes for information</h2>
 
-        <h2>{citizenID}</h2>
+        <h2>tets {citizenID}</h2>
 
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
           <TileLayer
