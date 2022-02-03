@@ -18,6 +18,7 @@ import EposTransactions from "./components/EposTransactions";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BankCards from "./components/BankCards";
 import Card from 'react-bootstrap/Card';
+import ProtectedRoute from "./components/ProtectedRoutes";
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-        <Route path='/' element = {<Login/>}></Route>
+        <Route exact path='/' element = {<Login/>}></Route>
 
         <Route path='/login' element = {<Login/>}></Route>
         <Route path='/logout' element = {<Logout/>}></Route>
@@ -34,7 +35,7 @@ function App() {
         <Route path='/scenario1' element = {<Scenario1/>}></Route>
         <Route path='/scenario2' element = {<Scenario2/>}></Route>
         <Route path='/scenario3' element = {<Scenario3/>}></Route>
-        <Route path='/home' element = {<Home/>}></Route>
+        <Route path='/home' element = {<ProtectedRoute/>}></Route>
         <Route path='/login2' element = {<Login2/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
         <Route path='/bankCards' element = {<BankCards/>}></Route>
