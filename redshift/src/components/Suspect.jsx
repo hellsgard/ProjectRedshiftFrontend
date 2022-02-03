@@ -1,12 +1,22 @@
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+
+
+
 const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, placeOfBirth, sex}) => {
     return ( 
         <div>
-            <h5> {forenames} </h5>
-            <h5> {surname} </h5>
-            <h5> {homeAddress} </h5>
-            <h5> {dateOfBirth} </h5>
-            <h5> {placeOfBirth} </h5>
-            <h5> {sex} </h5>
+            
+        <Card style={{width: '25rem'}}>
+            <h5> Forename: {forenames} </h5>
+            <h5> Surname: {surname} </h5>
+            <h5> Address: {homeAddress} </h5>
+            <h5> Date of Birth: {dateOfBirth} </h5>
+            <h5> Place of Birth: {placeOfBirth} </h5>
+            <h5> Sex: {sex} </h5>
+        </Card>
+                    
+                
         </div>
      );
 }

@@ -17,6 +17,8 @@ import Epos from "./components/Epos";
 import EposTransactions from "./components/EposTransactions";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BankCards from "./components/BankCards";
+import Card from 'react-bootstrap/Card';
+
 
 
 function App() {
