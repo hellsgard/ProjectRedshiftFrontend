@@ -1,5 +1,7 @@
 import { useState } from "react";
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 const Login = () => {
 
@@ -11,16 +13,14 @@ let tempPassword;
     return ( 
         <div id="main-div" className="d-grid h-100">
         <form className="text-center w-100">
-        <img  
+        <img className="mb-4 RedShift-logo"
         src="/images/RedShift.png" 
         alt=""></img>
-        <br>
-        </br>
-        <br></br>
-        <h3 className="fs-3 fw-normal"> Please sign in </h3>
-        <br>
-        </br>
-            <input type="text" placeholder="Username" name="username" 
+        
+        <h1 className="mb-3 fs-3 fw-normal"> Please Login </h1>
+        
+            
+            <input type="text" placeholder=" Username" name="username" className="position-relative"
 
             // When the Input field detects a change (new key being pressed)
             onChange={(event) => {
@@ -31,12 +31,9 @@ let tempPassword;
             }
             }/>
 
-            <button type="button" onClick={() => {
-                setUsername(tempUser);
-            }} />
-            
-            <h3>{username} </h3>   
-            <input type="text" placeholder="Password" name="Password"
+          
+            <h3> {} </h3>   
+            <input className="mb-2" type="text" placeholder=" Password" name="password" className="position-relative"
 
             // When the Input field detects a change (new key being pressed)
             onChange={(event) => {
@@ -47,14 +44,19 @@ let tempPassword;
             }
             }/>
 
-            <button type="button" onClick={() => {
-                setPassword(tempPassword);
-            }} />
             
-            <h3>{password} </h3>  
+            <h3> {} </h3>  
 
-            <button type="submit" >Login</button>
-        <button >Reset</button> 
+            
+            <Button type="button" variant="secondary" onClick={() => {
+                setPassword(tempPassword);
+                setUsername(tempUser);
+               
+            }}>Login</Button>
+
+            
+            {/* <Button className="mb-4" variant="secondary" size="sm">Login</Button> */}
+        {/* <button >Reset</button>  */}
         </form>
         </div>
      );
