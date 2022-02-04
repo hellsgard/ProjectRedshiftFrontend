@@ -90,7 +90,7 @@ const clearFields = () => {
 
         function setData(res) {
             setSuspects(res.data);
-            console.log(suspects);
+            
         }
 
     return ( 
