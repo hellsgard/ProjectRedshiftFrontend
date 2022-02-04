@@ -7,7 +7,6 @@ import { selectOptions } from "@testing-library/user-event/dist/select-options";
 import Suspect from './Suspect';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
-const Scenario1 = () => {
   const center = [51.505, -0.09];
   const rectangle = [
     [51.49, -0.08],
@@ -105,7 +104,7 @@ const Scenario1 = () => {
       </body>
     </div>
   );
-};
+
 
 
 export default Scenario1;
