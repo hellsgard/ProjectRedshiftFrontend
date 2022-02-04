@@ -1,6 +1,6 @@
 import Nav from "./Nav.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
+
 
 const Scenario1 = () => {
   const center = [51.505, -0.09];
@@ -13,6 +13,8 @@ const Scenario1 = () => {
   const fillRedOptions = { fillColor: "red" };
   const greenOptions = { color: "green", fillColor: "green" };
   const purpleOptions = { color: "purple" };
+  
+  const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
   return (
     <div>
@@ -23,9 +25,7 @@ const Scenario1 = () => {
         <div class="row align-items-center my-5">
           <div class="col-lg-5">
             <h1 class="font-weight-light">Basic Information</h1>
-            <p>
-              Lorem Ipsum
-            </p>
+            <p>  {forename} {surname} {address} </p>
             <h1 class="font-weight-light">Known Associates</h1>
             <p>
               Lorem Ipsum
@@ -64,5 +64,6 @@ const Scenario1 = () => {
     </div>
   );
 };
+}
 
 export default Scenario1;
