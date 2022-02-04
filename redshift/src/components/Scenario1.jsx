@@ -38,6 +38,7 @@ const Scenario1 = () => {
   let passportNumber= suspect.passportNumber;
   let nationality= suspect.nationality;
   let placeOfBirth= suspect.placeOfBirth;
+  
   return (
     <div>
       <Nav></Nav>
