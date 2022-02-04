@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
     import Scenario1 from "./Scenario1";
     import Button from 'react-bootstrap/Button';
 
-const BasicInformation = () => {
+
+const BasicInformation = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
         // Our state is going to be the data we pull from the api
         const [basicData, setBasicData] = useState([]);
@@ -18,7 +19,7 @@ const BasicInformation = () => {
     
         useEffect(() => {
             
-                axios.get("http://localhost:8080/suspectProfile/basicInfo") // this needs to change
+                axios.get("http://localhost:8080/suspectProfile/basicInfo/") // this needs to change
                 .then((response) => {
                 console.log("=======BasicData==========");
                 console.log(response);
@@ -49,7 +50,7 @@ const BasicInformation = () => {
                     <h2> Loads if the data is fine! </h2>
                     {basicData.map((basic) => {
                     console.log(`name: ${basic.name}`);
-                    return <BasicInformation forename={basic.forenames} surname={basic.surname} address={basic.homeAddress} dob={basicData.dateOfBirth} sex={basicData.sex} passportNumber={basicData.passportNumber} nationality={basicData.nationality} placeOfBirth={basicData.placeOfBirth}/>
+                    return <BasicInformation forename={basic.forenames} surname={basic.surname} address={basic.homeAddress} dob={basic.dateOfBirth} sex={basic.sex} passportNumber={basic.passportNumber} nationality={basic.nationality} placeOfBirth={basic.placeOfBirth}/>
                     })}
 
                 </div>

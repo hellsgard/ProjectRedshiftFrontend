@@ -1,9 +1,12 @@
 import Nav from "./Nav.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import {useParams} from 'react-router-dom';
-// const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
+import BasicInformation from "./BasicInformation.jsx"; 
 
-const Scenario1 = () => {
+const Scenario1 = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
+  console.log(forename)
+  console.log(surname)
+
   const center = [51.505, -0.09];
   const rectangle = [
     [51.49, -0.08],
@@ -14,18 +17,11 @@ const Scenario1 = () => {
   const fillRedOptions = { fillColor: "red" };
   const greenOptions = { color: "green", fillColor: "green" };
   const purpleOptions = { color: "purple" };
-  
-  const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
+  console.log("test")
+  // const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
 
   let citizenID = useParams().id;
-
-
-
-  
-
-
-
 
   return (
     <div>
@@ -36,7 +32,7 @@ const Scenario1 = () => {
         <div class="row align-items-center my-5">
           <div class="col-lg-5">
             <h1 class="font-weight-light">Basic Information</h1>
-            <p>  {forename} {surname} {address} </p>
+            <p>  {forename} {surname} {address}</p>
             <h1 class="font-weight-light">Known Associates</h1>
             <p>
               Lorem Ipsum
@@ -84,6 +80,7 @@ const Scenario1 = () => {
     </div>
   );
 };
-}
+console.log("test")
+
 
 export default Scenario1;
