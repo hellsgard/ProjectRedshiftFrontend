@@ -16,7 +16,7 @@ const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, place
         <div>
             
         <Card style={{width: '25rem'}}>
-        <h5> Forename: {citizenID} </h5>
+            <h5> ID: {citizenID} </h5>
             <h5> Forename: {forenames} </h5>
             <h5> Surname: {surname} </h5>
             <h5> Address: {homeAddress} </h5>

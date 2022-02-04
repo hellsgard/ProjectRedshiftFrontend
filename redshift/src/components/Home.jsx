@@ -1,12 +1,8 @@
-import Nav from './Nav.jsx';
+import Nav from './Navb.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Suspect from './Suspect.jsx';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button'
-
+import Spinner from "react-bootstrap/Spinner"
 
 const Home = () => {
 
@@ -36,6 +32,7 @@ const createQueryPerson = () =>{
     }; 
     console.log(queryPerson);
     console.log("sending to back end");
+   
     axios.get("http://localhost:8080/queryPerson/person",{params: queryPerson})
     .then((response) => {
         console.log(response); 
@@ -125,28 +122,10 @@ const clearFields = () => {
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </form>
 
-            
-        
-         
-        <Row >    
-            {suspects.map((suspect) => {  
-                return(
-                    
-                    <Col>
-                        <Suspect citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
-                        
-                    </Col>
-                  
-            )})}
-        </Row>
-                
-            
-                
-            {/* {suspects.map((suspect) => {  
-                        return <Suspect forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
-            })} */}
-                
-            
+            {suspects.map((suspect) => {
+                return <Suspect forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>
+            })}
+
 
 
         </div>
