@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import { clone, merge } from 'lodash';
 import JWT from '../config/config.json'
+import { useNavigate } from 'react-router-dom'
+import ProtectedRoutes from './RequireAuth'
 
 export default function Login(props) {
 
@@ -19,6 +21,8 @@ export default function Login(props) {
     //     setDetails(tempDetails);
     // }
 
+    
+    
 
 
 const handleSubmit = () => {
@@ -28,7 +32,6 @@ const handleSubmit = () => {
     .then((response) => {
         console.log(response); 
         localStorage.setItem(JWT, response.data);
-        // props.history.push('/test'); // this pushes the history to the test page - good for auditing?!
     })
     .catch((error) => {
         console.log('login failed', error);
@@ -56,4 +59,3 @@ const handleSubmit = () => {
         </div>
      );
 }
- 
