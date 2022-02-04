@@ -3,21 +3,32 @@ div {
   background-color: #eeebeb;
   min-height: 100vh;
 }
-/* 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
 
 form {
   display: block;
   position: relative;
-  background-color: rgb(189, 181, 181);
-  box-shadow: 5px 5px 5px rgba(red, green, blue, alpha);
+  background-color: rgb(204, 202, 202);
+  box-shadow: 10px 10px 5px grey;
 }
 
 h1 {
   color: #0a0a0a;
+}
+
+#user {
+  border-radius: 5px;
+  border: 2px solid #fafafa;
+  padding: 13px;
+  width: 190px;
+  height: 10px;
+}
+
+#pass {
+  border-radius: 5px;
+  border: 2px solid #fafafa;
+  padding: 13px;
+  width: 190px;
+  height: 10px;
 }
 
 /* form::after {

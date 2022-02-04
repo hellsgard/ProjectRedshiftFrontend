@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import  Form  from "react-bootstrap/Form";
+import {FaIoMdPerson} from "react-icons/fa";
 
 
 const Login = () => {
@@ -15,17 +16,16 @@ let tempPassword;
 
         
         <div id="main-div" className="d-grid h-100">
-        <Form className="rounded p-5 text-center w-50">
+        <Form className="rounded p-5 text-center w-30">
             
         <img className="mb-4 RedShift-logo"
         src="/images/RedShift.png" 
         alt=""></img>
         
-        <h1 className="mb-3 fs-3 fw-normal"> Please Login </h1>
-
+        <h1 className="mb-4 fs-3 fw-normal"> Please Login </h1>
         
-            
-            <input type="text" placeholder=" Username" name="username" className="position-relative"
+    
+            <input id="user"  type="text" placeholder="Username" name="username" className="position-relative"
 
             // When the Input field detects a change (new key being pressed)
             onChange={(event) => {
@@ -38,7 +38,7 @@ let tempPassword;
 
           
             <h3> {} </h3>   
-            <input className="mb-2" type="text" placeholder=" Password" name="password" className="position-relative"
+            <input  id="pass" className="mb-2" type="text" placeholder="Password" name="password" className="position-relative"
 
             // When the Input field detects a change (new key being pressed)
             onChange={(event) => {
@@ -52,18 +52,18 @@ let tempPassword;
                 
             <h3> {} </h3>  
 
+            <br></br>
             
-            
-            <Button type="button" variant="secondary" onClick={() => {
+            <Button id="B1" type="button" variant="secondary" onClick={() => {
                 setPassword(tempPassword);
                 setUsername(tempUser);
                
             }}>Login</Button>
 
     `                   
-            <Button variant="secondary">Reset</Button>
+            <Button id="B2" variant="secondary">Reset</Button>
         {/* <button >Reset</button>  */}
-        
+        <p className=" mt-5 text-muted">REDSHIFT &copy; 2022</p>
         </Form>
         </div>
         
