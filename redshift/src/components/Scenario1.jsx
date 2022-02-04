@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { selectOptions } from "@testing-library/user-event/dist/select-options";
+import Suspect from './Suspect';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
 const Scenario1 = () => {
@@ -18,33 +19,23 @@ const Scenario1 = () => {
   const greenOptions = { color: "green", fillColor: "green" };
   const purpleOptions = { color: "purple" };
   
-  const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
+  //const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
+  const [suspect, setSuspect] = useState("");
+  const [pageLoaded, setPageLoaded] = useState(false);
 
-  let citizenID = useParams().id;
-  console.log(citizenID);
-
+  const {id} = useParams();
   useEffect (() => {
-    loadPage();
-  }, []);
-
-  function loadPage() {
-    const queryPerson = {
-      citizenID: citizenID
-    };
-    axios.get(`http://localhost:8080/queryPerson/byID/`, {params: queryPerson})
+    axios.get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
     .then((response) => {
-         console.log(response);
+        console.log(response);
+        setSuspect(response.data)
+        setPageLoaded(true);
+        console.log(response)
     }).catch((error) => {
         console.log(error);
     })
-  }
-  
-
-  
-
-
-
+  }, []);
 
   return (
     <div>
@@ -55,7 +46,7 @@ const Scenario1 = () => {
         <div class="row align-items-center my-5">
           <div class="col-lg-5">
             <h1 class="font-weight-light">Basic Information</h1>
-            <p>  {forename} {surname} {address} </p>
+            
             <h1 class="font-weight-light">Known Associates</h1>
             <p>
               Lorem Ipsum
@@ -73,13 +64,25 @@ const Scenario1 = () => {
               Lorem Ipsum
             </p>
             
+
+
+            
+            
+            
+
+            {/* {suspect.map((suspect) => {  
+                return(
+                     
+                  <Suspect citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
+                        
+            )})}; */}
         {/* MapContainer is for Leaflet */}
 
 
         <h2>HTML Iframes for information</h2>
 
-
-        <h2>tets {citizenID}</h2>
+        
+        
         
        
 
@@ -103,6 +106,6 @@ const Scenario1 = () => {
     </div>
   );
 };
-}
+
 
 export default Scenario1;

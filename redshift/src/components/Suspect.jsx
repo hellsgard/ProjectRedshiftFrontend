@@ -29,11 +29,16 @@ const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, place
             
 
             <Link to={profilePage}>
-                <Button type="button" onClick={() => {
-                    
+                {/* <Button type="button" onClick={() => {
+                    <Link to={profilePage}></Link>
                 
-                }}>Profile</Button>
+                }}>Profile</Button> */}
+                profile
             </Link>
+
+
+            
+
         </Card>
                     
                 
