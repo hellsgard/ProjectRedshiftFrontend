@@ -3,8 +3,36 @@ div {
   background-color: #eeebeb;
   min-height: 100vh;
 }
-
-/* code {
+/* 
+code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+} */
+
+form {
+  display: block;
+  position: relative;
+  background-color: rgb(189, 181, 181);
+  box-shadow: 5px 5px 5px rgba(red, green, blue, alpha);
+}
+
+h1 {
+  color: #0a0a0a;
+}
+
+/* form::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: 1;
+}
+
+form .form-inner {
+  position: relative;
+  display: block;
+  background-color: white;
 } */

@@ -1,5 +1,6 @@
 #main-div {
   place-items: center center;
+  /* justify-content: center; */
 }
 
 /* #sign-in-form {

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import  Form  from "react-bootstrap/Form";
+
 
 const Login = () => {
 
@@ -11,13 +12,17 @@ let tempUser;
 let tempPassword;
 
     return ( 
+
+        
         <div id="main-div" className="d-grid h-100">
-        <form className="text-center w-100">
+        <Form className="rounded p-5 text-center w-50">
+            
         <img className="mb-4 RedShift-logo"
         src="/images/RedShift.png" 
         alt=""></img>
         
         <h1 className="mb-3 fs-3 fw-normal"> Please Login </h1>
+
         
             
             <input type="text" placeholder=" Username" name="username" className="position-relative"
@@ -44,9 +49,10 @@ let tempPassword;
             }
             }/>
 
-            
+                
             <h3> {} </h3>  
 
+            
             
             <Button type="button" variant="secondary" onClick={() => {
                 setPassword(tempPassword);
@@ -54,11 +60,13 @@ let tempPassword;
                
             }}>Login</Button>
 
-            
-            {/* <Button className="mb-4" variant="secondary" size="sm">Login</Button> */}
+    `                   
+            <Button variant="secondary">Reset</Button>
         {/* <button >Reset</button>  */}
-        </form>
+        
+        </Form>
         </div>
+        
      );
 }
  
