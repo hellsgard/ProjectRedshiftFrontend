@@ -18,7 +18,7 @@ const BasicInformation = () => {
     
         useEffect(() => {
             
-                axios.get("http://localhost:8080/suspectProfile/basicInfo") // this needs to change
+                axios.get("http://localhost:8080/suspectProfile/basicInfo/:id") // this needs to change
                 .then((response) => {
                 // What does the data look like when pulling it
                 console.log("hello");
