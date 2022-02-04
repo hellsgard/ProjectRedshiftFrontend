@@ -4,9 +4,10 @@ import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { selectOptions } from "@testing-library/user-event/dist/select-options";
-import Suspect from './Suspect';
+import Card from 'react-bootstrap/Card';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
+const Scenario1 = () => {
   const center = [51.505, -0.09];
   const rectangle = [
     [51.49, -0.08],
@@ -27,10 +28,8 @@ import Suspect from './Suspect';
   useEffect (() => {
     axios.get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
     .then((response) => {
-        console.log(response);
         setSuspect(response.data)
         setPageLoaded(true);
-        console.log(response)
     }).catch((error) => {
         console.log(error);
     })
@@ -38,13 +37,27 @@ import Suspect from './Suspect';
 
   return (
     <div>
+
       <Nav></Nav>
       <h1> Scenario 1 </h1>
       <body>
       <div class="container">
         <div class="row align-items-center my-5">
           <div class="col-lg-5">
-            <h1 class="font-weight-light">Basic Information</h1>
+            
+            <Card>
+            <Card.Header><h1 class="font-weight-light">Basic Information</h1></Card.Header>
+            <h5 class="font-weight-light">Forenames: {suspect.forenames}</h5>
+            <h5 class="font-weight-light">Surnames: {suspect.surname}</h5>
+            <h5 class="font-weight-light">Address: {suspect.homeAddress}</h5>
+            <h5 class="font-weight-light">Nationality: {suspect.nationality}</h5>
+            <h5 class="font-weight-light">Sex: {suspect.sex}</h5>
+            <h5 class="font-weight-light">Place of Birth: {suspect.placeOfBirth}</h5>
+            <h5 class="font-weight-light">DoB: {suspect.dateOfBirth}</h5>
+            <h5 class="font-weight-light">Passport Number: {suspect.passportNumber}</h5>
+            </Card>
+
+            
             
             <h1 class="font-weight-light">Known Associates</h1>
             <p>
@@ -104,7 +117,7 @@ import Suspect from './Suspect';
       </body>
     </div>
   );
-
+  }
 
 
 export default Scenario1;
