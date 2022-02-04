@@ -1,9 +1,10 @@
-import Nav from './Nav.jsx';
+
+import Navb from './Navb.jsx';
 
 const Lock = () => {
     return ( 
         <div>
-            <Nav></Nav>
+            <Navb></Navb>
             <button>Lock console</button>
         </div>
      );
