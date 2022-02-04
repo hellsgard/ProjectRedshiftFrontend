@@ -14,6 +14,8 @@ const Scenario1 = () => {
   const fillRedOptions = { fillColor: "red" };
   const greenOptions = { color: "green", fillColor: "green" };
   const purpleOptions = { color: "purple" };
+  
+  const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
 
   let citizenID = useParams().id;
@@ -34,9 +36,7 @@ const Scenario1 = () => {
         <div class="row align-items-center my-5">
           <div class="col-lg-5">
             <h1 class="font-weight-light">Basic Information</h1>
-            <p>
-              Lorem Ipsum
-            </p>
+            <p>  {forename} {surname} {address} </p>
             <h1 class="font-weight-light">Known Associates</h1>
             <p>
               Lorem Ipsum
@@ -84,5 +84,6 @@ const Scenario1 = () => {
     </div>
   );
 };
+}
 
 export default Scenario1;

@@ -36,10 +36,11 @@ function App() {
         <Route path='/login2' element = {<Login2/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
         <Route path='/bankCards' element = {<BankCards/>}></Route>
-        <Route path='/suspectProfile/basicInfo' element = {<BasicInformation/>}></Route>
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
         <Route path='/atmpoint' element = {<AtmPoint/>}></Route>
         <Route path='/vehicles' element = {<Vehicles/>}></Route>
+        <Route path='/suspectProfile/basicInfo' element = {<BasicInformation/>}></Route>
+
 
           <Route path="/epos" element={<Epos />}></Route>
           <Route
