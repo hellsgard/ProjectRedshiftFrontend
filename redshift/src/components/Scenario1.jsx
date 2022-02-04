@@ -1,6 +1,7 @@
 import Nav from "./Nav.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-
+import {useParams} from 'react-router-dom';
+// const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
 const Scenario1 = () => {
   const center = [51.505, -0.09];
@@ -15,6 +16,16 @@ const Scenario1 = () => {
   const purpleOptions = { color: "purple" };
   
   const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
+
+
+  let citizenID = useParams().id;
+
+
+
+  
+
+
+
 
   return (
     <div>
@@ -44,6 +55,15 @@ const Scenario1 = () => {
             </p>
             
         {/* MapContainer is for Leaflet */}
+
+
+        <h2>HTML Iframes for information</h2>
+
+
+        <h2>tets {citizenID}</h2>
+        
+       
+
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

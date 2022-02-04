@@ -12,8 +12,6 @@ const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, place
 
 
     let profilePage = `/Scenario1/${citizenID}`;
-
-
     return ( 
         <div>
             
