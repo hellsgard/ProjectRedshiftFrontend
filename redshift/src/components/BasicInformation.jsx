@@ -14,10 +14,7 @@ const BasicInformation = () => {
         // State to check if the data has loaded
         const [loaded, setLoaded] = useState(false);
     
-        let tempId;
-    
         useEffect(() => {
-            
                 axios.get("http://localhost:8080/suspectProfile/basicInfo/:id") // this needs to change
                 .then((response) => {
                 console.log("=======BasicData==========");
