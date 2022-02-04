@@ -7,14 +7,7 @@ import {Link} from 'react-router-dom';
 
 
 const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, placeOfBirth, sex}) => {
-
-
-
-
     let profilePage = `/Scenario1/${citizenID}`;
-    
-
-
     return ( 
         <div>
             
