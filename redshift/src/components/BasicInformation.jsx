@@ -19,11 +19,7 @@ const BasicInformation = ({forename, surname, address, dob, sex, passportNumber,
     
         useEffect(() => {
             
-<<<<<<< HEAD
                 axios.get("http://localhost:8080/suspectProfile/basicInfo/:id") // this needs to change
-=======
-                axios.get("http://localhost:8080/suspectProfile/basicInfo/") // this needs to change
->>>>>>> e0a1fc03f31aee25ce1be2dff67255d40de33c35
                 .then((response) => {
                 console.log("=======BasicData==========");
                 console.log(response);
