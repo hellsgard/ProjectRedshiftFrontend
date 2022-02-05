@@ -125,17 +125,20 @@ const clearFields = () => {
             <button type="button" onClick={() => createQuerySuspectFlees()}>Submit</button>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </form>
-
-            
-        
-         
+    
         <Row >    
             {suspects.map((suspect) => {  
                 return(
                     
                     <Col>
-                        <Suspect citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
-                        
+                        <Suspect 
+                        citizenID={suspect.citizenID} 
+                        forenames={suspect.forenames} 
+                        surname={suspect.surname} 
+                        homeAddress={suspect.homeAddress} 
+                        dateOfBirth={suspect.dateOfBirth} 
+                        placeOfBirth={suspect.placeOfBirth} 
+                        sex={suspect.sex}/>        
                     </Col>
                   
             )})}

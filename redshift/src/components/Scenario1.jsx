@@ -8,23 +8,14 @@ import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
+import Associates from "./Associates.jsx";
+import { ReactPropTypes } from "react";
+
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
 const Scenario1 = () => {
-
-  const center = [51.505, -0.09];
-  const rectangle = [
-    [51.49, -0.08],
-    [51.5, -0.06],
-  ];
-
-  const fillBlueOptions = { fillColor: "blue" };
-  const fillRedOptions = { fillColor: "red" };
-  const greenOptions = { color: "green", fillColor: "green" };
-  const purpleOptions = { color: "purple" };
-
   //const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
   const [suspect, setSuspect] = useState("");
@@ -35,6 +26,7 @@ const Scenario1 = () => {
     axios.get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
       .then((response) => {
         console.log(response);
+        console.log("PPPPPPPPPPPPPPPPPPPPPP*****************")
         setSuspect(response.data)
         setPageLoaded(true);
         console.log(response)
@@ -44,6 +36,9 @@ const Scenario1 = () => {
   }, [id]);
 
   console.log(suspect.forenames);
+  console.log("THIS THIS THIS")
+  console.log(suspect);
+  console.log("THIS THIS THIS") 
 
   let forenames= suspect.forenames;
   let surname= suspect.surname;
@@ -75,7 +70,7 @@ const Scenario1 = () => {
                   <Nav.Link eventKey="first">Profile information</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey="second">Known associates</Nav.Link>
+                  <Nav.Link eventKey={Associates} onclick={console.log("CLICK!")}>Known associates</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="third">Financial information</Nav.Link>
@@ -97,24 +92,9 @@ const Scenario1 = () => {
                 <p>Place Of Birth: {placeOfBirth}</p>
 
                 </Tab.Pane>
-                <Tab.Pane eventKey="second">
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-                sunt in culpa qui officia deserunt mollit anim id est laborum."
-                Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae 
-                dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
-                sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro 
-                quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non 
-                numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
-                Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, 
-                nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea 
-                voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo 
-                voluptas nulla pariatur?"
+                <Tab.Pane eventKey={Associates} title="Associates">
+                  <Associates forenames={forenames} surname={surname} dob={dob}/> 
+                  <p> </p>
                 </Tab.Pane>
               </Tab.Content>
             </Col>
@@ -136,6 +116,15 @@ const Scenario1 = () => {
 };
     
   
-  
+    // const center = [51.505, -0.09];
+  // const rectangle = [
+  //   [51.49, -0.08],
+  //   [51.5, -0.06],
+  // ];
+
+  // const fillBlueOptions = { fillColor: "blue" };
+  // const fillRedOptions = { fillColor: "red" };
+  // const greenOptions = { color: "green", fillColor: "green" };
+  // const purpleOptions = { color: "purple" };
 
 export default Scenario1;
