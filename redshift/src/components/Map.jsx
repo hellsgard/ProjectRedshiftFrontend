@@ -32,7 +32,7 @@ const Map = ({}) => {
     axios.get(`http://localhost:8080/atmPoint/readAll`) // this needs to change
     .then((response) => {
     // What does the data look like when pulling it
-    console.log(response);
+    console.log(response.data);
     setAtmPoint(response.data)
     setLoaded(true);
     console.log(atmPoint);
