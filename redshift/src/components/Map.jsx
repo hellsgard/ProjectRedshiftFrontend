@@ -1,4 +1,4 @@
-import Navb from "./Navb.jsx";
+import Nav from "./Nav.jsx";
 import {MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup, Circle, Rectangle, FeatureGroup} from "react-leaflet";
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
