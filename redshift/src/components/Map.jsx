@@ -36,8 +36,6 @@ const Map = ({}) => {
     setAtmPoint(response.data)
     setLoaded(true);
     console.log(atmPoint);
-  }).catch((error) => {
-    console.log(error);
   })
 }, []);
 
@@ -51,6 +49,7 @@ const Map = ({}) => {
 
     return ( 
         <div id="map">
+          <h5>{atmId}</h5>
         {/* MapContainer is for Leaflet */}
         {/* Have to tell map where to start currently london 51.505, -0.09 we could use {longitude} and {latitude} from data*/}
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>

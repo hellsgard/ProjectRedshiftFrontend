@@ -65,7 +65,7 @@ const Scenario1 = () => {
       <br></br>
       <h1 class="font-weight-light">
         {" "}
-        {forenames} {surname}{" "}
+        Name: {forenames} {surname}{" "}
       </h1>
       <div>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -144,7 +144,7 @@ const Scenario1 = () => {
           </Row>
         </Tab.Container>
         <Col sm={9}>
-          <h2>fd</h2>
+          <h2>Map Data</h2>
         </Col>
       </div>
 
