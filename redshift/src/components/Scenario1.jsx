@@ -4,20 +4,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { selectOptions } from "@testing-library/user-event/dist/select-options";
-import Card from 'react-bootstrap/Card';
+import Suspect from './Suspect';
+import Map from './Map'
+import  Button  from "react-bootstrap/Button";
+import MobileDataInfo from "./MobileDataInfo.jsx";
+
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
 const Scenario1 = () => {
-  const center = [51.505, -0.09];
-  const rectangle = [
-    [51.49, -0.08],
-    [51.5, -0.06],
-  ];
-
-  const fillBlueOptions = { fillColor: "blue" };
-  const fillRedOptions = { fillColor: "red" };
-  const greenOptions = { color: "green", fillColor: "green" };
-  const purpleOptions = { color: "purple" };
 
   //const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
@@ -25,18 +19,15 @@ const Scenario1 = () => {
   const [pageLoaded, setPageLoaded] = useState(false);
 
   const { id } = useParams();
-  useEffect(() => {
+  useEffect( () => {
     axios.get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
       .then((response) => {
-        console.log(response);
         setSuspect(response.data)
         setPageLoaded(true);
-        console.log(response)
       }).catch((error) => {
         console.log(error);
-      })
+      });
   }, []);
-  console.log(suspect.forenames);
 
   let forenames= suspect.forenames;
   let surname= suspect.surname;
@@ -46,11 +37,30 @@ const Scenario1 = () => {
   let passportNumber= suspect.passportNumber;
   let nationality= suspect.nationality;
   let placeOfBirth= suspect.placeOfBirth;
+
+
+
+
+
+
+
+
+  // const getMobileData = (() => {
+  //   console.log(suspect.forenames);
+  //     axios.get(`http://localhost:8080/queryPerson/mobile`, {params: mobileQuery})
+  //     .then((response) => {
+  //       console.log(forenames);
+  //       console.log(response); 
+  //   })
+
+
+
+  
   return (
     <div>
 
       <Nav></Nav>
-      <h1> Scenario 1 </h1>
+      <h4> Scenario 1 </h4>
       <body>
         <div class="container">
           <div class="row align-items-center my-5">
@@ -78,36 +88,22 @@ const Scenario1 = () => {
                 Lorem Ipsum
               </p>
               <h1 class="font-weight-light">Call Records</h1>
+        
+              <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
               <p>
                 Lorem Ipsum
               </p>
-
+              
+              <Map></Map>
               {/* {suspect.map((suspect) => {  
                 return(
                      
                   <Suspect citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
                         
             )})}; */}
-              {/* MapContainer is for Leaflet */}
-
-
-              <h2>HTML Iframes for information</h2>
-
-              <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[51.505, -0.09]}>
-                  <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </Popup>
-                </Marker>
-              </MapContainer>
             </div>
           </div>
         </div>
-
         <iframe src="" title="Iframe"></iframe>
       </body>
     </div>
