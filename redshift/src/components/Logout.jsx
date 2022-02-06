@@ -1,9 +1,9 @@
-import Nav from './Nav.jsx';
+import Navb from './Navb.jsx';
 
 const Logout = () => {
     return ( 
         <div>
-            <Nav></Nav>
+            <Navb></Navb>
             <h2> This is the logging out page</h2>
             <button>Logout</button>
         </div>

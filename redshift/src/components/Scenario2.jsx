@@ -1,9 +1,9 @@
-import Nav from './Nav.jsx';
+import Navb from './Navb.jsx';
 
 const Scenario2 = () => {
     return ( 
         <div>
-            <Nav></Nav>
+            <Navb></Navb>
             <h1> This is the page for scenario 2 </h1>
         </div>
      );

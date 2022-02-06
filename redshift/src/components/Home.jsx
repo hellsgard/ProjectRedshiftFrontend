@@ -1,4 +1,4 @@
-import Nav from './Nav.jsx';
+import Navb from './Navb.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Suspect from './Suspect.jsx';
@@ -39,6 +39,7 @@ const createQueryPerson = () =>{
     axios.get("http://localhost:8080/queryPerson/person",{params: queryPerson})
     .then((response) => {
         console.log(response); 
+        console.log("queryperson query")
         // setSuspects(response.data);
         // console.log(suspects);
         setData(response);
@@ -95,7 +96,7 @@ const clearFields = () => {
 
     return ( 
         <div>
-             <Nav></Nav>
+             <Navb></Navb>
             
 
            <h3> Suspect in custody</h3>
