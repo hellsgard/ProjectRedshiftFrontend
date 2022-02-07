@@ -27,6 +27,7 @@ const Scenario1 = () => {
   //const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
   const [suspect, setSuspect] = useState("");
+  const [suspectF, setSuspectF] = useState("");
   const [pageLoaded, setPageLoaded] = useState(false);
 
   const { id } = useParams();
@@ -43,8 +44,25 @@ const Scenario1 = () => {
         console.log(error);
       });
   }, [id]);
-
   console.log(suspect.forenames);
+
+  //trying to get financial data
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8080/queryPerson/financialEpos/?citizenID=${id}`)
+  //     .then((response) => {
+  //       console.log("hello")
+  //       console.log(response);
+  //       setSuspectF(response.data);
+  //       setPageLoaded(true);
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [id]);
+  // console.log(suspectF.accountNumber);
+
 
   let forenames = suspect.forenames;
   let surname = suspect.surname;
