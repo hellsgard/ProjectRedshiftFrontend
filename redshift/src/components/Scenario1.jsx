@@ -1,3 +1,6 @@
+
+import Navb from "./Navb.jsx";
+import "../CSS/Scenario1.css";
 import Navb from "./Nav.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { selectOptions } from "@testing-library/user-event/dist/select-options";
@@ -12,11 +15,15 @@ import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
+import Associates from "./Associates.jsx";
+import { ReactPropTypes } from "react";
+
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 
 const Scenario1 = () => {
+
   const center = [51.505, -0.09];
   const rectangle = [
     [51.49, -0.08],
@@ -28,6 +35,7 @@ const Scenario1 = () => {
   const greenOptions = { color: "green", fillColor: "green" };
   const purpleOptions = { color: "purple" };
 
+
   //const BasicData = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
 
   const [suspect, setSuspect] = useState("");
@@ -38,6 +46,10 @@ const Scenario1 = () => {
   useEffect( () => {
     axios.get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
       .then((response) => {
+
+        console.log(response);
+        console.log("PPPPPPPPPPPPPPPPPPPPPP*****************")
+
         setSuspect(response.data)
         setPageLoaded(true);
       }).catch((error) => {
@@ -45,6 +57,14 @@ const Scenario1 = () => {
       });
   }, [id]);
   console.log(suspect.forenames);
+  console.log("THIS THIS THIS")
+  console.log(suspect);
+  console.log("THIS THIS THIS") 
+
+
+  // let forenames= suspect.forenames;
+  // let surname= suspect.surname;
+  let address= suspect.homeAddress;
 
   //trying to get financial data
   // useEffect(() => {
@@ -149,6 +169,40 @@ const Scenario1 = () => {
 
   return (
     <div>
+
+        <div>
+          <Navb/>
+        </div>
+            <br>
+            </br>
+        <h1 class="font-weight-light"> {suspect.forenames} {suspect.surname} </h1>
+        <div>
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Row>
+              <Col sm={2}>
+                <Nav variant="pills" className="flex-column">
+                  <Nav.Item>
+                    <Nav.Link eventKey="first">Profile information</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}>Associates - work</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="third">Associates - home</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fourth">Financial information</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fifth">Call records</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+              <Col sm={9}>
+                <Tab.Content>
+                  <Tab.Pane eventKey="first">
+                  <p>Full Name: {suspect.forenames} {suspect.surname}</p>
+
       <div>
         <Navb />
       </div>
@@ -189,12 +243,42 @@ const Scenario1 = () => {
                   <p>
                     Full Name: {forenames} {surname}
                   </p>
+
                   <p>Address: {address}</p>
                   <p>Date Of Birth: {dob}</p>
                   <p>Gender: {gender}</p>
                   <p>Passport Number: {passportNumber} </p>
                   <p>Nationality: {nationality} </p>
                   <p>Place Of Birth: {placeOfBirth}</p>
+
+
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="second" title="Associates">
+                    {/* {assocData.map((assocData))} */}
+                    <Associates id={id} suspect={suspect}/> 
+                    <p> </p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="third">
+                    <p></p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="fourth">
+                    <p></p>
+                  </Tab.Pane>
+                </Tab.Content>
+              </Col>
+
+            </Row>
+          </Tab.Container>
+          <Col sm={9}>
+          <h2>fd</h2>
+          </Col>
+        </div>
+
+  
+    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+          <Map/>
+        </MapContainer>
+
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -248,5 +332,19 @@ const Scenario1 = () => {
     </div>
   );
 };
+
+    
+  
+    // const center = [51.505, -0.09];
+  // const rectangle = [
+  //   [51.49, -0.08],
+  //   [51.5, -0.06],
+  // ];
+
+  // const fillBlueOptions = { fillColor: "blue" };
+  // const fillRedOptions = { fillColor: "red" };
+  // const greenOptions = { color: "green", fillColor: "green" };
+  // const purpleOptions = { color: "purple" };
+
 
 export default Scenario1;
