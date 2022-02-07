@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 
-const Nav = () => {
+const Navb = () => {
     return ( 
         <div>
             <Navbar variant="dark" bg="dark">
@@ -18,4 +18,4 @@ const Nav = () => {
      );
 }
  
-export default Nav;
+export default Navb;
