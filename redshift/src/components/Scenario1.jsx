@@ -54,6 +54,7 @@ const Scenario1 = () => {
   let passportNumber = suspect.passportNumber;
   let nationality = suspect.nationality;
   let placeOfBirth = suspect.placeOfBirth;
+  let MobileDataInfo = suspect.MobileDataInfo;
   // let workplace = suspect.businessName;
 
   return (
