@@ -1,5 +1,9 @@
 import Navb from "./Nav.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { selectOptions } from "@testing-library/user-event/dist/select-options";
+import Suspect from './Suspect';
+import  Button  from "react-bootstrap/Button";
+import MobileDataInfo from "./MobileDataInfo.jsx";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -30,32 +34,98 @@ const Scenario1 = () => {
   const [pageLoaded, setPageLoaded] = useState(false);
 
   const { id } = useParams();
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
+  useEffect( () => {
+    axios.get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
       .then((response) => {
-        console.log(response);
-        setSuspect(response.data);
+        setSuspect(response.data)
         setPageLoaded(true);
-        console.log(response);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         console.log(error);
       });
-  }, [id]);
-
-  console.log(suspect.forenames);
+  }, []);
 
   let forenames = suspect.forenames;
   let surname = suspect.surname;
   let address = suspect.homeAddress;
   let dob = suspect.dateOfBirth;
   let gender = suspect.sex;
-  let passportNumber = suspect.passportNumber;
-  let nationality = suspect.nationality;
-  let placeOfBirth = suspect.placeOfBirth;
-
+  let passportNumber= suspect.passportNumber;
+  let nationality= suspect.nationality;
+  let placeOfBirth= suspect.placeOfBirth;
   let workplace = suspect.businessName;
+
+
+
+
+
+
+
+
+  // const getMobileData = (() => {
+  //   console.log(suspect.forenames);
+  //     axios.get(`http://localhost:8080/queryPerson/mobile`, {params: mobileQuery})
+  //     .then((response) => {
+  //       console.log(forenames);
+  //       console.log(response); 
+  //   })
+
+
+
+  
+  // return (
+  //   <div>
+
+  //     <Nav></Nav>
+  //     <h4> Scenario 1 </h4>
+  //     <body>
+  //       <div class="container">
+  //         <div class="row align-items-center my-5">
+  //           <div class="col-lg-5">
+  //             <h1 class="font-weight-light">Basic Information</h1>
+
+  //               <p>Full Name: {forenames} {surname}</p>
+  //               <p>Address: {address}</p>
+  //               <p>Date Of Birth: {dob}</p>
+  //               <p>Gender: {gender}</p>
+  //               <p>Passport Number: {passportNumber} </p>
+  //               <p>Nationality: {nationality} </p>
+  //               <p>Place Of Birth: {placeOfBirth}</p>
+                
+  //             <h1 class="font-weight-light">Known Associates</h1>
+  //             <p>
+  //               Lorem Ipsum
+  //             </p>
+  //             <h1 class="font-weight-light">Financial</h1>
+  //             <p>
+  //               Lorem Ipsum
+  //             </p>
+  //             <h1 class="font-weight-light">Past Whereabouts</h1>
+  //             <p>
+  //               Lorem Ipsum
+  //             </p>
+  //             <h1 class="font-weight-light">Call Records</h1>
+        
+  //             <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
+  //             <p>
+  //               Lorem Ipsum
+  //             </p>
+              
+  //             <Map></Map>
+  //             {/* {suspect.map((suspect) => {  
+  //               return(
+                     
+  //                 <Suspect citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} homeAddress={suspect.homeAddress} dateOfBirth={suspect.dateOfBirth} placeOfBirth={suspect.placeOfBirth} sex={suspect.sex}/>     
+                        
+  //           )})}; */}
+  //           </div>
+  //         </div>
+  //       </div>
+  //       <iframe src="" title="Iframe"></iframe>
+  //     </body>
+
+
+
+
 
   return (
     <div>
@@ -74,6 +144,13 @@ const Scenario1 = () => {
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
                   <Nav.Link eventKey="first">Profile information</Nav.Link>
+                  <p>Full Name: {forenames} {surname}</p>
+                  <p>Address: {address}</p>
+                  <p>Date Of Birth: {dob}</p>
+                  <p>Gender: {gender}</p>
+                  <p>Passport Number: {passportNumber} </p>
+                  <p>Nationality: {nationality} </p>
+                  <p>Place Of Birth: {placeOfBirth}</p>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="second">Known associates</Nav.Link>
@@ -132,12 +209,9 @@ const Scenario1 = () => {
                   <h5> Amount Paid: {amount} </h5>
                   <h5> Time of Transaction: {timestamp} </h5> */}
                 </Tab.Pane>
-                <Tab.Pane eventKey="Fourth">
-                  {/* <h5> phoneNumber: {phoneNumber} </h5>
-                  <h5> network: {network} </h5>
-                  <h5> callerMsisdn: {callerMsisdn} </h5>
-                  <h5> receiverMsisdn: {receiverMsisdn} </h5>
-                  <h5> timestamp: {timestamp} </h5> */}
+                <Tab.Pane eventKey="fourth">
+                <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
+      
                 </Tab.Pane>
               </Tab.Content>
             </Col>
