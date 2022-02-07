@@ -1,5 +1,5 @@
 
-import Navb from './Navb.jsx';
+import Navb from './Nav.jsx';
 
 const Lock = () => {
     return ( 

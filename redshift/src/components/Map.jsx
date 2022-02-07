@@ -1,4 +1,4 @@
-import Navb from "./Navb.jsx";
+import Nav from "./Nav.jsx";
 import {MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup, Circle, Rectangle, FeatureGroup} from "react-leaflet";
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -22,33 +22,34 @@ const greenOptions = { color: "green", fillColor: "green" };
 const purpleOptions = { color: "purple" };
 
 const Map = ({}) => {
-    
-    const [atmPoint, setAtmPoint] = useState("");
-    const [pageLoaded, setPageLoaded] = useState(false);
+            
+  const [atmPoint, setAtmPoint] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   
     const { id } = useParams();
+
     useEffect(() => {
-      axios.get(`http://localhost:8080/atmPoint/readAll`)
-        .then((response) => {
-          console.log(response);
-          setAtmPoint(response.data)
-          setPageLoaded(true);
-          console.log(response)
-        }).catch((error) => {
-          console.log(error);
-        })
-    }, []);
-    console.log(atmPoint.forenames);
-    
+    axios.get(`http://localhost:8080/atmPoint/readAll`) // this needs to change
+    .then((response) => {
+    // What does the data look like when pulling it
+    console.log(response.data);
+    setAtmPoint(response.data)
+    setLoaded(true);
+    console.log(atmPoint);
+  })
+}, []);
+
     let atmId= atmPoint.atmId;
     let operator = atmPoint.operator;
     let streetName= atmPoint.streetName;
     let postcode = atmPoint.postcode;
     let longitude= atmPoint.longitude;
     let latitude= atmPoint.latitude;    
-    
+    const position = [51.505, -0.09]
+
     return ( 
-        <div>
+        <div id="map">
+          <h5>{atmId}</h5>
         {/* MapContainer is for Leaflet */}
         {/* Have to tell map where to start currently london 51.505, -0.09 we could use {longitude} and {latitude} from data*/}
         <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
