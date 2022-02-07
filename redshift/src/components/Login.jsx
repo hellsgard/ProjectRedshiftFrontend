@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import  Form  from "react-bootstrap/Form";
-import {FaIoMdPerson} from "react-icons/fa";
+
 
 
 const Login = () => {
@@ -22,7 +22,7 @@ let tempPassword;
         src="/images/RedShift.png" 
         alt=""></img>
         
-        <h1 className="mb-4 fs-3 fw-normal"> Please Login </h1>
+        <h1 className="mb-4 fs-4 fw-lighter"> REDSHIFT </h1>
         
     
             <input id="user"  type="text" placeholder="Username" name="username" className="position-relative"
@@ -59,11 +59,10 @@ let tempPassword;
                 setUsername(tempUser);
                
             }}>Login</Button>
-
-    `                   
+                       
             <Button id="B2" variant="secondary">Reset</Button>
         {/* <button >Reset</button>  */}
-        <p className=" mt-5 text-muted">REDSHIFT &copy; 2022</p>
+        <p className="mt-5 text-muted">REDSHIFT &copy; 2022</p>
         </Form>
         </div>
         
