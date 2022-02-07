@@ -1,4 +1,5 @@
 import Navb from "./Navb.jsx";
+import "../CSS/Scenario1.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -55,56 +56,66 @@ const Scenario1 = () => {
   return (
 
     <div>
-    <div>
-      <Navb/>
-    </div>
-        <br>
-        </br>
+        <div>
+          <Navb/>
+        </div>
+            <br>
+            </br>
         <h1 class="font-weight-light"> {forenames} {surname} </h1>
-    <div>
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-          <Row>
-            <Col sm={2}>
-              <Nav variant="pills" className="flex-column">
-                <Nav.Item>
-                  <Nav.Link eventKey="first">Profile information</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey={Associates} onclick={console.log("CLICK!")}>Known associates</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="third">Financial information</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="fourth">Call records</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            </Col>
-            <Col sm={9}>
-              <Tab.Content>
-                <Tab.Pane eventKey="first">
-                <p>Full Name: {forenames} {surname}</p>
-                <p>Address: {address}</p>
-                <p>Date Of Birth: {dob}</p>
-                <p>Gender: {gender}</p>
-                <p>Passport Number: {passportNumber} </p>
-                <p>Nationality: {nationality} </p>
-                <p>Place Of Birth: {placeOfBirth}</p>
+        <div>
+          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+            <Row>
+              <Col sm={2}>
+                <Nav variant="pills" className="flex-column">
+                  <Nav.Item>
+                    <Nav.Link eventKey="first">Profile information</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="Associates" onSelect={console.log("CLICK")}>Associates - work</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="third">Associates - home</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fourth">Financial information</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="fifth">Call records</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+              </Col>
+              <Col sm={9}>
+                <Tab.Content>
+                  <Tab.Pane eventKey="first">
+                  <p>Full Name: {forenames} {surname}</p>
+                  <p>Address: {address}</p>
+                  <p>Date Of Birth: {dob}</p>
+                  <p>Gender: {gender}</p>
+                  <p>Passport Number: {passportNumber} </p>
+                  <p>Nationality: {nationality} </p>
+                  <p>Place Of Birth: {placeOfBirth}</p>
 
-                </Tab.Pane>
-                <Tab.Pane eventKey={Associates} title="Associates">
-                  <Associates forenames={forenames} surname={surname} dob={dob}/> 
-                  <p> </p>
-                </Tab.Pane>
-              </Tab.Content>
-            </Col>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey={Associates} title="Associates">
+                    {/* {assocData.map((assocData))} */}
+                    <Associates id={id} forenames={forenames} surname={surname} dob={dob}/> 
+                    <p> </p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="third">
+                    <p></p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="fourth">
+                    <p></p>
+                  </Tab.Pane>
+                </Tab.Content>
+              </Col>
 
-          </Row>
-        </Tab.Container>
-        <Col sm={9}>
-        <h2>fd</h2>
-        </Col>
-    </div>
+            </Row>
+          </Tab.Container>
+          <Col sm={9}>
+          <h2>fd</h2>
+          </Col>
+        </div>
 
   
     <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>

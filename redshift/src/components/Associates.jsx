@@ -8,16 +8,19 @@ import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
+import { ListGroup } from "react-bootstrap";
 // import Scenario1 from "./Scenario1.jsx";
 
-const Associates = ({forenames, surname, dob}) => {
-    const [assocData, setassocData] = useState("");
+const Associates = ({forenames, surname, dob }) => {
+    const [assocData, setAssocData] = useState([]);
     const [pageLoaded, setPageLoaded] = useState(false);
 
 
-    console.log(forenames, "ASSOCIATES");
+    console.log(forenames, "ASSOCIATES WHY WONT YOU WORK!!!!");
     console.log("function running");
-    const queryPerson = {
+
+
+    let queryPerson = {
         
         surname: surname,
         forenames: forenames,
@@ -26,6 +29,8 @@ const Associates = ({forenames, surname, dob}) => {
 
     }; 
 
+    console.log({queryPerson});
+
     // let surname= suspect.surname;
     // let forenames= suspect.forenames
     // let address= suspect.homeAddress;
@@ -33,26 +38,54 @@ const Associates = ({forenames, surname, dob}) => {
 
     // const {forenames, surname, dob} = useParams();
   useEffect(() => {
-    axios.get('http://localhost:8080/queryPerson/associates/', {params:queryPerson})
-      .then((response) => {
+    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: queryPerson})
+      .then(({response}) => {
         console.log(response);
-        setassocData(response.data);
-        setPageLoaded(true);
+        setAssocData([response.data]);
+        setPageLoaded(false);
         // setPageLoaded(true);
         console.log(response);
-        console.log(assocData);
+        console.log(assocData, "WAT IS THIS");
       }).catch((error) => {
         console.log(error);
       })
-  }, []);
+  }, );
+
+    let forename = assocData.forenames;
+    let lastname = assocData.surname;
+    let homeAddress = assocData.homeAddress;
+    let dateOfBirth = assocData.dateOfBirth;
+    let businessName = assocData.businessName;
+    let workAddress = assocData.businessAddress;
+
+    // assocData.map()
+
+    
+    // console.log({workplace});
+    
+
 
     return (
-        <div>
-            Associates
+
+            <div className="colleagues">
+                {assocData.map((colleagues) => (
+                    <div className="colleagues">{colleagues.forenames} {colleagues.workplace} {console.log(colleagues)}</div>
+                ))}
+
+        {/* {assocData.map(assocData => ( */}
+
+            <h1>List of colleagues
+
+            </h1>
+           
+            {/* Associates
             {forenames}
             {surname}
             {dob}
-        </div>
+            {workplace}
+            {assocData} */}
+            </div>
+ 
     )
 }
 

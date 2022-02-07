@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 
 const Home = () => {
@@ -97,16 +98,23 @@ const clearFields = () => {
     return ( 
         <div>
              <Navb></Navb>
-            
 
-           <h3> Suspect in custody</h3>
-            <form>
+
+            <div>
+                <br>
+                </br>
+            </div>
+           <h3> Search citizen database </h3>
+
+          
+
+            <Form>
             <input type="text" placeholder="Forename" name="Forename" value={forename} onChange={(e) => setForename(e.target.value)}></input>
             <input type="text" placeholder="Surname" name="Surname" value={surname} onChange={(e) => setSurname(e.target.value)}></input>
-            <input type="text" placeholder="yyyy-dd-mm" name="DOB" value={DOB} onChange={(e) => setDOB(e.target.value)}></input>
+            <input type="text" placeholder="yyyy-mm-dd" name="DOB" value={DOB} onChange={(e) => setDOB(e.target.value)}></input>
             <button type="button" onClick={() => createQueryPerson()}>Submit</button>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
-            </form>
+            </Form>
 
             <h3> Incident </h3>
             <form>
@@ -140,7 +148,6 @@ const clearFields = () => {
                         placeOfBirth={suspect.placeOfBirth} 
                         sex={suspect.sex}/>        
                     </Col>
-                  
             )})}
         </Row>
                 
