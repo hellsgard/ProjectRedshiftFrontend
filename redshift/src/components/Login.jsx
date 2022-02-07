@@ -22,7 +22,7 @@ let tempPassword;
         src="/images/RedShift.png" 
         alt=""></img>
         
-        <h1 className="mb-4 fs4 fw-bold"> REDSHIFT </h1>
+        <h1 className="mb-4 fs-4 fw-bold"> REDSHIFT </h1>
         
     
             <input id="user"  type="text" placeholder="Username" name="username" className="position-relative"
