@@ -115,7 +115,7 @@ const Scenario1 = () => {
                     <p></p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
-                    <p></p>
+                    <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
                   </Tab.Pane>
 
                 </Tab.Content>
