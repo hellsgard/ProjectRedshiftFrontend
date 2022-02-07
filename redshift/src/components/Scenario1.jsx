@@ -164,13 +164,13 @@ const Scenario1 = () => {
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
                   <Nav.Link eventKey="first">Profile information</Nav.Link>
-                  <p>Full Name: {forenames} {surname}</p>
+                  {/* <p>Full Name: {forenames} {surname}</p>
                   <p>Address: {address}</p>
                   <p>Date Of Birth: {dob}</p>
                   <p>Gender: {gender}</p>
                   <p>Passport Number: {passportNumber} </p>
                   <p>Nationality: {nationality} </p>
-                  <p>Place Of Birth: {placeOfBirth}</p>
+                  <p>Place Of Birth: {placeOfBirth}</p> */}
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="second">Known associates</Nav.Link>
