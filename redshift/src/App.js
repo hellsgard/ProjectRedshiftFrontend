@@ -1,6 +1,7 @@
 import "./CSS/App.css";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 // import Nav from './components/Nav.jsx';
+import Register from './components/Register.jsx';
 import Login from './components/Login.jsx';
 import Logout from './components/Logout.jsx';
 import Lock from './components/Lock.jsx';
@@ -8,7 +9,7 @@ import Scenario1 from './components/Scenario1.jsx';
 import Scenario2 from './components/Scenario2.jsx';
 import Scenario3 from './components/Scenario3.jsx';
 import Home from './components/Home.jsx';
-import Login2 from './components/Login2.jsx';
+import Login2 from './components/Register.jsx';
 import BankDetails from './components/BankDetails';
 import AtmTransactions from './components/AtmTransactions';
 import AtmPoint from './components/AtmPoint';
@@ -20,11 +21,13 @@ import BankCards from "./components/BankCards";
 import Card from 'react-bootstrap/Card';
 import RequireAuth from "./components/RequireAuth";
 import * as React from "react";
+
 const authContext = React.createContext();
 
 
-const LoginPage = () => <h1>Login (Public)</h1>;
-const HomePage = () => <h1>Home (Private)</h1>;
+
+// const LoginPage = () => <h1>Login (Public)</h1>;
+// const HomePage = () => <h1>Home (Private)</h1>;
 
 
 function App() {
@@ -39,9 +42,9 @@ function App() {
         <Route path='/scenario1' element = {<Scenario1/>}></Route>
         <Route path='/scenario2' element = {<Scenario2/>}></Route>
         <Route path='/scenario3' element = {<Scenario3/>}></Route>
-        <Route path="/home" element={<RequireAuth/>}></Route>
-      {/* <Route path='/home'   element = {<Home/>}></Route> */}
-        <Route path='/login2' element = {<Login2/>}></Route>
+        {/* <Route path="/home" element={<RequireAuth/>}></Route> */}
+        <Route path='/home'   element = {<Home/>}></Route>
+        <Route path='/register'   element = {<Register/>}></Route>
         <Route path='/bankdetails' element = {<BankDetails/>}></Route>
         <Route path='/bankCards' element = {<BankCards/>}></Route>
         <Route path='/atmtransactions' element = {<AtmTransactions/>}></Route>
@@ -55,7 +58,6 @@ function App() {
           ></Route>
       
         </Routes>
-        <Link to="/home">TESTING PROTECTED ROUTE</Link>
       </BrowserRouter>
     </div>
   );

@@ -21,8 +21,6 @@ export default function Login(props) {
     //     setDetails(tempDetails);
     // }
 
-    
-    
 
 
 const handleSubmit = () => {
@@ -32,14 +30,27 @@ const handleSubmit = () => {
     .then((response) => {
         console.log(response); 
         localStorage.setItem(JWT, response.data);
+        // response.data.redirect = '/'; // cant set the property to / 
+        if (response.statusText === 'OK') {
+            window.location = "/home"
+        } else if (response.statusText === '401'){
+            window.location = "/"
+        }
     })
     .catch((error) => {
         console.log('login failed', error);
         setError(error.response.data);
     })};
 
-    const clearFields = () => {
+    const register = () => {
+        console.log("going to registration page");
+        window.location = "/register"
+    }
+
+    const reset = (event) => {
         console.log("function to clear search fields");
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
     }
 
     return ( 
@@ -54,7 +65,13 @@ const handleSubmit = () => {
         <input type="text" placeholder="Forename" name="Forename" className="position-relative" value={username} onChange={(e) => setUsername(e.target.value)}></input>
         <input type="text" placeholder="Surname" name="Surname" className="position-relative" value={password} onChange={(e) => setPassword(e.target.value)}></input>
         <button type="button" variant="secondary" size="sm" onClick={() => handleSubmit()}>Login</button>
-        <button id="reset" variant="secondary" size="sm" onClick={() => clearFields()}>Reset</button>
+        <button type="button" id="reset" variant="secondary" size="sm" onClick={() => reset()}>Reset</button>
+        <br></br>
+        <br></br>
+
+        <button type="button" variant="secondary" size="sm" onClick={() => register()}>Register</button>
+        
+
         </form>
         </div>
      );
