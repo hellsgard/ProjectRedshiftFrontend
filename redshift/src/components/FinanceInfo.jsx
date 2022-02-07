@@ -2,26 +2,21 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
 
-
-
-
-
-const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, placeOfBirth, sex}) => {
-    let profilePage = `/Scenario1/${citizenID}`;
+const FinanceInfo = ({citizenID, bank, accountNumber, vendor, amount, timestamp}) => {
+    let FinancialInfo = `/Scenario1/${citizenID}`;
     return ( 
         <div>
             
         <Card style={{width: '25rem'}}>
-            <h5> Forename: {forenames} </h5>
-            <h5> Surname: {surname} </h5>
-            <h5> Address: {homeAddress} </h5>
-            <h5> Date of Birth: {dateOfBirth} </h5>
-            <h5> Place of Birth: {placeOfBirth} </h5>
-            <h5> Sex: {sex} </h5>
+            <h5> Bank Name: {bank} </h5>
+            <h5> Bank Account Number: {accountNumber} </h5>
+            <h5> Vendor: {vendor} </h5>
+            <h5> Amount Paid: {amount} </h5>
+            <h5> Time of Transaction: {timestamp} </h5>
             
             
 
-            <Link to={profilePage}>
+            <Link to={FinancialInfo}>
                 {/* <Button type="button" onClick={() => {
                     <Link to={profilePage}></Link>
                 
@@ -39,4 +34,4 @@ const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, place
      );
 }
  
-export default Suspect;
+export default FinanceInfo;
