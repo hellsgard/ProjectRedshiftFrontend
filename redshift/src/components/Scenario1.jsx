@@ -41,8 +41,8 @@ const Scenario1 = () => {
   console.log(suspect);
   console.log("THIS THIS THIS") 
 
-  let forenames= suspect.forenames;
-  let surname= suspect.surname;
+  // let forenames= suspect.forenames;
+  // let surname= suspect.surname;
   let address= suspect.homeAddress;
   let dob = suspect.dateOfBirth;
   let gender = suspect.sex;
@@ -61,7 +61,7 @@ const Scenario1 = () => {
         </div>
             <br>
             </br>
-        <h1 class="font-weight-light"> {forenames} {surname} </h1>
+        <h1 class="font-weight-light"> {suspect.forenames} {suspect.surname} </h1>
         <div>
           <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
@@ -71,7 +71,7 @@ const Scenario1 = () => {
                     <Nav.Link eventKey="first">Profile information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="Associates" onSelect={console.log("CLICK")}>Associates - work</Nav.Link>
+                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}>Associates - work</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="third">Associates - home</Nav.Link>
@@ -87,7 +87,7 @@ const Scenario1 = () => {
               <Col sm={9}>
                 <Tab.Content>
                   <Tab.Pane eventKey="first">
-                  <p>Full Name: {forenames} {surname}</p>
+                  <p>Full Name: {suspect.forenames} {suspect.surname}</p>
                   <p>Address: {address}</p>
                   <p>Date Of Birth: {dob}</p>
                   <p>Gender: {gender}</p>
@@ -96,9 +96,9 @@ const Scenario1 = () => {
                   <p>Place Of Birth: {placeOfBirth}</p>
 
                   </Tab.Pane>
-                  <Tab.Pane eventKey={Associates} title="Associates">
+                  <Tab.Pane eventKey="second" title="Associates">
                     {/* {assocData.map((assocData))} */}
-                    <Associates id={id} forenames={forenames} surname={surname} dob={dob}/> 
+                    <Associates id={id} suspect={suspect}/> 
                     <p> </p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
