@@ -177,7 +177,6 @@ const Scenario1 = () => {
                   <p>Place Of Birth: {placeOfBirth}</p>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
-                <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -210,14 +209,9 @@ const Scenario1 = () => {
                   <h5> Amount Paid: {amount} </h5>
                   <h5> Time of Transaction: {timestamp} </h5> */}
                 </Tab.Pane>
-                <Tab.Pane eventKey="Fourth">
-                  
-                  {/* <h5> phoneNumber: {phoneNumber} </h5>
-                  <h5> network: {network} </h5>
-                  <h5> callerMsisdn: {callerMsisdn} </h5>
-                  <h5> receiverMsisdn: {receiverMsisdn} </h5>
-                  <h5> timestamp: {timestamp} </h5> */}
-                  <p>hello</p>
+                <Tab.Pane eventKey="fourth">
+                <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
+      
                 </Tab.Pane>
               </Tab.Content>
             </Col>
