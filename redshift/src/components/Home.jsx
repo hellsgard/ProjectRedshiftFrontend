@@ -1,4 +1,4 @@
-import Navb from './Nav.jsx';
+import Navb from './Navb.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Suspect from './Suspect.jsx';

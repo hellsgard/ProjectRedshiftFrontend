@@ -24,7 +24,6 @@ import { ReactPropTypes } from "react";
 const Scenario1 = () => {
 
   const [suspect, setSuspect] = useState("");
-  const [suspectF, setSuspectF] = useState("");
   const [pageLoaded, setPageLoaded] = useState(false);
 
   const { id } = useParams();

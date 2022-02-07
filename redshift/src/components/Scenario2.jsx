@@ -1,4 +1,4 @@
-import Navb from './Nav.jsx';
+import Navb from './Navb.jsx';
 
 const Scenario2 = () => {
     return ( 
