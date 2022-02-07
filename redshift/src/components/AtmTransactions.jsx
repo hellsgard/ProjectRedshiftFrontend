@@ -25,6 +25,9 @@ const AtmTransactions = () => {
         <div>
             {/* this could be a react fragment - better than doing lots of divs */}
             <h2> atm transactions page </h2>
+            {/* {transactionsData.map((transactions) => (
+                <div className="transactions">{transactions.}
+            ))} */}
         </div>
 
     );

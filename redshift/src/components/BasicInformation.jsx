@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
     import Button from 'react-bootstrap/Button';
 
 
-const BasicInformation = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
+const BasicInformation = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth, phoneNumber}) => {
 
         // Our state is going to be the data we pull from the api
         const [basicData, setBasicData] = useState([]);
@@ -16,7 +16,7 @@ const BasicInformation = ({forename, surname, address, dob, sex, passportNumber,
         const [loaded, setLoaded] = useState(false);
     
         useEffect(() => {
-                axios.get("http://localhost:8080/suspectProfile/basicInfo/:id") // this needs to change
+                axios.get("http://localhost:8080/suspectProfile/basicInfo/:id") 
                 .then((response) => {
                 console.log("=======BasicData==========");
                 console.log(response);
@@ -47,7 +47,7 @@ const BasicInformation = ({forename, surname, address, dob, sex, passportNumber,
                     <h2> Loads if the data is fine! </h2>
                     {basicData.map((basic) => {
                     console.log(`name: ${basic.name}`);
-                    return <BasicInformation forename={basic.forenames} surname={basic.surname} address={basic.homeAddress} dob={basic.dateOfBirth} sex={basic.sex} passportNumber={basic.passportNumber} nationality={basic.nationality} placeOfBirth={basic.placeOfBirth}/>
+                    return <BasicInformation forename={basic.forenames} surname={basic.surname} address={basic.homeAddress} dob={basic.dateOfBirth} sex={basic.sex} passportNumber={basic.passportNumber} nationality={basic.nationality} placeOfBirth={basic.placeOfBirth} phoneNumber={basic.phoneNumber}/>
                     })}
 
                 </div>

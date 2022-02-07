@@ -49,6 +49,7 @@ const Scenario1 = () => {
   let passportNumber= suspect.passportNumber;
   let nationality= suspect.nationality;
   let placeOfBirth= suspect.placeOfBirth;
+  let phoneNumber = suspect.phoneNumber;
 
   let workplace= suspect.businessName;
 
@@ -94,6 +95,7 @@ const Scenario1 = () => {
                   <p>Passport Number: {passportNumber} </p>
                   <p>Nationality: {nationality} </p>
                   <p>Place Of Birth: {placeOfBirth}</p>
+                  <p>Phone number: {phoneNumber}</p>
 
                   </Tab.Pane>
                   <Tab.Pane eventKey={Associates} title="Associates">
