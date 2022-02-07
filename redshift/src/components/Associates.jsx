@@ -21,7 +21,6 @@ const Associates = ({suspect}) => {
         forenames: suspect.forenames,
         dateOfBirth: suspect.dateOfBirth,
         // businessName: workplace
-
     }; 
 
   useEffect(() => {
@@ -34,41 +33,19 @@ const Associates = ({suspect}) => {
       })
   },[]);
 
-    // let forename = assocData.forenames;
-    // let lastname = assocData.surname;
-    // let homeAddress = assocData.homeAddress;
-    // let dateOfBirth = assocData.dateOfBirth;
-    // let businessName = assocData.businessName;
-    // let workAddress = assocData.businessAddress;
-
-    // assocData.map()
-
     
-    // console.log({workplace});
-    
-
-
     return (
-
 
         // <h1>TEST</h1>
             <div className="colleagues">
                 {assocData.map((colleagues) => (
-                    <div className="colleagues">{colleagues.forenames} {colleagues.businessName} {console.log(colleagues)}</div>
+                    <div className="colleagues">
+                        {colleagues.forenames}
+                        {colleagues.businessName} 
+                        
+                        </div>
                 ))}
 
-        {/* {assocData.map(assocData => ( */}
-
-            <h1>List of colleagues
-
-            </h1>
-           
-            {/* Associates
-            {forenames}
-            {surname}
-            {dob}
-            {workplace}
-            {assocData} */}
             </div>
  
     )
