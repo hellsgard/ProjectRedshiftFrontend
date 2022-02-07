@@ -11,6 +11,7 @@ import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Associates from "./Associates.jsx";
 import { ReactPropTypes } from "react";
+import MobileDataInfo from "./MobileDataInfo.jsx";
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';

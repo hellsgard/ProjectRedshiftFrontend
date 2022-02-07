@@ -29,7 +29,7 @@ const Map = ({}) => {
     const { id } = useParams();
 
     useEffect(() => {
-    axios.get(`http://localhost:8080/atmPoint/readAll`) // this needs to change
+    axios.get(`http://localhost:8080/atmPoint/flees`) // this needs to change
     .then((response) => {
     // What does the data look like when pulling it
     console.log(response.data);
