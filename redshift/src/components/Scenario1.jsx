@@ -16,6 +16,7 @@ import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Associates from "./Associates.jsx";
 import { ReactPropTypes } from "react";
+import FinanceInfo from "./FinanceInfo.jsx";
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
@@ -36,7 +37,7 @@ const Scenario1 = () => {
         console.log("PPPPPPPPPPPPPPPPPPPPPP*****************")
 
         setSuspect(response.data)
-        setPageLoaded(true);
+        // setPageLoaded(true);
       }).catch((error) => {
         console.log(error);
       });
@@ -112,7 +113,7 @@ const Scenario1 = () => {
                     <p>third</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fourth">
-                    <p></p>
+                    <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
                     <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
