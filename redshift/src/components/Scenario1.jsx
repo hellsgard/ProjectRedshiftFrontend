@@ -175,7 +175,7 @@ const Scenario1 = () => {
                   >
                     <Map citizenId={id} />
                   </MapContainer>
-                  <MapContainer
+                  {/* <MapContainer
                     // center={[51.505, -0.09]}
                     zoom={13}
                     scrollWheelZoom={true}
@@ -188,7 +188,7 @@ const Scenario1 = () => {
                     scrollWheelZoom={true}
                   >
                     <MapAnpr citizenId={id} />
-                  </MapContainer>
+                  </MapContainer> */}
                 </Tab.Content>
               </Col>
             </Row>
