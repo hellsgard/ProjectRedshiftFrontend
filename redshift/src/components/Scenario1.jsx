@@ -37,8 +37,8 @@ const Scenario1 = () => {
         setSuspect(response.data);
         setPageLoaded(true);
         console.log("Got results, page loaded.");
-        // getCallRecords(response.data);
-        // getOutboundCallRecords(response.data);
+        getCallRecords(response.data);
+        getOutboundCallRecords(response.data);
         getWork(response.data);
         getHome(response.data);
       })
@@ -48,24 +48,24 @@ const Scenario1 = () => {
   }, [id]);
 
 
-  // const getCallRecords = ((suspectInfo) => {
-  //   axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo })
-  //     .then((response) => {
-  //       setInboundCalls(response.data);
-  //     }).catch((error) => {
-  //       console.log(error);
-  //     })
-  // });
+  const getCallRecords = ((suspectInfo) => {
+    axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo })
+      .then((response) => {
+        setInboundCalls(response.data);
+      }).catch((error) => {
+        console.log(error);
+      })
+  });
 
-  // const getOutboundCallRecords = ((suspectInfo) => {
-  //   axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo })
-  //     .then((response) => {
-  //       setOutboundCalls(response.data);
-  //       setCallRecordsLoaded(true);
-  //     }).catch((error) => {
-  //       console.log(error);
-  //     });
-  // })
+  const getOutboundCallRecords = ((suspectInfo) => {
+    axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo })
+      .then((response) => {
+        setOutboundCalls(response.data);
+        setCallRecordsLoaded(true);
+      }).catch((error) => {
+        console.log(error);
+      });
+  })
 
   const getWork = ((suspectInfo) => {
     axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspectInfo})
@@ -133,13 +133,10 @@ const Scenario1 = () => {
                     <Nav.Link eventKey="second" onSelect={console.log("CLICK")}> Associates </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="third">Associates - home</Nav.Link>
+                    <Nav.Link eventKey="third">Financial information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="fourth">Financial information</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="fifth">Call records</Nav.Link>
+                    <Nav.Link eventKey="fourth">Call records</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Col>
@@ -161,13 +158,10 @@ const Scenario1 = () => {
                     <p> </p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
-                  {/* {pageLoaded && <AssociateTab id={id} suspect={suspect}/> } */}
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fourth">
                     <p></p>
                     <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth} />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="fifth">
+                  <Tab.Pane eventKey="fourth">
                     
                     <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
                   </Tab.Pane>
