@@ -21,100 +21,86 @@ const fillRedOptions = { fillColor: "red" };
 const greenOptions = { color: "green", fillColor: "green" };
 const purpleOptions = { color: "purple" };
 
-const Map = ({}) => {
+const Map = ({citizenId}) => {
             
-  const [atmPoint, setAtmPoint] = useState([]);
+  const [eposData, setEposData] = useState([]);
+  const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  
-    const { id } = useParams();
 
-    useEffect(() => {
-    axios.get(`http://localhost:8080/atmPoint/flees`) // this needs to change
-    .then((response) => {
-    // What does the data look like when pulling it
-    console.log(response.data);
-    setAtmPoint(response.data)
-    setLoaded(true);
-    console.log(atmPoint);
-  })
-}, []);
+  useEffect(() => {
+      console.log("function running");
+      axios.get(`http://localhost:8080/mapData?citizenID=${citizenId}`) // TODO: to pass ID
+          .then((response) => {
+              console.log("Response is:",response.data);  // need to destructure data
+              setEposData(response.data);
+              setLoaded(true);
 
-    let atmId= atmPoint.atmId;
-    let operator = atmPoint.operator;
-    let streetName= atmPoint.streetName;
-    let postcode = atmPoint.postcode;
-    let longitude= atmPoint.longitude;
-    let latitude= atmPoint.latitude;    
-    const position = [51.505, -0.09]
 
-    return ( 
-        <div id="map">
-          <h5>{atmId}</h5>
-        {/* MapContainer is for Leaflet */}
-        {/* Have to tell map where to start currently london 51.505, -0.09 we could use {longitude} and {latitude} from data*/}
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
-            {/* JW:FYI LayersControl gives a UI to the Map */}
-    <LayersControl position="topright">
-      <LayersControl.BaseLayer checked name="BasicMap">
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
 
-      </LayersControl.BaseLayer>
-      <LayersControl.Overlay name="Marker with popup">
-        <Marker position={center}>
-          <Popup>
-            A popup. <br /> 
-            {/* We can customize perhaps use popups to show atm`s vehicles etc. */}
-          </Popup>
-        </Marker>
+          }).catch((error) => {
+              console.log('error is fudging us here',error)
+              setLoaded(true);
+              setError(error);
+              
+          }).then(() => {
+            console.log('done something')
+          })},[]); // ???
 
-        {/* Group of Circles */}
-      </LayersControl.Overlay>
-      <LayersControl.Overlay checked name="Layer group with circles">
-        <LayerGroup>
-          <Circle
-            center={center}
-            fillBlueOptions
-            radius={200}
-          />
-          <Circle
-            center={center}
-            fillBlueOptions
-            radius={100}
-            stroke={false}
-          />
-          <LayerGroup>
-            <Circle
-              center={[51.51, -0.08]}
-              fillBlueOptions
-              radius={100}
-            />
-          </LayerGroup>
-        </LayerGroup>
+    // let accountNumber= eposData.accountNumber;
+    // let amount = eposData.amount;
+    // let bank= eposData.bank;
+    // let cardNumber = eposData.cardNumber;
+    // let eposID= eposData.eposID;
+    // let latitude= eposData.latitude;    
+    // let longitude= eposData.longitude;    
+    
+    if(error){
+      return <h1>Something bad</h1>
+    } else if(!loaded){
+      return <h1>Not loaded yet</h1>
+    } else{
 
-        {/* Group of Squares */}
-      </LayersControl.Overlay>
-      <LayersControl.Overlay name="Square group">
-        <FeatureGroup pathOptions={fillPurpleOptions}>
-          <Popup>Popup in FeatureGroup</Popup>
-          <Circle center={[51.51, -0.06]} radius={200} />
-          <Rectangle bounds={rectangle} />
-        </FeatureGroup>
-      </LayersControl.Overlay>
-    </LayersControl>
-  </MapContainer>,
-        <Card style={{width: '25rem'}}>
-                <h5>atmId: {atmId}</h5>
-                <h5>operator: {operator}</h5>
-                <h5>streetName: {streetName}</h5>
-                <h5>postcode: {postcode} </h5>
-                <h5>longitude: {longitude} </h5>
-                <h5>latitude: {latitude}</h5>
-        </Card>
-        </div>
-     );
+      if(eposData.length === 0){
+        return <h1>No points to show</h1>
+      }
+
+      console.log('data =',eposData)
+      const position = [eposData[0].latitude,eposData[0].longitude] // update as you wish!
+      
+
+      return( 
+          <div id="map">
+            <MapContainer center={position} zoom={13}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      
+      {
+        eposData.map((item,index) => {
+          return (
+            <Marker id={index} position={[item.latitude,item.longitude]}>
+              <Popup>
+                Vendor = {item.vendor} <br />
+                StreetName = {item.streetName} <br />
+                CitizenID = {item.citizenID} <br />
+                AccountNumber = {item.accountNumber} <br />
+                Bank = {item.bank} <br />
+                CardNumber = {item.cardNumber} <br />
+                EposId = {item.eposId} <br />
+                Timestamp = {item.timestamp} <br />
+                Amount = £{item.amount}
+                
+              </Popup>
+            </Marker>
+          )
+        })          
+      }}
+      
+    </MapContainer>
+          </div>
+      );
+    }
 }
  
 export default Map;

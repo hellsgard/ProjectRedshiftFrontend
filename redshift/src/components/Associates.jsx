@@ -24,12 +24,12 @@ const Associates = ({suspect}) => {
     }; 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: queryPerson})
+    axios.get(`http://localhost:8080/queryPerson/associates`,{params: queryPerson})
       .then((response) => {
         setAssocData(response.data);
         setPageLoaded(false);
       }).catch((error) => {
-          console.log("ERROR :(")
+          console.log("ERROR",error)
       })
   },[]);
 
