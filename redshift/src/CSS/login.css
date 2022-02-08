@@ -32,6 +32,19 @@ img {
   transform: translateY(1px);
 }
 
+#B3 {
+  position: relative;
+}
+
+#B3:hover {
+  background-color: #0a0a0a;
+}
+
+#B3:active {
+  background-color: #0a0a0a;
+  transform: translate(1px);
+}
+
 div {
   display: grid;
   background-color: #eeebeb;
