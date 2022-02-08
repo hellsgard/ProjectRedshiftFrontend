@@ -49,6 +49,7 @@ const Map = ({ citizenId }) => {
       });
   }, []); // ???
 
+  //Use Effect for ATM
   useEffect(() => {
     console.log("function running");
     axios
@@ -101,42 +102,69 @@ const Map = ({ citizenId }) => {
     }
     if (atmData.length === 0) {
       return <h1>No ATM points to show</h1>;
-    }
+     }
 
     console.log("EPOS data =", eposData);
     console.log("ATM data =", atmData);
     console.log("ANPR data =", anprData);
-    const position = [eposData[0].latitude, eposData[0].longitude]; // update as you wish!
+    const eposPosition = [eposData[0].latitude, eposData[0].longitude]; // update as you wish!
 
     return (
       <div id="map">
-        <h5>Title</h5>
-        <MapContainer center={position} zoom={13}>
+        <h5>Map</h5>
+        <MapContainer center={eposPosition} zoom={13}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {eposData.map((item, index) => {
-            return (
-              <Marker id={index} position={[item.latitude, item.longitude]}>
-                <Popup>
-                  Vendor = {item.vendor} <br />
-                  StreetName = {item.streetName} <br />
-                  CitizenID = {item.citizenID} <br />
-                  AccountNumber = {item.accountNumber} <br />
-                  Bank = {item.bank} <br />
-                  CardNumber = {item.cardNumber} <br />
-                  EposId = {item.eposId} <br />
-                  Timestamp = {item.timestamp} <br />
-                  Amount = £{item.amount}
-                </Popup>
-              </Marker>
-            );
-          })}
+          {
+            eposData.map((item, index) => {
+              return (
+                <Marker id={index} position={[item.latitude, item.longitude]}>
+                  <Popup>
+                    Vendor = {item.vendor} <br />
+                    StreetName = {item.streetName} <br />
+                    CitizenID = {item.citizenID} <br />
+                    AccountNumber = {item.accountNumber} <br />
+                    Bank = {item.bank} <br />
+                    CardNumber = {item.cardNumber} <br />
+                    EposId = {item.eposId} <br />
+                    Timestamp = {item.timestamp} <br />
+                    Amount = £{item.amount}
+                  </Popup>
+                </Marker>
+              )
+            })}
+          {
+            atmData.map((item, index) => {
+              return (
+                <Marker id={index} position={[item.latitude, item.longitude]}>
+                  <Popup>
+                    Operator: {item.operator} <br />
+                    Amount: £{item.amount}<br />
+                    Street Name: {item.streetName}<br />
+                    CardNumber: {item.cardNumber} <br />
+                    Atm ID: {item.atmId} <br />
+                    Timestamp: {item.timestamp} <br />
+                  </Popup>
+                </Marker>
+              )
+            })}
+          {
+            anprData.map((item, index) => {
+              return (
+                <Marker id={index} position={[item.latitude, item.longitude]}>
+                  <Popup>
+                    Registration Number: {item.vehicleRegistrationNumber} <br />
+                    Street Name: {item.streetName}<br />
+                    Timestamp: {item.timestamp} <br />
+                  </Popup>
+                </Marker>
+              )
+            })}
         </MapContainer>
       </div>
-    );
+    )
+    };
   }
-};
-
-export default Map;
+    export default Map;
