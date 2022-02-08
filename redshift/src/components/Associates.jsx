@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Map from "./Map.jsx";
+import Map from "./MapEpos.jsx";
 import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";

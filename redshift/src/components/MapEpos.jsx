@@ -38,7 +38,7 @@ const Map = ({citizenId}) => {
 
 
           }).catch((error) => {
-              console.log('error is fudging us here',error)
+              console.log('error is happening here',error)
               setLoaded(true);
               setError(error);
               
