@@ -35,7 +35,10 @@ const Map = ({ citizenId }) => {
   const [eposData, setEposData] = useState([]);
   const [error, setError] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [anprData, setAnprData] = useState([]);
+  const [atmData, setAtmData] = useState([]);
 
+  //Use Effect for EPOS
   useEffect(() => {
     console.log("function running");
     axios
@@ -45,34 +48,68 @@ const Map = ({ citizenId }) => {
         setEposData(response.data);
         setLoaded(true);
       })
+      .then(() => {
+        console.log("got Epos Data");
+      });
+  }, []); // ???
+
+  useEffect(() => {
+    console.log("function running");
+    axios
+      .get(`http://localhost:8080/mapDataAtm?citizenID=${citizenId}`) // TODO: to pass ID
+      .then((response) => {
+        console.log("Response is:", response.data); // need to destructure data
+        setAtmData(response.data);
+        setLoaded(true);
+      })
       .catch((error) => {
-        console.log("error is fudging us here", error);
+        console.log("error is happening here", error);
+        setError(error);
+      })
+      .then(() => {
+        console.log("got ATM Data");
+      });
+  }, []); // ???
+
+  //Use Effect for ANPR
+  useEffect(() => {
+    console.log("function running");
+    axios
+      .get(`http://localhost:8080/mapDataAnpr?citizenID=${citizenId}`) // TODO: to pass ID
+      .then((response) => {
+        console.log("Response is:", response.data); // need to destructure data
+        setAnprData(response.data);
+        setLoaded(true);
+      })
+      .catch((error) => {
+        console.log("error is happening here", error);
         setLoaded(true);
         setError(error);
       })
       .then(() => {
-        console.log("done something");
+        console.log("Got ANPR Data");
       });
   }, []); // ???
 
-  // let accountNumber= eposData.accountNumber;
-  // let amount = eposData.amount;
-  // let bank= eposData.bank;
-  // let cardNumber = eposData.cardNumber;
-  // let eposID= eposData.eposID;
-  // let latitude= eposData.latitude;
-  // let longitude= eposData.longitude;
-
+  // If error and returns
   if (error) {
     return <h1>Something bad</h1>;
   } else if (!loaded) {
     return <h1>Not loaded yet</h1>;
   } else {
     if (eposData.length === 0) {
-      return <h1>No points to show</h1>;
+      return <h1>No EPOS points to show</h1>;
+    }
+    if (anprData.length === 0) {
+      return <h1>No ANPR points to show</h1>;
+    }
+    if (atmData.length === 0) {
+      return <h1>No ATM points to show</h1>;
     }
 
-    console.log("data =", eposData);
+    console.log("EPOS data =", eposData);
+    console.log("ATM data =", atmData);
+    console.log("ANPR data =", anprData);
     const position = [eposData[0].latitude, eposData[0].longitude]; // update as you wish!
 
     return (
@@ -83,7 +120,6 @@ const Map = ({ citizenId }) => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-
           {eposData.map((item, index) => {
             return (
               <Marker id={index} position={[item.latitude, item.longitude]}>

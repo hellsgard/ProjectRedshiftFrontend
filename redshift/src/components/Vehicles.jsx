@@ -4,14 +4,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
-const Vehicles = () => {
-    const [anprData, setData] = useState([]);
+const Vehicles = ({anprData}) => {
+    // const [anprData, setData] = useState([]);
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
 
     return (
         <div>
-            <h4>Vehicle Registration: {anprData.vehicleRegistrationNumber}</h4>
+            
             <Row>
                   <Col>
                     <h3>Vehicle Data</h3>
@@ -19,6 +19,7 @@ const Vehicles = () => {
                       return (
                         <div>
                           <Card style={{ width: '30rem' }}>
+                          <h4>{data.vehicleRegistrationNumber}</h4>
                             <p>Drivers License: {data.driverLicenceID}</p>
                             <p>Make: {data.make}</p>
                             <p>Model: {data.model}</p>

@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Map from "./Map.jsx";
+import MapAtm from "./MapAtm.jsx";
+import MapAnpr from "./MapAnpr.jsx";
 import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -39,7 +41,8 @@ const Scenario1 = () => {
         setPageLoaded(true);
         console.log("Got results, page loaded.");
         getCallRecords(response.data);
-        getOutboundCallRecords(response.data);
+        getOutboundCallRecords(response.data);;
+        getAnprData(response.data)
       })
       .catch((error) => {
         console.log(error);
@@ -70,6 +73,8 @@ const Scenario1 = () => {
     axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo })
     .then((response) => {
       setAnprData(response.data);
+      console.log("anpr function");
+      console.log(anprData);
       setAnprLoaded(true);
     }).catch((error) => {
       console.log(error);
@@ -170,6 +175,20 @@ const Scenario1 = () => {
                   >
                     <Map citizenId={id} />
                   </MapContainer>
+                  {/* <MapContainer
+                    // center={[51.505, -0.09]}
+                    zoom={13}
+                    scrollWheelZoom={true}
+                  >
+                    <MapAtm citizenId={id} />
+                  </MapContainer>
+                  <MapContainer
+                    // center={[51.505, -0.09]}
+                    zoom={13}
+                    scrollWheelZoom={true}
+                  >
+                    <MapAnpr citizenId={id} />
+                  </MapContainer> */}
                 </Tab.Content>
               </Col>
             </Row>
