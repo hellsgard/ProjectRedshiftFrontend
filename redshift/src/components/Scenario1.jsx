@@ -15,6 +15,7 @@ import { ReactPropTypes } from "react";
 import MobileDataInfo from "./MobileDataInfo.jsx";
 import FinanceInfo from "./FinanceInfo.jsx";
 import Card from 'react-bootstrap/Card';
+import Vehicles from "./Vehicles.jsx";
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
@@ -27,6 +28,8 @@ const Scenario1 = () => {
   const [inboundCalls, setInboundCalls] = useState([]);
   const [outboundCalls, setOutboundCalls] = useState([]);
   const [callRecordsLoaded, setCallRecordsLoaded] = useState(false);
+  const [anprData, setAnprData]= useState([]);
+  const [anprLoaded, setAnprLoaded] =useState(false);
 
   useEffect(() => {
     axios
@@ -62,6 +65,16 @@ const Scenario1 = () => {
       }).catch((error) => {
         console.log(error);
       });
+  })
+
+  const getAnprData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo })
+    .then((response) => {
+      setAnprData(response.data);
+      setAnprLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
   })
 
   if (error) {
@@ -117,6 +130,9 @@ const Scenario1 = () => {
                   <Nav.Item>
                     <Nav.Link eventKey="fifth">Call records</Nav.Link>
                   </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="sixth">Vehicle Data</Nav.Link>
+                  </Nav.Item>
                 </Nav>
               </Col>
               <Col sm={9}>
@@ -143,8 +159,10 @@ const Scenario1 = () => {
                     <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
-                    
                     <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="sixth">
+                    <Vehicles anprData={anprData}/>
                   </Tab.Pane>
                   <MapContainer
                     // center={[51.505, -0.09]}
