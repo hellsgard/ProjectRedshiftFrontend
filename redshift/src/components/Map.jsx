@@ -70,6 +70,7 @@ const Map = ({citizenId}) => {
 
       return( 
           <div id="map">
+            <h5>Title</h5>
             <MapContainer center={position} zoom={13}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
