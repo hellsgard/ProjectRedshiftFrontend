@@ -1,72 +1,118 @@
+import axios from "axios";
 import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
-import  Form  from "react-bootstrap/Form";
+import Form from "react-bootstrap/Form";
+import JWT from "../config/config.json";
 
+const Login = (props) => {
+  //   export default function Login(props) {
+  // const [validated, setValidated] = useState(false);
+  // const [userDetails, setDetails] = useState({ username: '', password: '' });
+  const [error, setError] = useState("");
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-const Login = () => {
+  // const handleChange = ({ target: { name, value } }) => {
+  //     const tempDetails = clone(userDetails);
+  //     merge(tempDetails, { [name]: value });
+  //     setDetails(tempDetails);
+  // }
 
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-let tempUser;
-let tempPassword;
+  const handleSubmit = () => {
+    console.log("user function running");
+    console.log("Sending to back end for authentication");
+    axios
+      .post("http://localhost:8080/users/login", {
+        username: username,
+        password: password,
+      }) // error 400 {params: userObject}
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem(JWT, response.data);
+        // response.data.redirect = '/'; // cant set the property to /
+        if (response.statusText === "OK") {
+          window.location = "/home";
+        } else if (response.statusText === "401") {
+          window.location = "/";
+        }
+      })
+      .catch((error) => {
+        console.log("login failed", error);
+        setError(error.response.data);
+      });
+  };
 
-    return ( 
+  const register = () => {
+    console.log("going to registration page");
+    window.location = "/register";
+  };
 
-        
-        <div id="main-div" className="d-grid h-100">
-        <Form className="rounded p-5 text-center w-30">
-            
-        <img className="mb-4 RedShift-logo"
-        src="/images/RedShift.png" 
-        alt=""></img>
-        
-        <h1 className="mb-4 fs-4 fw-bold"> REDSHIFT </h1>
-        
-    
-            <input id="user"  type="text" placeholder="Username" name="username" className="position-relative"
+  const reset = (event) => {
+    console.log("function to clear search fields");
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+  };
 
-            // When the Input field detects a change (new key being pressed)
-            onChange={(event) => {
-                console.log(event.target);
-                tempUser = event.target.value;
-                console.log(tempUser);
-                setUsername(event.target.value)
-            }
-            }/>
+  return (
+    <div id="main-div" className="d-grid h-100">
+      <Form className="rounded p-5 text-center w-30">
+        <img
+          className="mb-4 RedShift-logo"
+          src="/images/RedShift.png"
+          alt=""
+        ></img>
 
-          
-            <h3> {} </h3>   
-            <input  id="pass" className="mb-2" type="text" placeholder="Password" name="password" className="position-relative"
+        <h1 className="mb-3 fs-3 fw-normal"> Please Login </h1>
 
-            // When the Input field detects a change (new key being pressed)
-            onChange={(event) => {
-                console.log(event.target);
-                tempUser = event.target.value;
-                console.log(tempPassword);
-                setPassword(event.target.value)
-            }
-            }/>
+        <input
+          type="text"
+          placeholder="Forename"
+          name="Forename"
+          className="position-relative"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        ></input>
+        <input
+          type="text"
+          placeholder="Surname"
+          name="Surname"
+          className="position-relative"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        ></input>
+        <button
+          type="button"
+          variant="secondary"
+          size="sm"
+          onClick={() => handleSubmit()}
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          id="reset"
+          variant="secondary"
+          size="sm"
+          onClick={() => reset()}
+        >
+          Reset
+        </button>
+        <br></br>
+        <br></br>
 
-                
-            <h3> {} </h3>  
-
-            <br></br>
-            
-            <Button id="B1" type="button" variant="secondary" onClick={() => {
-                setPassword(tempPassword);
-                setUsername(tempUser);
-               
-            }}>Login</Button>
-                       
-            <Button id="B2" variant="secondary">Reset</Button>
-        {/* <button >Reset</button>  */}
-        <p className="mt-5 text-muted">REDSHIFT &copy; 2022</p>
-        </Form>
-        </div>
-        
-     );
-}
- 
+        <button
+          type="button"
+          variant="secondary"
+          size="sm"
+          onClick={() => register()}
+        >
+          Register
+        </button>
+      </Form>
+    </div>
+  );
+  //   }
+};
 export default Login;
