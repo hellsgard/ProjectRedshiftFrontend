@@ -1,4 +1,4 @@
-import Nav from './Nav.jsx';
+import Navb from './Navb.jsx';
 import { useState } from "react";
 import axios from "axios";
 
@@ -25,7 +25,7 @@ const Logout = () => {
         })};
     return ( 
         <div>
-            <Nav></Nav>
+            <Navb></Navb>
             <h2> This is the logging out page</h2>
             <button type="button" onClick={() =>loggingOut()}>Logout</button>
         </div>

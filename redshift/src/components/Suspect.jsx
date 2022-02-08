@@ -1,9 +1,9 @@
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-
-
+import Button from 'react-bootstrap/Button';
+import {Link} from 'react-router-dom';
 
 const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, placeOfBirth, sex}) => {
+    let profilePage = `/Scenario1/${citizenID}`;
     return ( 
         <div>
             
@@ -14,9 +14,15 @@ const Suspect = ({citizenID, forenames, surname, homeAddress, dateOfBirth, place
             <h5> Date of Birth: {dateOfBirth} </h5>
             <h5> Place of Birth: {placeOfBirth} </h5>
             <h5> Sex: {sex} </h5>
-        </Card>
-                    
+            
+            <Link to={profilePage}>
+                {/* <Button type="button" onClick={() => {
+                    <Link to={profilePage}></Link>
                 
+                }}>Profile</Button> */}   
+                profile
+            </Link>
+        </Card>
         </div>
      );
 }
