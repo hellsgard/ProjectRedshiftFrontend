@@ -4,8 +4,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Map from "./MapEpos.jsx";
+import Map from "./Map.jsx";
 import MapAtm from "./MapAtm.jsx";
+import MapAnpr from "./MapAnpr.jsx";
 import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
@@ -177,6 +178,13 @@ const Scenario1 = () => {
                     scrollWheelZoom={true}
                   >
                     <MapAtm citizenId={id} />
+                  </MapContainer>
+                  <MapContainer
+                    // center={[51.505, -0.09]}
+                    zoom={13}
+                    scrollWheelZoom={true}
+                  >
+                    <MapAnpr citizenId={id} />
                   </MapContainer>
                 </Tab.Content>
               </Col>

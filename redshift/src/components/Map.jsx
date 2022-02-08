@@ -1,11 +1,7 @@
-import Nav from "./Navb.jsx";
 import {MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup, Circle, Rectangle, FeatureGroup} from "react-leaflet";
-import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { selectOptions } from "@testing-library/user-event/dist/select-options";
-import atmPoint from './AtmPoint';
-import Card from 'react-bootstrap/Card';
+
 
 // Setup size of Shapes
 const center = [51.505, -0.09];
