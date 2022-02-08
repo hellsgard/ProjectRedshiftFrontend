@@ -14,24 +14,46 @@ import { ListGroup } from "react-bootstrap";
 const Associates = ({suspect}) => {
     const [assocData, setAssocData] = useState([]);
     const [pageLoaded, setPageLoaded] = useState(false);
+    const [queryInfoState1, setQueryInfoState1] = useState(0);
 
-    let queryPerson = {
+    // let queryPerson = {
         
-        surname: suspect.surname,
-        forenames: suspect.forenames,
-        dateOfBirth: suspect.dateOfBirth,
-        // businessName: workplace
-    }; 
+    //     surname: suspect.surname,
+    //     forenames: suspect.forenames,
+    //     dateOfBirth: suspect.dateOfBirth,
+    //     // businessName: workplace
+    // }; 
 
-  useEffect(() => {
-    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: queryPerson})
+    let queryPerson = {};
+
+    useEffect( () =>{
+        getAssociates(suspect);
+    
+    }, []);
+
+
+
+    const getAssociates = (async (suspect) => {
+
+    await axios.get(`http://localhost:8080/queryPerson/associates`,{params: suspect})
       .then((response) => {
+        console.log(response.data);
         setAssocData(response.data);
         setPageLoaded(false);
       }).catch((error) => {
           console.log("ERROR :(")
       })
-  },[]);
+    })
+//   useEffect(() => {
+//       console.log(queryPerson);
+//     axios.get(`http://localhost:8080/queryPerson/associates/`,{params: queryPerson})
+//       .then((response) => {
+//         setAssocData(response.data);
+//         setPageLoaded(false);
+//       }).catch((error) => {
+//           console.log("ERROR :(")
+//       })
+//   },[]);
 
     
     return (
