@@ -13,6 +13,7 @@ import Associates from "./Associates.jsx";
 import { ReactPropTypes } from "react";
 import MobileDataInfo from "./MobileDataInfo.jsx";
 import FinanceInfo from "./FinanceInfo.jsx";
+import Card from 'react-bootstrap/Card';
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
@@ -22,6 +23,10 @@ const Scenario1 = () => {
   const [pageLoaded, setPageLoaded] = useState(false);
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const [inboundCalls, setInboundCalls] = useState([]);
+  const [outboundCalls, setOutboundCalls] = useState([]);
+  const [callRecordsLoaded, setCallRecordsLoaded] = useState(false);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/queryPerson/byID?citizenID=${id}`)
@@ -30,34 +35,54 @@ const Scenario1 = () => {
         setSuspect(response.data);
         setPageLoaded(true);
         console.log("Got results, page loaded.");
+        getCallRecords(response.data);
+        getOutboundCallRecords(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [id]);
- 
-  
 
-  if(error){
+
+  const getCallRecords = ((suspectInfo) => {
+    axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo })
+      .then((response) => {
+        setInboundCalls(response.data);
+      }).catch((error) => {
+        console.log(error);
+      })
+  });
+
+  const getOutboundCallRecords = ((suspectInfo) => {
+    axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo })
+      .then((response) => {
+        setOutboundCalls(response.data);
+        setCallRecordsLoaded(true);
+      }).catch((error) => {
+        console.log(error);
+      });
+  })
+
+  if (error) {
     return <h1>Something bad</h1>
-  } else if(!pageLoaded){
+  } else if (!pageLoaded) {
     return <h1>Not loaded yet</h1>
-  } else{
+  } else {
     // Data has been returned.
 
-    console.log("suspect is",suspect);
+    console.log("suspect is", suspect);
 
-  // let forenames= suspect.forenames;
-  // let surname= suspect.surname;
-  let forenames = suspect.forenames;
-  let surname = suspect.surname;
-  let address = suspect.homeAddress;
-  let dob = suspect.dateOfBirth;
-  let gender = suspect.sex;
-  let passportNumber = suspect.passportNumber;
-  let nationality = suspect.nationality;
-  let placeOfBirth = suspect.placeOfBirth;
-  // let workplace = suspect.businessName;
+    // let forenames= suspect.forenames;
+    // let surname= suspect.surname;
+    let forenames = suspect.forenames;
+    let surname = suspect.surname;
+    let address = suspect.homeAddress;
+    let dob = suspect.dateOfBirth;
+    let gender = suspect.sex;
+    let passportNumber = suspect.passportNumber;
+    let nationality = suspect.nationality;
+    let placeOfBirth = suspect.placeOfBirth;
+    // let workplace = suspect.businessName;
 
     return (
       <div>
@@ -93,41 +118,76 @@ const Scenario1 = () => {
                   </Nav.Item>
                 </Nav>
               </Col>
-                              <Col sm={9}>
-                    <Tab.Content>
-                      <Tab.Pane eventKey="first">
-                        <p>Full Name: {suspect.forenames} {suspect.surname}</p>
-                        <p>Address: {address}</p>
-                        <p>Date Of Birth: {dob}</p>
-                        <p>Gender: {gender}</p>
-                        <p>Passport Number: {passportNumber} </p>
-                        <p>Nationality: {nationality} </p>
-                        <p>Place Of Birth: {placeOfBirth}</p>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="second" title="Associates">                     
-                        {/* {assocData.map((assocData))} */}
-                        <Associates id={id} suspect={suspect}/> 
-                        <p> </p>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="third">
-                        <p>third</p>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="fourth">
-                        <p></p>
-                        <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="fifth">
-                        <MobileDataInfo forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth}/>
-                      </Tab.Pane>
-                      <MapContainer
+              <Col sm={9}>
+                <Tab.Content>
+                  <Tab.Pane eventKey="first">
+                    <p>Full Name: {suspect.forenames} {suspect.surname}</p>
+                    <p>Address: {address}</p>
+                    <p>Date Of Birth: {dob}</p>
+                    <p>Gender: {gender}</p>
+                    <p>Passport Number: {passportNumber} </p>
+                    <p>Nationality: {nationality} </p>
+                    <p>Place Of Birth: {placeOfBirth}</p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="second" title="Associates">
+                    {/* {assocData.map((assocData))} */}
+                    <Associates id={id} suspect={suspect} />
+                    <p> </p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="third">
+                    <p>third</p>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="fourth">
+                    <p></p>
+                    <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth} />
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="fifth">
+                    {/* <Row>
+                      <Col>
+                        <h3>Inbound</h3>
+                        {inboundCalls.map((recordIn) => {
+                          return (
+                            <div>
+                              <Card style={{ width: '30rem' }}>
+                                <p>Caller name: {recordIn.forenames} {recordIn.surname}</p>
+                                <p>DoB: {recordIn.dateOfBirth}</p>
+                                <p>Address: {recordIn.address}</p>
+                                <p>TimeStamp: {recordIn.timestamp}</p>
+                                <p>Caller Number: {recordIn.phoneNumber}</p>
+                              </Card>
+                            </div>
+                          )
+                        })}
+                      </Col>
+
+                      <Col>
+                        <h3>Outbound</h3>
+                        {outboundCalls.map((record) => {
+                          return (
+                            <div>
+                              <Card style={{ width: '30rem' }}>
+                                <p>Receiver name: {record.forenames} {record.surname}</p>
+                                <p>DoB: {record.dateOfBirth}</p>
+                                <p>Address: {record.address}</p>
+                                <p>TimeStamp: {record.timestamp}</p>
+                                <p>Receiver Number: {record.phoneNumber}</p>
+                              </Card>
+                            </div>
+                          )
+                        })}
+                      </Col>
+                    </Row> */}
+                    <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
+                  </Tab.Pane>
+                  <MapContainer
                     // center={[51.505, -0.09]}
                     zoom={13}
                     scrollWheelZoom={true}
                   >
                     <Map citizenId={id} />
                   </MapContainer>
-                    </Tab.Content>
-                  </Col>
+                </Tab.Content>
+              </Col>
             </Row>
           </Tab.Container>
         </div>
