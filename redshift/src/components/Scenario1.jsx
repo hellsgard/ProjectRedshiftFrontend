@@ -142,41 +142,7 @@ const Scenario1 = () => {
                     <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
-                    {/* <Row>
-                      <Col>
-                        <h3>Inbound</h3>
-                        {inboundCalls.map((recordIn) => {
-                          return (
-                            <div>
-                              <Card style={{ width: '30rem' }}>
-                                <p>Caller name: {recordIn.forenames} {recordIn.surname}</p>
-                                <p>DoB: {recordIn.dateOfBirth}</p>
-                                <p>Address: {recordIn.address}</p>
-                                <p>TimeStamp: {recordIn.timestamp}</p>
-                                <p>Caller Number: {recordIn.phoneNumber}</p>
-                              </Card>
-                            </div>
-                          )
-                        })}
-                      </Col>
-
-                      <Col>
-                        <h3>Outbound</h3>
-                        {outboundCalls.map((record) => {
-                          return (
-                            <div>
-                              <Card style={{ width: '30rem' }}>
-                                <p>Receiver name: {record.forenames} {record.surname}</p>
-                                <p>DoB: {record.dateOfBirth}</p>
-                                <p>Address: {record.address}</p>
-                                <p>TimeStamp: {record.timestamp}</p>
-                                <p>Receiver Number: {record.phoneNumber}</p>
-                              </Card>
-                            </div>
-                          )
-                        })}
-                      </Col>
-                    </Row> */}
+                    
                     <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
                   </Tab.Pane>
                   <MapContainer
