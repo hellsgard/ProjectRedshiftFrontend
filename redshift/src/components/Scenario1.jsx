@@ -41,7 +41,8 @@ const Scenario1 = () => {
         setPageLoaded(true);
         console.log("Got results, page loaded.");
         getCallRecords(response.data);
-        getOutboundCallRecords(response.data);
+        getOutboundCallRecords(response.data);;
+        getAnprData(response.data)
       })
       .catch((error) => {
         console.log(error);
@@ -72,6 +73,8 @@ const Scenario1 = () => {
     axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo })
     .then((response) => {
       setAnprData(response.data);
+      console.log("anpr function");
+      console.log(anprData);
       setAnprLoaded(true);
     }).catch((error) => {
       console.log(error);
