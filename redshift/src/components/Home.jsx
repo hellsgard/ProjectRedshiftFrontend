@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 
-const Home = () => {
+const Home = ({showUser}) => {
 
     // // Creating state for a suspects information
     const [forename, setForename] = useState("");
@@ -23,17 +23,16 @@ const Home = () => {
     const [fleesTimeStamp, setFleesTimeStamp] = useState("");
 
     const [suspects, setSuspects] = useState([]);
- 
-   
 
 
 
 const createQueryPerson = () =>{
-    console.log("function running");
+    console.log(showUser); // this is empty :( 
     const queryPerson = {
         surname: surname,
         forenames: forename,
-        dateOfBirth: DOB
+        dateOfBirth: DOB,
+        user: showUser
     }; 
     console.log(queryPerson);
     console.log("sending to back end");

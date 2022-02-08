@@ -3,5 +3,7 @@
     "PROTOCOL": "http://",
     "LOCATION": "localhost:8080",
     "USER_URL": "/users",
-    "LOGIN_URL": "/login"
+    "LOGIN_URL": "/login",
+    "SECRET": "Marmoset"
+
 }

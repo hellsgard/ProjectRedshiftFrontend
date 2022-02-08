@@ -5,15 +5,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import JWT from "../config/config.json";
 
-const Login = (props) => {
-  //   export default function Login(props) {
-  // const [validated, setValidated] = useState(false);
-  // const [userDetails, setDetails] = useState({ username: '', password: '' });
+const Login = ({showUser ,saveUser }) => {
+  
   const [error, setError] = useState("");
 
-  const [username, setUsername] = useState("");
+  
   const [password, setPassword] = useState("");
-
+  const [username, setUsername] = useState("");
   // const handleChange = ({ target: { name, value } }) => {
   //     const tempDetails = clone(userDetails);
   //     merge(tempDetails, { [name]: value });
@@ -68,16 +66,19 @@ const Login = (props) => {
 
         <input
           type="text"
-          placeholder="Forename"
-          name="Forename"
+          placeholder="Username"
+          name="Username"
           className="position-relative"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={showUser}
+          onChange={(e) => {
+            // saveUser(e.target.value);
+            setUsername(e.target.value);
+          }}
         ></input>
         <input
-          type="text"
-          placeholder="Surname"
-          name="Surname"
+          type="Password"
+          placeholder="Password"
+          name="Password"
           className="position-relative"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
