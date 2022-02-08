@@ -32,7 +32,12 @@ const Associates = ({ workData, homeData }) => {
           <h6 class="font-weight-bold"> All current employees:</h6>
           </h3>
                 {workData.length && workData.map((colleagues) => {
-                            return (
+                            if(colleagues === 0) {
+                                return (
+                                    <div>No workplace to show</div>
+
+                                )
+                            } else {return (
                                 <div>
                                 {/* {assocData[0].businessName} */}
 
@@ -46,7 +51,8 @@ const Associates = ({ workData, homeData }) => {
                                     </ListGroup>
                               
                                 </div>
-                                )
+                                )}
+                            
                                 })}
         </Col>
 

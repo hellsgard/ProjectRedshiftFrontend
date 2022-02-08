@@ -95,13 +95,13 @@ const Map = ({citizenId}) => {
             </Marker>
           )
         })          
-      }}
+      }
       
     </MapContainer>
           </div>
       );
     }
-}
+  }
  
 export default Map;
 
