@@ -14,8 +14,9 @@ import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
-import Associates from "./Associates.jsx";
+// import Associates from "./Associates.jsx";
 import { ReactPropTypes } from "react";
+import AssociateTab from "./AssociateTab.jsx"
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
@@ -24,12 +25,13 @@ import { ReactPropTypes } from "react";
 const Scenario1 = () => {
 
   const [suspect, setSuspect] = useState("");
-  const [suspectF, setSuspectF] = useState("");
+  // const [suspectF, setSuspectF] = useState("");
   const [pageLoaded, setPageLoaded] = useState(false);
 
   const { id } = useParams();
 
   useEffect( () => {
+    console.log(id);
     axios.get(`http://localhost:8080/queryPerson/byID/?citizenID=${id}`)
       .then((response) => {
 
@@ -80,7 +82,7 @@ const Scenario1 = () => {
                     <Nav.Link eventKey="first">Profile information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}>Associates - work</Nav.Link>
+                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}>Associates</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="third">Associates - home</Nav.Link>
@@ -106,17 +108,23 @@ const Scenario1 = () => {
                   </Tab.Pane>
                   <Tab.Pane eventKey="second" title="Associates">
                     {/* {assocData.map((assocData))} */}
-                    <Associates id={id} suspect={suspect}/> 
+                   
+                    {pageLoaded && <AssociateTab citizenID={id} suspect={suspect}/> }
+                    <AssociateTab/>
                     <p> </p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
-                    <p>third</p>
+                  {/* {pageLoaded && <AssociateTab id={id} suspect={suspect}/> } */}
                   </Tab.Pane>
                   <Tab.Pane eventKey="fourth">
                     <p></p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="fifth">
-                    <p></p>
+                  {/* <MobileDataInfo
+                    forenames={suspect.forenames}
+                    surname={suspect.surname}
+                    dateOfBirth={suspect.dateOfBirth}
+                  /> */}
                   </Tab.Pane>
 
                 </Tab.Content>

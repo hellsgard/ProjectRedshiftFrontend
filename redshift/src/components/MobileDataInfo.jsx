@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Spinner } from 'react-bootstrap';
 
 const MobileDataInfo = ({ forenames, surname, dateOfBirth }) => {
 
@@ -33,7 +34,7 @@ const MobileDataInfo = ({ forenames, surname, dateOfBirth }) => {
         } else {
             getMobileRecords(queryInfo);
         };
-    }, [queryInfoState]);
+    }, []);
 
     const getMobileRecords = ((queryInfo) => {
         axios.get(`http://localhost:8080/queryPerson/mobile`, { params: queryInfo })
@@ -72,7 +73,9 @@ const MobileDataInfo = ({ forenames, surname, dateOfBirth }) => {
     if (error == true) {
         return <h2> Oops, theres been an error :o please refresh the page </h2>
     } else if (!pageLoaded) { // Loaded is not true / false
-        return <h2> Please wait, data is loading! </h2>
+        return <div><h2> Please wait, data is loading! </h2>
+            <Spinner animation="border" variant="danger" />
+            </div>
     } else {
         return (
             <div>
