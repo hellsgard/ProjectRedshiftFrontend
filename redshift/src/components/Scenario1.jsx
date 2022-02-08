@@ -26,6 +26,8 @@ const Scenario1 = () => {
   const [inboundCalls, setInboundCalls] = useState([]);
   const [outboundCalls, setOutboundCalls] = useState([]);
   const [callRecordsLoaded, setCallRecordsLoaded] = useState(false);
+  const [workData, setWorkData] = useState([]);
+  const [homeData, setHomeData] = useState([]);
 
   useEffect(() => {
     axios
@@ -37,6 +39,8 @@ const Scenario1 = () => {
         console.log("Got results, page loaded.");
         getCallRecords(response.data);
         getOutboundCallRecords(response.data);
+        getWork(response.data);
+        getHome(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -62,6 +66,29 @@ const Scenario1 = () => {
         console.log(error);
       });
   })
+
+  const getWork = ((suspectInfo) => {
+    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspectInfo})
+        .then((response) => {
+            setWorkData(response.data);
+            // setPageLoaded(false);
+            }
+            ).catch((error) => {
+                console.log(error);
+            })
+        });
+
+  const getHome = ((suspectInfo) => {
+          axios.get(`http://localhost:8080/queryPerson/associatesHome/`,{params: suspectInfo})
+              .then((response) => {
+                  setHomeData(response.data);
+                  // setPageLoaded(false);
+                  }
+                  ).catch((error) => {
+                      console.log(error);
+                  })
+              });
+ 
 
   if (error) {
     return <h1>Something bad</h1>
@@ -103,18 +130,13 @@ const Scenario1 = () => {
                     <Nav.Link eventKey="first">Profile information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}>
-                      Associates - work
-                    </Nav.Link>
+                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}> Associates </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="third">Associates - home</Nav.Link>
+                    <Nav.Link eventKey="third">Financial information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="fourth">Financial information</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="fifth">Call records</Nav.Link>
+                    <Nav.Link eventKey="fourth">Call records</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Col>
@@ -130,23 +152,21 @@ const Scenario1 = () => {
                     <p>Place Of Birth: {placeOfBirth}</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second" title="Associates">
-                    {/* {assocData.map((assocData))} */}
-                    <Associates id={id} suspect={suspect} />
+                    {/* {pageLoaded && <Associates citizenID={id} workData={workData}/> }
+                    {pageLoaded && <Associates citizenID={id} homeData={homeData}/> } */}
+                    <Associates workData={workData} homeData={homeData}/>
                     <p> </p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
-                    <p>third</p>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fourth">
                     <p></p>
                     <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth} />
                   </Tab.Pane>
-                  <Tab.Pane eventKey="fifth">
+                  <Tab.Pane eventKey="fourth">
                     
                     <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
                   </Tab.Pane>
                   <MapContainer
-                    // center={[51.505, -0.09]}
+                    center={[51.505, -0.09]}
                     zoom={13}
                     scrollWheelZoom={true}
                   >
