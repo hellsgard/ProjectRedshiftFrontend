@@ -1,5 +1,5 @@
 import "./CSS/App.css";
-import "./CSS/login.css";
+// import "./CSS/login.css";
 // import Nav from './components/Nav.jsx';
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
@@ -12,7 +12,7 @@ import Home from "./components/Home.jsx";
 import BankDetails from "./components/BankDetails";
 import AtmTransactions from "./components/AtmTransactions";
 import AtmPoint from "./components/AtmPoint";
-import Vehicles from "./components/Vehicles";
+// import Vehicles from "./components/Vehicles";
 import Epos from "./components/Epos";
 import EposTransactions from "./components/EposTransactions";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -38,7 +38,7 @@ function App() {
           <Route path="/bankCards" element={<BankCards />}></Route>
           <Route path="/atmtransactions" element={<AtmTransactions />}></Route>
           <Route path="/atmpoint" element={<AtmPoint />}></Route>
-          <Route path="/vehicles" element={<Vehicles />}></Route>
+          {/* <Route path="/vehicles" element={<Vehicles />}></Route> */}
           <Route
             path="/suspectProfile/basicInfo"
             element={<BasicInformation />}
