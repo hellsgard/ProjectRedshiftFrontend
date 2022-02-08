@@ -9,9 +9,8 @@ import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
-// import Associates from "./Associates.jsx";
+import Associates from "./Associates.jsx";
 import { ReactPropTypes } from "react";
-import AssociateTab from "./AssociateTab.jsx"
 import MobileDataInfo from "./MobileDataInfo.jsx";
 import FinanceInfo from "./FinanceInfo.jsx";
 import Card from 'react-bootstrap/Card';
@@ -27,6 +26,8 @@ const Scenario1 = () => {
   const [inboundCalls, setInboundCalls] = useState([]);
   const [outboundCalls, setOutboundCalls] = useState([]);
   const [callRecordsLoaded, setCallRecordsLoaded] = useState(false);
+  const [workData, setWorkData] = useState([]);
+  const [homeData, setHomeData] = useState([]);
 
   useEffect(() => {
     axios
@@ -36,8 +37,10 @@ const Scenario1 = () => {
         setSuspect(response.data);
         setPageLoaded(true);
         console.log("Got results, page loaded.");
-        getCallRecords(response.data);
-        getOutboundCallRecords(response.data);
+        // getCallRecords(response.data);
+        // getOutboundCallRecords(response.data);
+        getWork(response.data);
+        getHome(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -45,24 +48,47 @@ const Scenario1 = () => {
   }, [id]);
 
 
-  const getCallRecords = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo })
-      .then((response) => {
-        setInboundCalls(response.data);
-      }).catch((error) => {
-        console.log(error);
-      })
-  });
+  // const getCallRecords = ((suspectInfo) => {
+  //   axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo })
+  //     .then((response) => {
+  //       setInboundCalls(response.data);
+  //     }).catch((error) => {
+  //       console.log(error);
+  //     })
+  // });
 
-  const getOutboundCallRecords = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo })
-      .then((response) => {
-        setOutboundCalls(response.data);
-        setCallRecordsLoaded(true);
-      }).catch((error) => {
-        console.log(error);
-      });
-  })
+  // const getOutboundCallRecords = ((suspectInfo) => {
+  //   axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo })
+  //     .then((response) => {
+  //       setOutboundCalls(response.data);
+  //       setCallRecordsLoaded(true);
+  //     }).catch((error) => {
+  //       console.log(error);
+  //     });
+  // })
+
+  const getWork = ((suspectInfo) => {
+    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspectInfo})
+        .then((response) => {
+            setWorkData(response.data);
+            // setPageLoaded(false);
+            }
+            ).catch((error) => {
+                console.log(error);
+            })
+        });
+
+  const getHome = ((suspectInfo) => {
+          axios.get(`http://localhost:8080/queryPerson/associatesHome/`,{params: suspectInfo})
+              .then((response) => {
+                  setHomeData(response.data);
+                  // setPageLoaded(false);
+                  }
+                  ).catch((error) => {
+                      console.log(error);
+                  })
+              });
+ 
 
   if (error) {
     return <h1>Something bad</h1>
@@ -104,9 +130,7 @@ const Scenario1 = () => {
                     <Nav.Link eventKey="first">Profile information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}>
-                      Associates - work
-                    </Nav.Link>
+                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}> Associates </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="third">Associates - home</Nav.Link>
@@ -131,10 +155,9 @@ const Scenario1 = () => {
                     <p>Place Of Birth: {placeOfBirth}</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second" title="Associates">
-                    {/* {assocData.map((assocData))} */}
-                   
-                    {pageLoaded && <AssociateTab citizenID={id} suspect={suspect}/> }
-                    <AssociateTab/>
+                    {/* {pageLoaded && <Associates citizenID={id} workData={workData}/> }
+                    {pageLoaded && <Associates citizenID={id} homeData={homeData}/> } */}
+                    <Associates workData={workData} homeData={homeData}/>
                     <p> </p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
@@ -149,7 +172,7 @@ const Scenario1 = () => {
                     <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
                   </Tab.Pane>
                   <MapContainer
-                    // center={[51.505, -0.09]}
+                    center={[51.505, -0.09]}
                     zoom={13}
                     scrollWheelZoom={true}
                   >

@@ -11,81 +11,68 @@ import Row from "react-bootstrap/Row";
 import { ListGroup } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import Button from "react-bootstrap/Button";
-import AssociateTab from "./AssociateTab.jsx";
+// import AssociateTab from "./AssociateTab.jsx";
 // import Button from 'react-bootstrap/Button'
 // import Scenario1 from "./Scenario1.jsx";
 
-const Associates = ({suspect}) => {
-    const [assocData, setAssocData] = useState([]);
+const Associates = ({ workData, homeData }) => {
+    const [workInfo, setWorkInfo] = useState([]);
     const [pageLoaded, setPageLoaded] = useState(false);
 
-    // let queryPerson = {
-        
-    //     surname: suspect.surname,
-    //     forenames: suspect.forenames,
-    //     dateOfBirth: suspect.dateOfBirth,
-    //     // businessName: workplace
-    // }; 
 
-    // console.log("queryperson", {queryPerson});
-
-  useEffect(() => {
-  
-        axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspect})
-        .then((response) => {
-            setAssocData(response.data);
-            setPageLoaded(false);
-            }
-            ).catch((error) => {
-                console.log(error);
-            })
-        },[suspect]);
-    
- 
     return (
-            <div>
-                <div>
-                    <h4 class="font-weight-light"> Works at: {assocData.length && assocData[0].businessName} </h4>
-                    <h5 class="font-weight-light"> Address: {assocData.length && assocData[0].businessAddress}</h5>
-                    <br></br>
-                    <h5 class="font-weight-light"> Full employee list:</h5>
-                </div>
-                
-                    {assocData.length && assocData.map((colleagues) => {
+
+        <div>
+        <Row>
+        
+        <Col>
+          <h3>
+          <h5 class="font-weight-light"> Works at: {workData.length && workData[0].businessName} </h5>
+          <h6 class="font-weight-light"> Address: {workData.length && workData[0].businessAddress}</h6>
+          <h6 class="font-weight-bold"> All current employees:</h6>
+          </h3>
+                {workData.length && workData.map((colleagues) => {
                             return (
                                 <div>
                                 {/* {assocData[0].businessName} */}
 
                                 <ListGroup variant="flush">
                                     <ListGroup.Item class="font-weight-light">{colleagues.forenames}  {colleagues.surname}{' '} 
-                                    {/* <Link to={`/Scenario1/${colleagues.citizenID}`}>
+                                    <Link to={`/Scenario1/${colleagues.citizenID}`}>
                                         profile
-                                    </Link> */}
-                                    <Button href={`/Scenario1/${colleagues.citizenID}`}variant="secondary" size="sm">
-                                    profile
-                                    </Button>
+                                    </Link>
 
                                     </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        
-                                    </ListGroup.Item>
-                                    {/* <ListGroup.Item class="font-weight-light"></ListGroup.Item>
-                                    <ListGroup.Item class="font-weight-light">
-                                        
-                                    </ListGroup.Item> */}
-                                    {/* <ListGroup.Item>horizontally!</ListGroup.Item> */}
                                     </ListGroup>
                               
                                 </div>
-                                
-                            )
-                        })}
+                                )
+                                })}
+        </Col>
 
+        <Col>
+          <h5 class="font-weight-light"> Lives at: {homeData.length && homeData[0].homeAddress} </h5>
+          <h6 class="font-weight-bold"> All known residents:</h6>
+                {homeData.length && homeData.map((roomies) => {
+                            return (
                                 <div>
-                                {/* <AssociateTab/> */}
+                                {/* {assocData[0].businessName} */}
+
+                                <ListGroup variant="flush">
+                                    <ListGroup.Item class="font-weight-light">{roomies.forenames}  {roomies.surname}{' '} 
+                                    <Link to={`/Scenario1/${roomies.citizenID}`}>
+                                        profile
+                                    </Link>
+                                    </ListGroup.Item>
+
+                                    </ListGroup>
+                              
                                 </div>
-         
-            </div>
+                                )
+                                })}
+        </Col>
+      </Row>
+      </div>
  
     )
 }
