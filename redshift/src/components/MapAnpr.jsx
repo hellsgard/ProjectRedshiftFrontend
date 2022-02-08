@@ -32,6 +32,8 @@ const Map = ({citizenId}) => {
               setAnprData(response.data);
               setLoaded(true);
 
+
+
           }).catch((error) => {
               console.log('error is happening here',error)
               setLoaded(true);
