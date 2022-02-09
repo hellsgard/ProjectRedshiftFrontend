@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import JWT from '../config/config.json';
 
 const Epos = () => {
 
@@ -8,8 +9,9 @@ const Epos = () => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+        const token = localStorage.getItem(JWT);
         console.log("function running");
-        axios.get("http://localhost:8080/epos/readAll")
+        axios.get("http://localhost:8080/epos/readAll", {headers: {'Authorization': `Bearer ${token}`}})
             .then((response) => {
                 console.log(response);  // need to destructure data
                 setEposData(response.data);

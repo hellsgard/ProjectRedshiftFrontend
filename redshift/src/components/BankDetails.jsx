@@ -1,4 +1,5 @@
 import axios from 'axios';
+import JWT from '../config/config.json';
 
 import { useEffect, useState } from "react";
 
@@ -14,8 +15,9 @@ const [loaded, setLoaded] = useState(false);
 
 
     useEffect(() => {
+        const token = localStorage.getItem(JWT);
         console.log("function running");
-        axios.get("http://localhost:8080/peoplebankaccount/readAll")
+        axios.get("http://localhost:8080/peoplebankaccount/readAll", {headers: {'Authorization': `Bearer ${token}`}})
         .then((response) => {
             console.log(response);  // need to destructure data
             setBankAccountData(response.data);

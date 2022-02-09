@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
     import axios from 'axios';
     import Scenario1 from "./Scenario1";
     import Button from 'react-bootstrap/Button';
+    import JWT from '../config/config.json';
 
 
 const BasicInformation = ({forename, surname, address, dob, sex, passportNumber, nationality, placeOfBirth}) => {
@@ -16,7 +17,8 @@ const BasicInformation = ({forename, surname, address, dob, sex, passportNumber,
         const [loaded, setLoaded] = useState(false);
     
         useEffect(() => {
-                axios.get("http://localhost:8080/suspectProfile/basicInfo/:id") // this needs to change
+            const token = localStorage.getItem(JWT);
+                axios.get("http://localhost:8080/suspectProfile/basicInfo/:id", {headers: {'Authorization': `Bearer ${token}`}}) // this needs to change
                 .then((response) => {
                 console.log("=======BasicData==========");
                 console.log(response);

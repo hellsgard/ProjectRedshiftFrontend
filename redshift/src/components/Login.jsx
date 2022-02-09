@@ -26,7 +26,7 @@ const Login = ({showUser ,saveUser }) => {
         console.log(response);
         localStorage.setItem(JWT, response.data);
         if (response.statusText === "OK") {
-          window.location = "/home";
+          window.location = "/home"; // use navigate instead
         } else if (response.statusText === "401") {
           window.location = "/";
         }

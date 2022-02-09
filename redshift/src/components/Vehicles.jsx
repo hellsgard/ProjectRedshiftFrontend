@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import JWT from '../config/config.json';
 
 const Vehicles = () => {
     const [vehiclesData, setVehiclesData] = useState([]);
@@ -7,8 +8,9 @@ const Vehicles = () => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+        const token = localStorage.getItem(JWT);
         console.log("function running");
-        axios.get("http://localhost:8080/vehicles/readAll")
+        axios.get("http://localhost:8080/vehicles/readAll", { headers: {'Authorization': `Bearer ${token}`}})
             .then((response) => {
                 console.log(response);  // need to destructure data
                 setVehiclesData(response.data);

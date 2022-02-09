@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import JWT from '../config/config.json'
 
 const AnprCamera = () => {
 
@@ -10,8 +11,9 @@ const [error, setError] = useState(null);
 const [loaded, setLoaded] = useState(false);
 
 useEffect(() => {
+    const token = localStorage.getItem(JWT);
     console.log("function running");
-    axios.get("http://localhost:8080/anprCamera/readAll")
+    axios.get("http://localhost:8080/anprCamera/readAll", {headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
         console.log(response);  // need to destructure data
         setAnprCameraData(response.data);
