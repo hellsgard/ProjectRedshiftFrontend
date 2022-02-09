@@ -14,20 +14,18 @@ const Vehicles = ({anprData}) => {
 
             <Row>
                   <Col>
-                    <h3>Vehicle Data</h3>
-                    {anprData.map((data) => {
-                      return (
+              
+                    <h3>Vehicle Data {anprData.length && anprData[0].vehicleRegistrationNumber}</h3>
+          
                         <div>
                           <Card style={{ width: '30rem' }}>
-                          <h4>{data.vehicleRegistrationNumber}</h4>
-                            <p>Drivers License: {data.driverLicenceID}</p>
-                            <p>Make: {data.make}</p>
-                            <p>Model: {data.model}</p>
-                            <p>Colour: {data.colour}</p>
+                            <p>Drivers License: {anprData.length && anprData[0].driverLicenceID}</p>
+                            <p>Make: {anprData.length && anprData[0].make}</p>
+                            <p>Model: {anprData.length && anprData[0].model}</p>
+                            <p>Colour: {anprData.length && anprData[0].colour}</p>
                           </Card>
                         </div>
-                      )
-                    })}
+               
                   </Col>
 
                   <Col>
