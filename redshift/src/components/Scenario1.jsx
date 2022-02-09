@@ -22,6 +22,8 @@ import Vehicles from "./Vehicles.jsx";
 // import Suspect from './Suspect';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 const Scenario1 = () => {
+
+  let api = `http://localhost:8080/queryPerson/`;
   const [suspect, setSuspect] = useState("");
   const [pageLoaded, setPageLoaded] = useState(false);
   const [error, setError] = useState(null);
@@ -145,7 +147,7 @@ const Scenario1 = () => {
           <Col>
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
               <Row>
-                <Col sm={2}>
+                <Col sm={3}>
                   <div>
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>

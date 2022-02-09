@@ -84,4 +84,4 @@ const Associates = ({ workData, homeData }) => {
 }
 
 
-export default Associates;
+export default Associates; 
