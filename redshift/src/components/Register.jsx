@@ -18,7 +18,6 @@ const Register = (props) => {
     document.getElementById("password").value = "";
   };
 
-<<<<<<< HEAD
     const register = () => {
         console.log("register function running");
         console.log("Sending to back end for registration");
@@ -34,28 +33,6 @@ const Register = (props) => {
             console.log('registration failed', error);
             setError(error.response.data);
         })};
-=======
-  const register = () => {
-    console.log("register function running");
-    console.log("Sending to back end for registration");
-    axios
-      .post("http://localhost:8080/users/register", {
-        username: username,
-        password: password,
-      }) // error 400 {params: userObject}
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem(JWT, response.data);
-        if (response.statusText === "OK") {
-          window.location = "/login";
-        }
-      })
-      .catch((error) => {
-        console.log("registration failed", error);
-        setError(error.response.data);
-      });
-  };
->>>>>>> 0f1064f0777f53fc5531032213f0d6c3fefd62ac
 
   const toLogin = () => {
     console.log("going back to login");

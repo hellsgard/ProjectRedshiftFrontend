@@ -103,7 +103,8 @@ const Scenario1 = () => {
 
 
   const getAnprData = ((suspectInfo)=>{
-    axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
       setAnprData(response.data);
       console.log("anpr function");
@@ -115,7 +116,8 @@ const Scenario1 = () => {
   })
 
   const getAtmData = ((suspectInfo)=>{
-    axios.get(`http://localhost:8080/queryPerson/atmData`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/atmData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
       setAtmData(response.data);
       console.log("atm function");
@@ -127,7 +129,8 @@ const Scenario1 = () => {
   })
 
   const getEposData = ((suspectInfo)=>{
-    axios.get(`http://localhost:8080/queryPerson/eposData`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/eposData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
       setEposData(response.data);
       console.log("epos function");
@@ -139,7 +142,8 @@ const Scenario1 = () => {
   })
 
   const getEposMapData = ((suspectInfo)=>{
-    axios.get(`http://localhost:8080/mapData/eposMap`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/mapData/eposMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
       setEposMapData(response.data);
       console.log("epos map function");
@@ -151,7 +155,8 @@ const Scenario1 = () => {
   })
 
   const getAtmMapData = ((suspectInfo)=>{
-    axios.get(`http://localhost:8080/mapData/atmMap`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/mapData/atmMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
       setAtmMapData(response.data);
       console.log("atm map function");
@@ -163,7 +168,8 @@ const Scenario1 = () => {
   })
 
   const getAnprMapData = ((suspectInfo)=>{
-    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
       setAnprMapData(response.data);
       console.log("anpr map function");
@@ -174,7 +180,8 @@ const Scenario1 = () => {
     });
   })
   const getWork = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspectInfo})
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
         .then((response) => {
             setWorkData(response.data);
             // setPageLoaded(false);
@@ -185,7 +192,8 @@ const Scenario1 = () => {
         });
 
   const getHome = ((suspectInfo) => {
-          axios.get(`http://localhost:8080/queryPerson/associatesHome/`,{params: suspectInfo})
+    const token = localStorage.getItem(JWT);
+          axios.get(`http://localhost:8080/queryPerson/associatesHome/`,{params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
               .then((response) => {
                   setHomeData(response.data);
                   // setPageLoaded(false);
@@ -195,17 +203,17 @@ const Scenario1 = () => {
                   })
               });
 
-  const getCars = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/vehicleInfo/`, { params: suspectInfo})
-        .then((response) => {
-          setVehiclesData(response.data);
-          console.log(vehiclesData); 
-        }
-        ).catch ((error) => {
-          console.log("vehicles error", error);
-        })
+  // const getCars = ((suspectInfo) => {
+  //   axios.get(`http://localhost:8080/queryPerson/vehicleInfo/`, { params: suspectInfo})
+  //       .then((response) => {
+  //         setVehiclesData(response.data);
+  //         console.log(vehiclesData); 
+  //       }
+  //       ).catch ((error) => {
+  //         console.log("vehicles error", error);
+  //       })
 
-  });
+  // });
  
 
 
@@ -306,6 +314,7 @@ const Scenario1 = () => {
             
               </Col>
               <Col>
+                  <h3 class="font-weight-light">Transactions and logged vehicle locations:</h3>
                   <MapContainer>
                     <Map eposMapData={eposMapData} anprMapData={anprMapData} atmMapData={atmMapData}/>
                   </MapContainer>
