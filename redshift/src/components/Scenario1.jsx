@@ -5,8 +5,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Map from "./Map.jsx";
-import MapAtm from "./MapAtm.jsx";
-import MapAnpr from "./MapAnpr.jsx";
 import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";

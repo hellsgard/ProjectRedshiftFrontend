@@ -1,4 +1,5 @@
 import axios from "axios";
+import "../CSS/login.css";
 import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
@@ -64,7 +65,10 @@ const Login = (props) => {
           alt=""
         ></img>
 
-        <h1 className="mb-4 fs-4 fw-normal"> REDSHIFT </h1>
+        <h1 id="LG" className="mb-4 fs-4 fw-normal">
+          {" "}
+          REDSHIFT{" "}
+        </h1>
         <h3> {}</h3>
         <input
           id="user"
@@ -116,7 +120,9 @@ const Login = (props) => {
         >
           Register
         </Button>
-        <p className="mt-5 text-muted">REDSHIFT &copy; 2022</p>
+        <p id="p1" className="mt-5 text-muted">
+          REDSHIFT &copy; 2022
+        </p>
       </Form>
     </div>
   );

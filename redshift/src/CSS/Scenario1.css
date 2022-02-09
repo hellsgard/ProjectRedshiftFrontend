@@ -1,16 +1,14 @@
-
 .nav-link.active {
-    color: red !important;
-    background-color: rgb(32, 32, 27) !important;
-  }
+  color: red !important;
+  background-color: rgb(32, 32, 27) !important;
+}
 
-  /* .Scenario1 {
+/* .Scenario1 {
     font-family: sans-serif;
     text-align: center;
   } */
 
-  .flex-column {
-      color:bisque;
-      background-color:rgb(173, 170, 170);
-      
-  }
+.flex-column {
+  /* color: bisque; */
+  background-color: rgb(173, 170, 170);
+}

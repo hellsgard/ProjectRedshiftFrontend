@@ -1,7 +1,9 @@
 import { MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup, Circle, Rectangle, FeatureGroup } from "react-leaflet";
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import Nav from "./Navb.jsx";
+import { useParams } from "react-router-dom";
+import { selectOptions } from "@testing-library/user-event/dist/select-options";
+import Card from "react-bootstrap/Card";
 
 // Setup size of Shapes
 const center = [51.505, -0.09];
@@ -17,15 +19,15 @@ const fillRedOptions = { fillColor: "red" };
 const greenOptions = { color: "green", fillColor: "green" };
 const purpleOptions = { color: "purple" };
 
-const Map = ({ eposMapData, anprMapData, atmMapData}) => {
+const Map = ({ eposMapData, anprMapData, atmMapData }) => {
   // const eposPosition = [eposMapData[0].latitude, eposMapData[0].longitude];
   // const atmPosition = [atmMapData[0].latitude, atmMapData[0].longitude];
   // const anprPosition = [anprMapData[0].latitude, anprMapData[0].longitude];
 
   return (
     <div id="map">
-      
-      <MapContainer center= {center} zoom={13}>
+
+      <MapContainer center={center} zoom={13}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
