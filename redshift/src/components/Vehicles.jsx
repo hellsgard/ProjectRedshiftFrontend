@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card"
 
+   // DON'T ACCEPT THIS MERGE VERSION!!!
+
 const Vehicles = ({vehiclesData}) => {
     // const [vehiclesData, setVehiclesData] = useState([]);
     const [error, setError] = useState(null);
@@ -21,6 +23,10 @@ const Vehicles = ({vehiclesData}) => {
     //             setError(error);
     //         })},[]);
 
+       // DON'T ACCEPT THIS MERGE VERSION!!!
+
+
+    // DON'T ACCEPT THIS MERGE VERSION!!!
     return (
         <div>
             {/* this could be a react fragment - better than doing lots of divs */}
