@@ -36,7 +36,7 @@ const Register = (props) => {
 
   const toLogin = () => {
     console.log("going back to login");
-    window.location = "/login";
+    window.location = "/";
   };
 
   return (

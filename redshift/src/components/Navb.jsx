@@ -11,7 +11,7 @@ const Navb = () => {
                   <img src="../RedShift.png" alt="Redshift logo" height="80"></img>
                 <Navbar.Brand href="/home">Home</Navbar.Brand>
                 {/* <Navbar.Brand href="/lock">Lock</Navbar.Brand> */}
-                <Navbar.Brand href="logout">Logout</Navbar.Brand>
+                <Navbar.Brand href="/logout">Logout</Navbar.Brand>
               {/* </Container> */}
             </Navbar>
         </div>
