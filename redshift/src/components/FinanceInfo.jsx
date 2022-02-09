@@ -1,74 +1,55 @@
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
-const FinanceInfo = ({ forenames, surname, dateOfBirth, citizenID }) => {
+import { useEffect, useState } from "react";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+const FinanceInfo = ({ eposData, atmData }) => {
 
-    const [pageLoaded, setPageLoaded] = useState(false);
-    const [eposInfo, setEposInfo] = useState([]);
-    const [queryInfoState, setQueryInfoState] = useState(0);
-    const [error, setError] = useState(null);
+    return (
+        <div>
+            <Row>
+                <Col>
+                    <h3>Epos Data</h3>
+                    {eposData.map((data) => {
+                        return (
+                            <div>
+                                <Card style={{ width: '30rem' }}>
+                                    <h5> Bank Name: {data.bank} </h5>
+                                    <h5> Bank Account Number: {data.accountNumber} </h5>
+                                    <h5> Vendor: {data.vendor} </h5>
+                                    <h5> Amount Paid: {data.amount} </h5>
+                                    <h5> Time of Transaction: {data.timestamp} </h5>
+                                </Card>
+                            </div>
+                        )
+                    })}
+                </Col>
 
-    const queryInfo = {
-        forenames: forenames,
-        surname: surname,
-        dateOfBirth: dateOfBirth,
-        citizenID: citizenID,
-    }
+                <Col>
+                    <h3>ATM Data</h3>
+                    {atmData.map((data) => {
+                        return (
+                            <div>
+                                <Card style={{ width: '30rem' }}>
+                                    <p>Card Number: {data.cardNumber}</p>
+                                    <p>ATM ID: {data.atmId}</p>
+                                    <p>Amount: {data.amount}</p>
+                                    <p>Street Name: {data.streetName}</p>
+                                    <p>Latitude: {data.latitude}</p>
+                                    <p>Longitude: {data.longitude}</p>
+                                    <p>Timestamp: {data.timestamp}</p>
+                                </Card>
+                            </div>
+                        )
+                    })}
+                </Col>
 
-    useEffect(() => {
+            </Row>
 
-        if (queryInfo.forenames == undefined) {
-            setTimeout(10000);
-            setQueryInfoState(queryInfoState + 1);
-        } else {
-            console.log("getting data finance")
-            getEposInfo(queryInfo);
-        };
-    }, [queryInfoState]);
 
-    const getEposInfo = ((queryInfo) => {
-        console.log(queryInfo)
-        axios.get(`http://localhost:8080/queryPerson/financialEpos`, { params: queryInfo })
-            .then((response) => {
-                console.log("testing")
-                setEposInfo(response.data);
-                const info = (response.data);
-                console.log("FINANCE STUFF HERE")
-                console.log(info);
-                setPageLoaded(true);
-            }
-            ).catch((error) => {
-                setError(error);
-            });
-    })
+        </div>
 
-    if (error == true) {
-        return <h2> Oops, theres been an error :o please refresh the page </h2>
-    } else if (!pageLoaded) { // Loaded is not true / false
-        return <h2> Please wait, data is loading! </h2>
-    } else {
-        return (
-            <div>
-                <h3>Epos Data</h3>
-                {eposInfo.map((record) => {
-                    return (
-                        <div>
-                            <Card style={{ width: '25rem' }}>
-                                <h5> Bank Name: {record.bank} </h5>
-                                <h5> Bank Account Number: {record.accountNumber} </h5>
-                                <h5> Vendor: {record.vendor} </h5>
-                                <h5> Amount Paid: {record.amount} </h5>
-                                <h5> Time of Transaction: {record.timestamp} </h5>
-                            </Card>
-                        </div>
-                    )
-                })}
-
-            </div>
-        )
-    }
+    )
 }
 
 export default FinanceInfo;

@@ -11,7 +11,7 @@ const Vehicles = ({anprData}) => {
 
     return (
         <div>
-            
+
             <Row>
                   <Col>
                     <h3>Vehicle Data</h3>
