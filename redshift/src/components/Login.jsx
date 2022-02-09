@@ -3,7 +3,7 @@ import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import JWT from "../config/config.json";
+import JWT  from "../config/config.json";
 
 const Login = ({showUser ,saveUser }) => {
   
@@ -12,11 +12,7 @@ const Login = ({showUser ,saveUser }) => {
   
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  // const handleChange = ({ target: { name, value } }) => {
-  //     const tempDetails = clone(userDetails);
-  //     merge(tempDetails, { [name]: value });
-  //     setDetails(tempDetails);
-  // }
+ 
 
   const handleSubmit = () => {
     console.log("user function running");
@@ -24,14 +20,13 @@ const Login = ({showUser ,saveUser }) => {
     axios
       .post("http://localhost:8080/users/login", {
         username: username,
-        password: password,
+        password: password
       }) // error 400 {params: userObject}
       .then((response) => {
         console.log(response);
         localStorage.setItem(JWT, response.data);
-        // response.data.redirect = '/'; // cant set the property to /
         if (response.statusText === "OK") {
-          window.location = "/home";
+          window.location = "/home"; // use navigate instead
         } else if (response.statusText === "401") {
           window.location = "/";
         }
@@ -69,7 +64,7 @@ const Login = ({showUser ,saveUser }) => {
           placeholder="Username"
           name="Username"
           className="position-relative"
-          value={showUser}
+          value={username}
           onChange={(e) => {
             // saveUser(e.target.value);
             setUsername(e.target.value);
@@ -114,6 +109,5 @@ const Login = ({showUser ,saveUser }) => {
       </Form>
     </div>
   );
-  //   }
 };
 export default Login;

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { selectOptions } from "@testing-library/user-event/dist/select-options";
 import atmPoint from './AtmPoint';
 import Card from 'react-bootstrap/Card';
+import JWT from '../config/config.json';
 
 // Setup size of Shapes
 const center = [51.505, -0.09];
@@ -28,8 +29,9 @@ const Map = ({citizenId}) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem(JWT);
       console.log("function running");
-      axios.get(`http://localhost:8080/mapData?citizenID=${citizenId}`) // TODO: to pass ID
+      axios.get(`http://localhost:8080/mapData?citizenID=${citizenId}`, {headers: {'Authorization': `Bearer ${token}`}})
           .then((response) => {
               console.log("Response is:",response.data);  // need to destructure data
               setEposData(response.data);
@@ -95,13 +97,13 @@ const Map = ({citizenId}) => {
             </Marker>
           )
         })          
-      }}
+      }
       
     </MapContainer>
           </div>
       );
     }
-}
+  }
  
 export default Map;
 

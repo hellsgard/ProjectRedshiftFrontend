@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import JWT from '../config/config.json';
+
 const FinanceInfo = ({ forenames, surname, dateOfBirth, citizenID }) => {
 
     const [pageLoaded, setPageLoaded] = useState(false);
@@ -29,8 +31,9 @@ const FinanceInfo = ({ forenames, surname, dateOfBirth, citizenID }) => {
     }, [queryInfoState]);
 
     const getEposInfo = ((queryInfo) => {
+        const token = localStorage.getItem(JWT);
         console.log(queryInfo)
-        axios.get(`http://localhost:8080/queryPerson/financialEpos`, { params: queryInfo })
+        axios.get(`http://localhost:8080/queryPerson/financialEpos`, { params: queryInfo, headers: {'Authorization': `Bearer ${token}`}})
             .then((response) => {
                 console.log("testing")
                 setEposInfo(response.data);

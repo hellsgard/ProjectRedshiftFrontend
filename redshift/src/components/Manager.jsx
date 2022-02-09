@@ -1,7 +1,7 @@
 import Register from "./Register.jsx";
 import Login from "./Login.jsx";
 import Logout from "./Logout.jsx";
-import Lock from "./Lock.jsx";
+// import Lock from "./Lock.jsx";
 import Scenario1 from "./Scenario1.jsx";
 import Scenario2 from "./Scenario2.jsx";
 import Scenario3 from "./Scenario3.jsx";
@@ -32,7 +32,7 @@ const Manager = () => {
           <Route exact path="/" element={<Login showUser={userAudit} saveUser={setUserAudit}/>}></Route> 
           {/* <Route path="/login" element={<Login />}></Route> */}
           <Route path="/logout" element={<Logout />}></Route>
-          <Route path="/lock" element={<Lock />}></Route>
+          {/* <Route path="/lock" element={<Lock />}></Route> */}
           <Route path="/scenario1/:id" element={<Scenario1 />}></Route>
           <Route path="/scenario2" element={<Scenario2 />}></Route>
           <Route path="/scenario3" element={<Scenario3 />}></Route>

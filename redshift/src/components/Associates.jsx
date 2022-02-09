@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import { ListGroup } from "react-bootstrap";
+import JWT from '../config/config.json'
 // import Scenario1 from "./Scenario1.jsx";
 
 const Associates = ({suspect}) => {
@@ -24,7 +25,8 @@ const Associates = ({suspect}) => {
     }; 
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/queryPerson/associates`,{params: queryPerson})
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/associates`,{params: queryPerson, headers: {'Authorization': `Bearer ${token}`}})
       .then((response) => {
         setAssocData(response.data);
         setPageLoaded(false);

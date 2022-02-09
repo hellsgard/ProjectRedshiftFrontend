@@ -14,6 +14,7 @@ import { ReactPropTypes } from "react";
 import MobileDataInfo from "./MobileDataInfo.jsx";
 import FinanceInfo from "./FinanceInfo.jsx";
 import Card from 'react-bootstrap/Card';
+import JWT from '../config/config.json';
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
@@ -27,9 +28,11 @@ const Scenario1 = () => {
   const [outboundCalls, setOutboundCalls] = useState([]);
   const [callRecordsLoaded, setCallRecordsLoaded] = useState(false);
 
+
   useEffect(() => {
+    const token = localStorage.getItem(JWT);
     axios
-      .get(`http://localhost:8080/queryPerson/byID?citizenID=${id}`)
+      .get(`http://localhost:8080/queryPerson/byID?citizenID=${id}`, {headers: {'Authorization': `Bearer ${token}`}})
       .then((response) => {
         console.log(response);
         setSuspect(response.data);
@@ -45,7 +48,8 @@ const Scenario1 = () => {
 
 
   const getCallRecords = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
       .then((response) => {
         setInboundCalls(response.data);
       }).catch((error) => {
@@ -54,7 +58,8 @@ const Scenario1 = () => {
   });
 
   const getOutboundCallRecords = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
       .then((response) => {
         setOutboundCalls(response.data);
         setCallRecordsLoaded(true);

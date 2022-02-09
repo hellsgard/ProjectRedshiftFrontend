@@ -24,7 +24,7 @@ const Register = (props) => {
             console.log(response); 
             localStorage.setItem(JWT, response.data);
             if (response.statusText === 'OK') {
-                window.location = "/login"
+                window.location = "/"
             }
         })
         .catch((error) => {

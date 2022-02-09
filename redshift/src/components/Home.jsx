@@ -7,9 +7,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import JWT from '../config/config.json'
 
 
-const Home = ({showUser}) => {
+const Home = () => {
 
     // // Creating state for a suspects information
     const [forename, setForename] = useState("");
@@ -27,29 +28,31 @@ const Home = ({showUser}) => {
 
 
 const createQueryPerson = () =>{
-    console.log(showUser); // this is empty :( 
     const queryPerson = {
         surname: surname,
         forenames: forename,
-        dateOfBirth: DOB,
-        user: showUser
+        dateOfBirth: DOB
     }; 
     console.log(queryPerson);
     console.log("sending to back end");
-    axios.get("http://localhost:8080/queryPerson/person",{params: queryPerson})
+    const token = localStorage.getItem(JWT);
+    console.log(token);
+    axios.get("http://localhost:8080/queryPerson/person", {params: queryPerson, headers: {'Authorization': `Bearer ${token}`}} ) // authorisation header put in here
     .then((response) => {
         console.log(response); 
         console.log("queryperson query")
-        // setSuspects(response.data);
-        // console.log(suspects);
+        
         setData(response);
     })
     .catch((error) => {
         console.log(error);
     })};
 
+   
+
 
 const createQueryIncident = () => {
+    const token = localStorage.getItem(JWT);
     console.log("incident");
     const queryIncident = {
         timeDate: timeDate,
@@ -59,7 +62,7 @@ const createQueryIncident = () => {
     }; 
     console.log(queryIncident);
     console.log("sending to back end");
-    axios.get("http://localhost:8080/queryIncident/incident", {params: queryIncident})
+    axios.get("http://localhost:8080/queryIncident/incident", {params: queryIncident, headers: {'Authorization': `Bearer ${token}`}})
     .then((response) => {
         console.log(response); 
     })
@@ -69,6 +72,7 @@ const createQueryIncident = () => {
 
 
     const createQuerySuspectFlees = () => {
+        const token = localStorage.getItem(JWT);
         console.log("suspect flees");
         const queryFlees = {
             timestamp: fleesTimeStamp,
@@ -76,7 +80,7 @@ const createQueryIncident = () => {
         }; 
         console.log(queryFlees);
         console.log("sending to back end");
-        axios.get("http://localhost:8080/queryFlees/flees", {params: queryFlees})
+        axios.get("http://localhost:8080/queryFlees/flees", {params: queryFlees, headers: {'Authorization': `Bearer ${token}`}})
         .then((response) => {
             console.log(response); 
         })
