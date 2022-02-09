@@ -15,6 +15,8 @@ import MobileDataInfo from "./MobileDataInfo.jsx";
 import FinanceInfo from "./FinanceInfo.jsx";
 import Card from 'react-bootstrap/Card';
 import JWT from '../config/config.json';
+import Vehicles from "./Vehicles.jsx";
+
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
@@ -27,6 +29,21 @@ const Scenario1 = () => {
   const [inboundCalls, setInboundCalls] = useState([]);
   const [outboundCalls, setOutboundCalls] = useState([]);
   const [callRecordsLoaded, setCallRecordsLoaded] = useState(false);
+  const [anprData, setAnprData]= useState([]);
+  const [anprLoaded, setAnprLoaded] =useState(false);
+  const [atmData, setAtmData]= useState([]);
+  const [atmLoaded, setAtmLoaded] =useState(false);
+  const [eposData, setEposData]= useState([]);
+  const [eposLoaded, setEposLoaded] =useState(false);
+  const [eposMapData, setEposMapData]= useState([]);
+  const [eposMapLoaded, setEposMapLoaded] =useState(false);
+  const [anprMapData, setAnprMapData]= useState([]);
+  const [anprMapLoaded, setAnprMapLoaded] =useState(false);
+  const [atmMapData, setAtmMapData]= useState([]);
+  const [atmMapLoaded, setAtmMapLoaded] =useState(false);
+  const [workData, setWorkData] = useState([]);
+  const [homeData, setHomeData] = useState([]);
+
 
 
   useEffect(() => {
@@ -39,7 +56,17 @@ const Scenario1 = () => {
         setPageLoaded(true);
         console.log("Got results, page loaded.");
         getCallRecords(response.data);
+        getOutboundCallRecords(response.data);;
+        getAnprData(response.data);
+        getAtmData(response.data);
+        getEposData(response.data);
+        getEposMapData(response.data);
+        getAtmMapData(response.data);
+        getAnprMapData(response.data);
         getOutboundCallRecords(response.data);
+        getWork(response.data);
+        getHome(response.data);
+
       })
       .catch((error) => {
         console.log(error);
@@ -68,10 +95,106 @@ const Scenario1 = () => {
       });
   })
 
+
+  const getAnprData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo })
+    .then((response) => {
+      setAnprData(response.data);
+      console.log("anpr function");
+      console.log(anprData);
+      setAnprLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getAtmData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/queryPerson/atmData`, { params: suspectInfo })
+    .then((response) => {
+      setAtmData(response.data);
+      console.log("atm function");
+      console.log(atmData);
+      setAtmLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getEposData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/queryPerson/eposData`, { params: suspectInfo })
+    .then((response) => {
+      setEposData(response.data);
+      console.log("epos function");
+      console.log(eposData);
+      setEposLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getEposMapData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/mapData/eposMap`, { params: suspectInfo })
+    .then((response) => {
+      setEposMapData(response.data);
+      console.log("epos map function");
+      console.log(eposMapData);
+      setEposMapLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getAtmMapData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/mapData/atmMap`, { params: suspectInfo })
+    .then((response) => {
+      setAtmMapData(response.data);
+      console.log("atm map function");
+      console.log(atmMapData);
+      setAtmMapLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getAnprMapData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo })
+    .then((response) => {
+      setAnprMapData(response.data);
+      console.log("anpr map function");
+      console.log(response.data);
+      setAnprMapLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+  const getWork = ((suspectInfo) => {
+    axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspectInfo})
+        .then((response) => {
+            setWorkData(response.data);
+            // setPageLoaded(false);
+            }
+            ).catch((error) => {
+                console.log(error);
+            })
+        });
+
+  const getHome = ((suspectInfo) => {
+          axios.get(`http://localhost:8080/queryPerson/associatesHome/`,{params: suspectInfo})
+              .then((response) => {
+                  setHomeData(response.data);
+                  // setPageLoaded(false);
+                  }
+                  ).catch((error) => {
+                      console.log(error);
+                  })
+              });
+ 
+
+
   if (error) {
     return <h1>Something bad</h1>
   } else if (!pageLoaded) {
-    return <h1>Not loaded yet</h1>
+    return <h1>Loading</h1>
   } else {
     // Data has been returned.
 
@@ -108,18 +231,16 @@ const Scenario1 = () => {
                     <Nav.Link eventKey="first">Profile information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}>
-                      Associates - work
-                    </Nav.Link>
+                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}> Associates </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="third">Associates - home</Nav.Link>
+                    <Nav.Link eventKey="third">Financial information</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="fourth">Financial information</Nav.Link>
+                    <Nav.Link eventKey="fourth">Call records</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link eventKey="fifth">Call records</Nav.Link>
+                    <Nav.Link eventKey="fifth">Vehicle Data</Nav.Link>
                   </Nav.Item>
                 </Nav>
               </Col>
@@ -135,28 +256,26 @@ const Scenario1 = () => {
                     <p>Place Of Birth: {placeOfBirth}</p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="second" title="Associates">
-                    {/* {assocData.map((assocData))} */}
-                    <Associates id={id} suspect={suspect} />
+                    {/* {pageLoaded && <Associates citizenID={id} workData={workData}/> }
+                    {pageLoaded && <Associates citizenID={id} homeData={homeData}/> } */}
+                    <Associates workData={workData} homeData={homeData}/>
                     <p> </p>
                   </Tab.Pane>
                   <Tab.Pane eventKey="third">
-                    <p>third</p>
+                    <p></p>
+                    <FinanceInfo atmData={atmData} eposData={eposData} />
                   </Tab.Pane>
                   <Tab.Pane eventKey="fourth">
-                    <p></p>
-                    <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth} />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fifth">
-                    
                     <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
                   </Tab.Pane>
-                  <MapContainer
-                    // center={[51.505, -0.09]}
-                    zoom={13}
-                    scrollWheelZoom={true}
-                  >
-                    <Map citizenId={id} />
+                  <Tab.Pane eventKey="fifth">
+                    <Vehicles anprData={anprData}/>
+                  </Tab.Pane>
+                  <MapContainer>
+                    <Map eposMapData={eposMapData} anprMapData={anprMapData} atmMapData={atmMapData}/>
+
                   </MapContainer>
+                
                 </Tab.Content>
               </Col>
             </Row>
@@ -167,12 +286,3 @@ const Scenario1 = () => {
   }
 };
 export default Scenario1;
-// const center = [51.505, -0.09];
-// const rectangle = [
-//   [51.49, -0.08],
-//   [51.5, -0.06],
-// ];
-// const fillBlueOptions = { fillColor: "blue" };
-// const fillRedOptions = { fillColor: "red" };
-// const greenOptions = { color: "green", fillColor: "green" };
-// const purpleOptions = { color: "purple" };

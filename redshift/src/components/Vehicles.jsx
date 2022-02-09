@@ -1,34 +1,38 @@
-import axios from 'axios';
-import { useEffect, useState } from "react";
-import JWT from '../config/config.json';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 
-const Vehicles = () => {
-    const [vehiclesData, setVehiclesData] = useState([]);
-    const [error, setError] = useState(null);
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        const token = localStorage.getItem(JWT);
-        console.log("function running");
-        axios.get("http://localhost:8080/vehicles/readAll", { headers: {'Authorization': `Bearer ${token}`}})
-            .then((response) => {
-                console.log(response);  // need to destructure data
-                setVehiclesData(response.data);
-                console.log(vehiclesData);
-                setLoaded(true);
-                console.log(response);
-            }).catch((error) => {
-                setLoaded(true);
-                setError(error);
-            })},[]);
-
+const Vehicles = ({anprData}) => {
     return (
         <div>
-            {/* this could be a react fragment - better than doing lots of divs */}
-            <h2> vehicles page </h2>
+            <Row>
+                  <Col>
+                    <h3>Vehicle Data {anprData.length && anprData[0].vehicleRegistrationNumber}</h3>
+                        <div>
+                          <Card style={{ width: '30rem' }}>
+                            <p>Drivers License: {anprData.length && anprData[0].driverLicenceID}</p>
+                            <p>Make: {anprData.length && anprData[0].make}</p>
+                            <p>Model: {anprData.length && anprData[0].model}</p>
+                            <p>Colour: {anprData.length && anprData[0].colour}</p>
+                          </Card>
+                        </div>
+                  </Col>
+                  <Col>
+                    <h3>ANPR Data</h3>
+                    {anprData.map((data) => {
+                      return (
+                        <div>
+                          <Card style={{ width: '30rem' }}>
+                            <p>Street Name: {data.streetName}</p>
+                            <p>Latitude: {data.latitude}</p>
+                            <p>Longitude: {data.longitude}</p>
+                            <p>Timestamp: {data.timestamp}</p>
+                          </Card>
+                        </div>
+                      )
+                    })}
+                  </Col>
+                </Row>
         </div>
-
-    );
-}
-
+    )}
 export default Vehicles;
