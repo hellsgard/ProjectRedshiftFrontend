@@ -1,7 +1,6 @@
 import Register from "./Register.jsx";
 import Login from "./Login.jsx";
 import Logout from "./Logout.jsx";
-// import Lock from "./Lock.jsx";
 import Scenario1 from "./Scenario1.jsx";
 import Scenario2 from "./Scenario2.jsx";
 import Scenario3 from "./Scenario3.jsx";
