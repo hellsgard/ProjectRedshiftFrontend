@@ -8,7 +8,7 @@ const CallRecords = ({citizenID, phoneNumber, network, callerMsisdn, receiverMsi
         <div>
             
         <Card style={{width: '25rem'}}>
-            <h5> phoneNumber: {phoneNumber} </h5>
+            <h6> phoneNumber: {phoneNumber} </h6>
             <h5> network: {network} </h5>
             <h5> callerMsisdn: {callerMsisdn} </h5>
             <h5> receiverMsisdn: {receiverMsisdn} </h5>
