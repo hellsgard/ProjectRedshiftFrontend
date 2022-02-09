@@ -9,17 +9,44 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import { ListGroup } from "react-bootstrap";
+<<<<<<< HEAD
+import JWT from '../config/config.json'
+=======
 import {Link} from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 // import AssociateTab from "./AssociateTab.jsx";
 // import Button from 'react-bootstrap/Button'
+>>>>>>> 0f1064f0777f53fc5531032213f0d6c3fefd62ac
 // import Scenario1 from "./Scenario1.jsx";
 
 const Associates = ({ workData, homeData }) => {
     const [workInfo, setWorkInfo] = useState([]);
     const [pageLoaded, setPageLoaded] = useState(false);
 
+<<<<<<< HEAD
+    let queryPerson = {
+        
+        surname: suspect.surname,
+        forenames: suspect.forenames,
+        dateOfBirth: suspect.dateOfBirth,
+        // businessName: workplace
+    }; 
 
+  useEffect(() => {
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/associates`,{params: queryPerson, headers: {'Authorization': `Bearer ${token}`}})
+      .then((response) => {
+        setAssocData(response.data);
+        setPageLoaded(false);
+      }).catch((error) => {
+          console.log("ERROR",error)
+      })
+  },[]);
+
+    
+=======
+
+>>>>>>> 0f1064f0777f53fc5531032213f0d6c3fefd62ac
     return (
 
         <div>

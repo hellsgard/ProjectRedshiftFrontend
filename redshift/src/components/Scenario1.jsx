@@ -16,7 +16,9 @@ import FinanceInfo from "./FinanceInfo.jsx";
 import Card from 'react-bootstrap/Card';
 import { Container } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner"
+import JWT from '../config/config.json';
 import Vehicles from "./Vehicles.jsx";
+
 
 // import { selectOptions } from "@testing-library/user-event/dist/select-options";
 // import Suspect from './Suspect';
@@ -31,23 +33,46 @@ const Scenario1 = () => {
   const [inboundCalls, setInboundCalls] = useState([]);
   const [outboundCalls, setOutboundCalls] = useState([]);
   const [callRecordsLoaded, setCallRecordsLoaded] = useState(false);
+  const [anprData, setAnprData]= useState([]);
+  const [anprLoaded, setAnprLoaded] =useState(false);
+  const [atmData, setAtmData]= useState([]);
+  const [atmLoaded, setAtmLoaded] =useState(false);
+  const [eposData, setEposData]= useState([]);
+  const [eposLoaded, setEposLoaded] =useState(false);
+  const [eposMapData, setEposMapData]= useState([]);
+  const [eposMapLoaded, setEposMapLoaded] =useState(false);
+  const [anprMapData, setAnprMapData]= useState([]);
+  const [anprMapLoaded, setAnprMapLoaded] =useState(false);
+  const [atmMapData, setAtmMapData]= useState([]);
+  const [atmMapLoaded, setAtmMapLoaded] =useState(false);
   const [workData, setWorkData] = useState([]);
   const [homeData, setHomeData] = useState([]);
   const [vehiclesData, setVehiclesData] = useState([]);
 
+
+
   useEffect(() => {
+    const token = localStorage.getItem(JWT);
     axios
-      .get(`http://localhost:8080/queryPerson/byID?citizenID=${id}`)
+      .get(`http://localhost:8080/queryPerson/byID?citizenID=${id}`, {headers: {'Authorization': `Bearer ${token}`}})
       .then((response) => {
         console.log(response);
         setSuspect(response.data);
         setPageLoaded(true);
         console.log("Got results, page loaded.");
         getCallRecords(response.data);
+        getOutboundCallRecords(response.data);;
+        getAnprData(response.data);
+        getAtmData(response.data);
+        getEposData(response.data);
+        getEposMapData(response.data);
+        getAtmMapData(response.data);
+        getAnprMapData(response.data);
         getOutboundCallRecords(response.data);
         getWork(response.data);
         getHome(response.data);
-        getCars(response.data);
+
+
       })
       .catch((error) => {
         console.log(error);
@@ -56,7 +81,8 @@ const Scenario1 = () => {
 
 
   const getCallRecords = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/callRecords`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
       .then((response) => {
         setInboundCalls(response.data);
       }).catch((error) => {
@@ -65,7 +91,8 @@ const Scenario1 = () => {
   });
 
   const getOutboundCallRecords = ((suspectInfo) => {
-    axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo })
+    const token = localStorage.getItem(JWT);
+    axios.get(`http://localhost:8080/queryPerson/callRecordsOutbound`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
       .then((response) => {
         setOutboundCalls(response.data);
         setCallRecordsLoaded(true);
@@ -74,6 +101,78 @@ const Scenario1 = () => {
       });
   })
 
+
+  const getAnprData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo })
+    .then((response) => {
+      setAnprData(response.data);
+      console.log("anpr function");
+      console.log(anprData);
+      setAnprLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getAtmData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/queryPerson/atmData`, { params: suspectInfo })
+    .then((response) => {
+      setAtmData(response.data);
+      console.log("atm function");
+      console.log(atmData);
+      setAtmLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getEposData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/queryPerson/eposData`, { params: suspectInfo })
+    .then((response) => {
+      setEposData(response.data);
+      console.log("epos function");
+      console.log(eposData);
+      setEposLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getEposMapData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/mapData/eposMap`, { params: suspectInfo })
+    .then((response) => {
+      setEposMapData(response.data);
+      console.log("epos map function");
+      console.log(eposMapData);
+      setEposMapLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getAtmMapData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/mapData/atmMap`, { params: suspectInfo })
+    .then((response) => {
+      setAtmMapData(response.data);
+      console.log("atm map function");
+      console.log(atmMapData);
+      setAtmMapLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
+
+  const getAnprMapData = ((suspectInfo)=>{
+    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo })
+    .then((response) => {
+      setAnprMapData(response.data);
+      console.log("anpr map function");
+      console.log(response.data);
+      setAnprMapLoaded(true);
+    }).catch((error) => {
+      console.log(error);
+    });
+  })
   const getWork = ((suspectInfo) => {
     axios.get(`http://localhost:8080/queryPerson/associates/`,{params: suspectInfo})
         .then((response) => {
@@ -109,11 +208,14 @@ const Scenario1 = () => {
   });
  
 
+
   if (error) {
     return <h1>Something bad</h1>
   } else if (!pageLoaded) {
+
     return <div> Page loading, please wait {' '}<Spinner animation="border" variant="danger" /> </div>
     } else {
+
     // Data has been returned.
 
     console.log("suspect is", suspect);
@@ -140,8 +242,7 @@ const Scenario1 = () => {
           {" "}
           {suspect.forenames} {suspect.surname}{" "}
         </h1>
-        
-        
+
         <Container fluid>
          <Row>
           <Col>
@@ -186,15 +287,15 @@ const Scenario1 = () => {
                       <p> </p>
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
-                      <p></p>
-                      <FinanceInfo citizenID={suspect.citizenID} forenames={suspect.forenames} surname={suspect.surname} dateOfBirth={suspect.dateOfBirth} />
+             
+                    <FinanceInfo atmData={atmData} eposData={eposData} />
                     </Tab.Pane>
                     <Tab.Pane eventKey="fourth">
                     
                       <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="fifth">
-                      <Vehicles vehiclesData={vehiclesData}/>
+                       <Vehicles anprData={anprData}/>
                       
                     </Tab.Pane>
                     
@@ -205,14 +306,9 @@ const Scenario1 = () => {
             
               </Col>
               <Col>
-                  <MapContainer
-                      center={[51.505, -0.09]}
-                      zoom={13}
-                      scrollWheelZoom={true}>
-                      <Map citizenId={id} />
-                    </MapContainer>
-                
-              
+                  <MapContainer>
+                    <Map eposMapData={eposMapData} anprMapData={anprMapData} atmMapData={atmMapData}/>
+                  </MapContainer>
               </Col>
           </Row>
           </Container> 
@@ -222,12 +318,3 @@ const Scenario1 = () => {
   }
 };
 export default Scenario1;
-// const center = [51.505, -0.09];
-// const rectangle = [
-//   [51.49, -0.08],
-//   [51.5, -0.06],
-// ];
-// const fillBlueOptions = { fillColor: "blue" };
-// const fillRedOptions = { fillColor: "red" };
-// const greenOptions = { color: "green", fillColor: "green" };
-// const purpleOptions = { color: "purple" };

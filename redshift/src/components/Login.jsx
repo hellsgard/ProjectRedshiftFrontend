@@ -1,24 +1,19 @@
 import axios from "axios";
+import "../CSS/login.css";
 import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import JWT from "../config/config.json";
+import JWT  from "../config/config.json";
 
-const Login = (props) => {
-  //   export default function Login(props) {
-  // const [validated, setValidated] = useState(false);
-  // const [userDetails, setDetails] = useState({ username: '', password: '' });
+const Login = ({showUser ,saveUser }) => {
+  
   const [error, setError] = useState("");
 
-  const [username, setUsername] = useState("");
+  
   const [password, setPassword] = useState("");
-
-  // const handleChange = ({ target: { name, value } }) => {
-  //     const tempDetails = clone(userDetails);
-  //     merge(tempDetails, { [name]: value });
-  //     setDetails(tempDetails);
-  // }
+  const [username, setUsername] = useState("");
+ 
 
   const handleSubmit = () => {
     console.log("user function running");
@@ -26,14 +21,13 @@ const Login = (props) => {
     axios
       .post("http://localhost:8080/users/login", {
         username: username,
-        password: password,
+        password: password
       }) // error 400 {params: userObject}
       .then((response) => {
         console.log(response);
         localStorage.setItem(JWT, response.data);
-        // response.data.redirect = '/'; // cant set the property to /
         if (response.statusText === "OK") {
-          window.location = "/home";
+          window.location = "/home"; // use navigate instead
         } else if (response.statusText === "401") {
           window.location = "/";
         }
@@ -64,55 +58,70 @@ const Login = (props) => {
           alt=""
         ></img>
 
-        <h1 className="mb-3 fs-3 fw-normal"> Please Login </h1>
-
+        <h1 id="LG" className="mb-4 fs-4 fw-normal">
+          {" "}
+          REDSHIFT{" "}
+        </h1>
+        <h3> {}</h3>
         <input
+          id="user"
           type="text"
-          placeholder="Forename"
-          name="Forename"
+          placeholder="Username"
+          name="Username"
+
           className="position-relative"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            // saveUser(e.target.value);
+            setUsername(e.target.value);
+          }}
         ></input>
+        <h3> {}</h3>
         <input
-          type="text"
-          placeholder="Surname"
-          name="Surname"
+          id="pass"
+          className="mb-2"
+          type="Password"
+          placeholder="Password"
+          name="Password"
           className="position-relative"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button
+        <h3> {}</h3>
+        <br></br>
+        <Button
+          id="B1"
           type="button"
           variant="secondary"
           size="sm"
           onClick={() => handleSubmit()}
         >
           Login
-        </button>
-        <button
+        </Button>
+        <Button
+          id="B2"
           type="button"
-          id="reset"
           variant="secondary"
           size="sm"
           onClick={() => reset()}
         >
           Reset
-        </button>
-        <br></br>
-        <br></br>
-
-        <button
+        </Button>
+        <h3> {}</h3>
+        <Button
+          id="B3"
           type="button"
           variant="secondary"
           size="sm"
           onClick={() => register()}
         >
           Register
-        </button>
+        </Button>
+        <p id="p1" className="mt-5 text-muted">
+          REDSHIFT &copy; 2022
+        </p>
       </Form>
     </div>
   );
-  //   }
 };
 export default Login;
