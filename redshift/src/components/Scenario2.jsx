@@ -18,22 +18,25 @@ import IncidentFinancial from './IncidentFinancial';
 
 
 
-const Scenario2 = () => {
+const Scenario2 = ({props}) => {
 
-    const [timeDate, setTimeDate] = useState("");
+    const [timeDateLower, setTimeDateLower] = useState("");
+    const [timeDateHigher, setTimeDateHigher] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
-    const [radius, setRadius] = useState("");
+    // const [radius, setRadius] = useState("");
     const [incidentData, setIncidentData] = useState([]);
+    const [distance, setDistance] = useState();
 
     const createQueryIncident = () => {
         const token = localStorage.getItem(JWT);
         console.log("incident");
         const queryIncident = {
-            timeDate: timeDate,
+            timeDateLower: timeDateLower,
+            timeDateHigher: timeDateHigher,
             latitude: latitude,
             longitude: longitude,
-            radius: radius
+          
         }; 
         console.log(queryIncident);
         console.log("sending to back end");
@@ -46,21 +49,24 @@ const Scenario2 = () => {
             console.log(error);
         })};
 
+
         const clearFields = () => {
             console.log("function to clear search fields");
         }
 
-
+    
 
 
     return ( 
         <div>
             <Navb></Navb>
-            <h1> This is the page for scenario 2 </h1>
+            {/* <h1> This is the page for scenario 2 </h1> */}
 
 
-            <h3> Incident </h3>
-            <form>
+            <h3> Incident: </h3>
+            {/* <button type="button" onClick={() => setFive()}>5 miles radius</button>
+            <button type="button" onClick={() => setTen()}>10 miles</button> */}
+            {/* <form>
             <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
             <input type="text" placeholder="Longitude" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}></input>
@@ -69,7 +75,7 @@ const Scenario2 = () => {
             <button type="button" onClick={() => createQueryIncident()}>Submit</button>
             </Link>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
-            </form>
+            </form> */}
 
             <Container fluid>
          <Row>

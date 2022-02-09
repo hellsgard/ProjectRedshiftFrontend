@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import JWT from '../config/config.json';
 import {Link} from 'react-router-dom';
+import Scenario2 from './Scenario2.jsx';
 
 
 const Home = () => {
@@ -17,14 +18,19 @@ const Home = () => {
     const [forename, setForename] = useState("");
     const [surname, setSurname] = useState("");
     const [DOB, setDOB] = useState("");
-    const [timeDate, setTimeDate] = useState("");
+    const [timeDateHigher, setTimeDateHigher] = useState("");
+    const [timeDateLower, setTimeDateLower] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [radius, setRadius] = useState("");
     const [vehicleReg, setVehicleReg] = useState("");
     const [fleesTimeStamp, setFleesTimeStamp] = useState("");
-
     const [suspects, setSuspects] = useState([]);
+
+    const [latitudeRangePlus, setLatitudeRangePlus] = useState("");
+    const [latitudeRangeMinus, setLatitudeRangeMinus] = useState("");
+    const [longitudeRangePlus, setLongitudeRangePlus] = useState("");
+    const [longitudeRangeMinus, setLongitudeRangeMinus] = useState("");
 
 
 
@@ -56,14 +62,15 @@ const createQueryIncident = () => {
     const token = localStorage.getItem(JWT);
     console.log("incident");
     const queryIncident = {
-        timeDate: timeDate,
+        timeDateLower: timeDateLower,
+        timeDateHigher: timeDateHigher,
         latitude: latitude,
         longitude: longitude,
-        radius: radius
+        // radius: radius
     }; 
     console.log(queryIncident);
     console.log("sending to back end");
-    axios.get("http://localhost:8080/queryIncident/incident", {params: queryIncident, headers: {'Authorization': `Bearer ${token}`}})
+    axios.get("http://localhost:8080/queryIncident/incident", {params: queryIncident, headers: {'Authorization': `Bearer ${token}`}}) // make this have default radius of 1mile
     .then((response) => {
         console.log(response); 
     })
@@ -90,7 +97,7 @@ const createQueryIncident = () => {
         })};
 
 
-const clearFields = () => {
+const clearFields = () => { // this needs to change to reset function from scenario 1
     console.log("function to clear search fields");
 }
 
@@ -99,6 +106,28 @@ const clearFields = () => {
             
         }
 
+        // const setOne = () => {
+        //     const asNumLat = parseFloat(latitude);
+        //     const plusOneLat = asNumLat + 0.005;
+        //     const minusOneLat = asNumLat - 0.005;
+        //     const asNumLon = parseFloat(longitude);
+        //     const plusOneLon = asNumLon + 0.005;
+        //     const minusOneLon = asNumLon - 0.005;
+        //     setLatitudeRangePlus(plusOneLat);
+        //     setLatitudeRangeMinus(minusOneLat);
+        //     setLongitudeRangePlus(plusOneLon);
+        //     setLongitudeRangeMinus(minusOneLon);
+        //     return <div>  <Scenario2
+        //     latitudeRangePlus={latitudeRangePlus}
+        //     latitudeRangeMinus={latitudeRangeMinus}
+        //     longitudeRangePlus={longitudeRangePlus}
+        //     longitudeRangeMinus={longitudeRangeMinus}
+        //     />
+        //     </div>
+
+        //   } 
+       
+ 
     return ( 
         <div>
              <Navb></Navb>
@@ -115,17 +144,24 @@ const clearFields = () => {
             <Form>
             <input type="text" placeholder="Forename" name="Forename" value={forename} onChange={(e) => setForename(e.target.value)}></input>
             <input type="text" placeholder="Surname" name="Surname" value={surname} onChange={(e) => setSurname(e.target.value)}></input>
-            <input type="text" placeholder="yyyy-mm-dd" name="DOB" value={DOB} onChange={(e) => setDOB(e.target.value)}></input>
+            <input type="text" placeholder="yyyy-mm-dd" name="DOB" value={DOB} onChange={(e) => setDOB(e.target.value)}></input> 
             <button type="button" onClick={() => createQueryPerson()}>Submit</button>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </Form>
 
             <h3> Incident </h3>
             <form>
-            <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
+            <input type="text" placeholder="from yyyy-mm-dd hh:mm:ss" name="timeDateLower" value={timeDateLower} onChange={(e) => setTimeDateLower(e.target.value)}></input>
+            <input type="text" placeholder="to yyyy-mm-dd hh:mm:ss" name="timeDateHigher" value={timeDateHigher} onChange={(e) => setTimeDateHigher(e.target.value)}></input>
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
             <input type="text" placeholder="Longitude" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}></input>
-            <input type="number" placeholder="Radius" name="Radius" value={radius} onChange={(e) => setRadius(e.target.value)}></input>
+            {/* <button type="button" setLatPlus={latitudeRangePlus} setLatMinus={latitudeRangeMinus} // it cant get these?!
+            setLonPlus={longitudeRangePlus} setLonMinus={longitudeRangeMinus}
+            onClick={() => setOne()}>1 mile radius</button> */}
+            {/* <button type="button" onClick={() => setFive()}>5 miles radius</button>
+            <button type="button" onClick={() => setTen()}>10 miles</button> */}
+           
+            {/* <input type="number" placeholder="Radius" name="Radius" value={radius} onChange={(e) => setRadius(e.target.value)}></input> */}
             <Link to="/Scenario2">
             <button type="button" onClick={() => createQueryIncident()}>Submit</button>
             </Link>
