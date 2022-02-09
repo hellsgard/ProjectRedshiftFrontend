@@ -1,22 +1,13 @@
-import axios from 'axios';
-import { useEffect, useState } from "react";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
 const Vehicles = ({anprData}) => {
-    // const [anprData, setData] = useState([]);
-    const [error, setError] = useState(null);
-    const [loaded, setLoaded] = useState(false);
-
     return (
         <div>
-
             <Row>
                   <Col>
-              
                     <h3>Vehicle Data {anprData.length && anprData[0].vehicleRegistrationNumber}</h3>
-          
                         <div>
                           <Card style={{ width: '30rem' }}>
                             <p>Drivers License: {anprData.length && anprData[0].driverLicenceID}</p>
@@ -25,9 +16,7 @@ const Vehicles = ({anprData}) => {
                             <p>Colour: {anprData.length && anprData[0].colour}</p>
                           </Card>
                         </div>
-               
                   </Col>
-
                   <Col>
                     <h3>ANPR Data</h3>
                     {anprData.map((data) => {
@@ -43,13 +32,7 @@ const Vehicles = ({anprData}) => {
                       )
                     })}
                   </Col>
-
                 </Row>
-
-
         </div>
-
-    )
-}
-
+    )}
 export default Vehicles;
