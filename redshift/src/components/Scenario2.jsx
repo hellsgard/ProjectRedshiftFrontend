@@ -14,6 +14,7 @@ import Tab from "react-bootstrap/Tab";
 import { Container } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import IncidentFinancial from './IncidentFinancial';
 
 
 
@@ -38,7 +39,7 @@ const Scenario2 = () => {
         console.log("sending to back end");
         axios.get("http://localhost:8080/queryIncident/incidentVehicle", {params: queryIncident, headers: {'Authorization': `Bearer ${token}`}})
         .then((response) => {
-            console.log(response); 
+            console.log(response.data)
             setIncidentData(response.data);
         })
         .catch((error) => {
@@ -82,7 +83,7 @@ const Scenario2 = () => {
                       <Nav.Link eventKey="first">Vehicles</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link eventKey="second"> Associates </Nav.Link>
+                      <Nav.Link eventKey="second"> ATM Transactions </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                       <Nav.Link eventKey="third">Financial information</Nav.Link>
@@ -99,11 +100,11 @@ const Scenario2 = () => {
                 <Col sm={9}>
                   <Tab.Content>
                     <Tab.Pane eventKey="first">
-                    <IncidentVehicles incidentData={incidentData}/>
+                      <IncidentVehicles incidentData={incidentData}/>
                     </Tab.Pane>
                     <Tab.Pane eventKey="second" title="Associates">
                       
-                      <p> </p>
+                      <IncidentFinancial incidentData={incidentData} />
                     </Tab.Pane>
                     <Tab.Pane eventKey="third">
              
