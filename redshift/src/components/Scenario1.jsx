@@ -104,7 +104,9 @@ const Scenario1 = () => {
 
   const getAnprData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
+
     axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAnprData(response.data);
       console.log("anpr function");
@@ -117,7 +119,9 @@ const Scenario1 = () => {
 
   const getAtmData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
+
     axios.get(`http://localhost:8080/queryPerson/atmData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAtmData(response.data);
       console.log("atm function");
@@ -130,7 +134,9 @@ const Scenario1 = () => {
 
   const getEposData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
+
     axios.get(`http://localhost:8080/queryPerson/eposData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setEposData(response.data);
       console.log("epos function");
@@ -143,7 +149,9 @@ const Scenario1 = () => {
 
   const getEposMapData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
+
     axios.get(`http://localhost:8080/mapData/eposMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setEposMapData(response.data);
       console.log("epos map function");
@@ -156,7 +164,9 @@ const Scenario1 = () => {
 
   const getAtmMapData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
+
     axios.get(`http://localhost:8080/mapData/atmMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAtmMapData(response.data);
       console.log("atm map function");
@@ -169,7 +179,9 @@ const Scenario1 = () => {
 
   const getAnprMapData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
-    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
+    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo , headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAnprMapData(response.data);
       console.log("anpr map function");
