@@ -1,9 +1,4 @@
 import { MapContainer, TileLayer, Marker, Popup, LayersControl, LayerGroup, Circle, Rectangle, FeatureGroup } from "react-leaflet";
-import { useEffect, useState } from 'react';
-import Nav from "./Navb.jsx";
-import { useParams } from "react-router-dom";
-import { selectOptions } from "@testing-library/user-event/dist/select-options";
-import Card from "react-bootstrap/Card";
 
 // Setup size of Shapes
 const center = [51.505, -0.09];

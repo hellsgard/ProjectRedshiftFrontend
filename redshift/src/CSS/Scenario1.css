@@ -8,7 +8,18 @@
     text-align: center;
   } */
 
-.flex-column {
-  /* color: bisque; */
-  background-color: rgb(173, 170, 170);
-}
+  .flex-column {
+      color:bisque;
+      background-color:rgb(173, 170, 170);
+      
+  }
+
+  .ListGroup-Item {
+    width: 80px;
+    
+  }
+
+  a:link {
+    color: red;
+  }
+
