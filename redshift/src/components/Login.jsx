@@ -1,4 +1,5 @@
 import axios from "axios";
+import "../CSS/login.css";
 import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
@@ -64,52 +65,64 @@ const Login = (props) => {
           alt=""
         ></img>
 
-        <h1 className="mb-3 fs-3 fw-normal"> Please Login </h1>
-
+        <h1 id="LG" className="mb-4 fs-4 fw-normal">
+          {" "}
+          REDSHIFT{" "}
+        </h1>
+        <h3> {}</h3>
         <input
+          id="user"
           type="text"
-          placeholder="Forename"
+          placeholder="Username"
           name="Forename"
           className="position-relative"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         ></input>
+        <h3> {}</h3>
         <input
+          id="pass"
+          className="mb-2"
           type="text"
-          placeholder="Surname"
+          placeholder="Password"
           name="Surname"
           className="position-relative"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button
+        <h3> {}</h3>
+        <br></br>
+        <Button
+          id="B1"
           type="button"
           variant="secondary"
           size="sm"
           onClick={() => handleSubmit()}
         >
           Login
-        </button>
-        <button
+        </Button>
+        <Button
+          id="B2"
           type="button"
-          id="reset"
           variant="secondary"
           size="sm"
           onClick={() => reset()}
         >
           Reset
-        </button>
-        <br></br>
-        <br></br>
-
-        <button
+        </Button>
+        <h3> {}</h3>
+        <Button
+          id="B3"
           type="button"
           variant="secondary"
           size="sm"
           onClick={() => register()}
         >
           Register
-        </button>
+        </Button>
+        <p id="p1" className="mt-5 text-muted">
+          REDSHIFT &copy; 2022
+        </p>
       </Form>
     </div>
   );
