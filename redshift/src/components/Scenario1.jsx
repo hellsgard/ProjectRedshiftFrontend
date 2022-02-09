@@ -14,6 +14,8 @@ import { ReactPropTypes } from "react";
 import MobileDataInfo from "./MobileDataInfo.jsx";
 import FinanceInfo from "./FinanceInfo.jsx";
 import Card from 'react-bootstrap/Card';
+import { Container } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner"
 import JWT from '../config/config.json';
 import Vehicles from "./Vehicles.jsx";
 
@@ -22,6 +24,8 @@ import Vehicles from "./Vehicles.jsx";
 // import Suspect from './Suspect';
 // const BasicData = ({basic.name, DOB, postcode, postcode, nationality,}) => {
 const Scenario1 = () => {
+
+  let api = `http://localhost:8080/queryPerson/`;
   const [suspect, setSuspect] = useState("");
   const [pageLoaded, setPageLoaded] = useState(false);
   const [error, setError] = useState(null);
@@ -43,6 +47,7 @@ const Scenario1 = () => {
   const [atmMapLoaded, setAtmMapLoaded] =useState(false);
   const [workData, setWorkData] = useState([]);
   const [homeData, setHomeData] = useState([]);
+  const [vehiclesData, setVehiclesData] = useState([]);
 
 
 
@@ -66,6 +71,7 @@ const Scenario1 = () => {
         getOutboundCallRecords(response.data);
         getWork(response.data);
         getHome(response.data);
+
 
       })
       .catch((error) => {
@@ -98,7 +104,9 @@ const Scenario1 = () => {
 
   const getAnprData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
-    axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`} })
+
+    axios.get(`http://localhost:8080/queryPerson/anpr`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAnprData(response.data);
       console.log("anpr function");
@@ -111,7 +119,9 @@ const Scenario1 = () => {
 
   const getAtmData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
-    axios.get(`http://localhost:8080/queryPerson/atmData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`} })
+
+    axios.get(`http://localhost:8080/queryPerson/atmData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAtmData(response.data);
       console.log("atm function");
@@ -124,7 +134,9 @@ const Scenario1 = () => {
 
   const getEposData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
-    axios.get(`http://localhost:8080/queryPerson/eposData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`} })
+
+    axios.get(`http://localhost:8080/queryPerson/eposData`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setEposData(response.data);
       console.log("epos function");
@@ -137,7 +149,9 @@ const Scenario1 = () => {
 
   const getEposMapData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
-    axios.get(`http://localhost:8080/mapData/eposMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`} })
+
+    axios.get(`http://localhost:8080/mapData/eposMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setEposMapData(response.data);
       console.log("epos map function");
@@ -150,7 +164,9 @@ const Scenario1 = () => {
 
   const getAtmMapData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
-    axios.get(`http://localhost:8080/mapData/atmMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`} })
+
+    axios.get(`http://localhost:8080/mapData/atmMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAtmMapData(response.data);
       console.log("atm map function");
@@ -163,7 +179,9 @@ const Scenario1 = () => {
 
   const getAnprMapData = ((suspectInfo)=>{
     const token = localStorage.getItem(JWT);
-    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo, headers: {'Authorization': `Bearer ${token}`} })
+
+    axios.get(`http://localhost:8080/mapData/anprMap`, { params: suspectInfo , headers: {'Authorization': `Bearer ${token}`}})
+
     .then((response) => {
       setAnprMapData(response.data);
       console.log("anpr map function");
@@ -196,14 +214,28 @@ const Scenario1 = () => {
                       console.log(error);
                   })
               });
+
+  // const getCars = ((suspectInfo) => {
+  //   axios.get(`http://localhost:8080/queryPerson/vehicleInfo/`, { params: suspectInfo})
+  //       .then((response) => {
+  //         setVehiclesData(response.data);
+  //         console.log(vehiclesData); 
+  //       }
+  //       ).catch ((error) => {
+  //         console.log("vehicles error", error);
+  //       })
+
+  // });
  
 
 
   if (error) {
     return <h1>Something bad</h1>
   } else if (!pageLoaded) {
-    return <h1>Loading</h1>
-  } else {
+
+    return <div> Page loading, please wait {' '}<Spinner animation="border" variant="danger" /> </div>
+    } else {
+
     // Data has been returned.
 
     console.log("suspect is", suspect);
@@ -223,72 +255,85 @@ const Scenario1 = () => {
     return (
       <div>
         <div>
-          <Navb />
+          <Navb/>
         </div>
         <br></br>
         <h1 class="font-weight-light">
           {" "}
           {suspect.forenames} {suspect.surname}{" "}
         </h1>
-        <div>
-          <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-            <Row>
-              <Col sm={2}>
-                <Nav variant="pills" className="flex-column">
-                  <Nav.Item>
-                    <Nav.Link eventKey="first">Profile information</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="second" onSelect={console.log("CLICK")}> Associates </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="third">Financial information</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="fourth">Call records</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="fifth">Vehicle Data</Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Col>
-              <Col sm={9}>
-                <Tab.Content>
-                  <Tab.Pane eventKey="first">
-                    <p>Full Name: {suspect.forenames} {suspect.surname}</p>
-                    <p>Address: {address}</p>
-                    <p>Date Of Birth: {dob}</p>
-                    <p>Gender: {gender}</p>
-                    <p>Passport Number: {passportNumber} </p>
-                    <p>Nationality: {nationality} </p>
-                    <p>Place Of Birth: {placeOfBirth}</p>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="second" title="Associates">
-                    {/* {pageLoaded && <Associates citizenID={id} workData={workData}/> }
-                    {pageLoaded && <Associates citizenID={id} homeData={homeData}/> } */}
-                    <Associates workData={workData} homeData={homeData}/>
-                    <p> </p>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="third">
-                    <p></p>
+
+        <Container fluid>
+         <Row>
+          <Col>
+            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+              <Row>
+                <Col sm={3}>
+                  <div>
+                  <Nav variant="pills" className="flex-column">
+                    <Nav.Item>
+                      <Nav.Link eventKey="first">Profile information</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="second" onSelect={console.log("CLICK")}> Associates </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="third">Financial information</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="fourth">Call records</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link eventKey="fifth">Vehicle</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                  </div>
+                </Col>
+                <Col sm={9}>
+                  <Tab.Content>
+                    <Tab.Pane eventKey="first">
+                      <p>Full Name: {suspect.forenames} {suspect.surname}</p>
+                      <p>Address: {address}</p>
+                      <p>Date Of Birth: {dob}</p>
+                      <p>Gender: {gender}</p>
+                      <p>Passport Number: {passportNumber} </p>
+                      <p>Nationality: {nationality} </p>
+                      <p>Place Of Birth: {placeOfBirth}</p>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="second" title="Associates">
+                      {/* {pageLoaded && <Associates citizenID={id} workData={workData}/> }
+                      {pageLoaded && <Associates citizenID={id} homeData={homeData}/> } */}
+                      <Associates workData={workData} homeData={homeData}/>
+                      <p> </p>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="third">
+             
                     <FinanceInfo atmData={atmData} eposData={eposData} />
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fourth">
-                    <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
-                  </Tab.Pane>
-                  <Tab.Pane eventKey="fifth">
-                    <Vehicles anprData={anprData}/>
-                  </Tab.Pane>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fourth">
+                    
+                      <MobileDataInfo inboundCalls={inboundCalls} outboundCalls={outboundCalls}/>
+                    </Tab.Pane>
+                    <Tab.Pane eventKey="fifth">
+                       <Vehicles anprData={anprData}/>
+                      
+                    </Tab.Pane>
+                    
+                  </Tab.Content>
+                </Col>
+              </Row>
+            </Tab.Container>
+            
+              </Col>
+              <Col>
+                  <h3 class="font-weight-light">Transactions and logged vehicle locations:</h3>
                   <MapContainer>
                     <Map eposMapData={eposMapData} anprMapData={anprMapData} atmMapData={atmMapData}/>
-
                   </MapContainer>
-                
-                </Tab.Content>
               </Col>
-            </Row>
-          </Tab.Container>
-        </div>
+          </Row>
+          </Container> 
+        
       </div>
     );
   }

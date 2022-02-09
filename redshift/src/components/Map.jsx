@@ -85,5 +85,6 @@ const Map = ({ eposMapData, anprMapData, atmMapData }) => {
 
 };
 
+
 export default Map;
 

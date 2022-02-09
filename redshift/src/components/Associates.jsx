@@ -12,7 +12,7 @@ import { ListGroup } from "react-bootstrap";
 import JWT from '../config/config.json'
 import {Link} from 'react-router-dom';
 import Button from "react-bootstrap/Button";
-// import AssociateTab from "./AssociateTab.jsx";
+// import AssociateTab from "./AssociateTab.jsx"; 
 // import Button from 'react-bootstrap/Button'
 // import Scenario1 from "./Scenario1.jsx";
 
@@ -32,7 +32,12 @@ const Associates = ({ workData, homeData }) => {
           <h6 class="font-weight-bold"> All current employees:</h6>
           </h3>
                 {workData.length && workData.map((colleagues) => {
-                            return (
+                            if(colleagues === 0) {
+                                return (
+                                    <div>No workplace to show</div>
+
+                                )
+                            } else {return (
                                 <div>
                                 {/* {assocData[0].businessName} */}
 
@@ -46,7 +51,8 @@ const Associates = ({ workData, homeData }) => {
                                     </ListGroup>
                               
                                 </div>
-                                )
+                                )}
+                            
                                 })}
         </Col>
 
@@ -78,4 +84,4 @@ const Associates = ({ workData, homeData }) => {
 }
 
 
-export default Associates;
+export default Associates; 

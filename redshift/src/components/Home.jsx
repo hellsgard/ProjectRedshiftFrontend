@@ -7,7 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import JWT from '../config/config.json'
+import JWT from '../config/config.json';
+import {Link} from 'react-router-dom';
 
 
 const Home = () => {
@@ -125,7 +126,9 @@ const clearFields = () => {
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
             <input type="text" placeholder="Longitude" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}></input>
             <input type="number" placeholder="Radius" name="Radius" value={radius} onChange={(e) => setRadius(e.target.value)}></input>
+            <Link to="/Scenario2">
             <button type="button" onClick={() => createQueryIncident()}>Submit</button>
+            </Link>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
             </form>
 
