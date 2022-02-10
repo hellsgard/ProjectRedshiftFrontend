@@ -57,27 +57,28 @@ const Home = () => {
   };
 
   const createQueryIncident = () => {
-    const token = localStorage.getItem(JWT);
-    console.log("incident");
-    const queryIncident = {
-      timeDate: timeDate,
-      latitude: latitude,
-      longitude: longitude,
-      radius: radius,
-    };
-    console.log(queryIncident);
-    console.log("sending to back end");
-    axios
-      .get("http://localhost:8080/queryIncident/incident", {
-        params: queryIncident,
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      window.location = "/scenario2";
+    // const token = localStorage.getItem(JWT);
+    // console.log("incident");
+    // const queryIncident = {
+    //   timeDate: timeDate,
+    //   latitude: latitude,
+    //   longitude: longitude,
+    //   radius: radius,
+    // };
+    // console.log(queryIncident);
+    // console.log("sending to back end");
+    // axios
+    //   .get("http://localhost:8080/queryIncident/incident", {
+    //     params: queryIncident,
+    //     headers: { Authorization: `Bearer ${token}` },
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   const createQuerySuspectFlees = () => {
@@ -191,7 +192,7 @@ const Home = () => {
         autoComplete="off"
       >
         <h4 className="centre">Incidents Reported</h4>
-        <TextField
+        {/* <TextField
           id="outlined-basic"
           label="Timestamp"
           variant="outlined"
@@ -200,8 +201,8 @@ const Home = () => {
           name="Time/Date"
           value={timeDate}
           onChange={(e) => setTimeDate(e.target.value)}
-        />
-        <TextField
+        /> */}
+        {/* <TextField
           id="filled-basic"
           label="Latitude"
           variant="outlined"
@@ -210,8 +211,8 @@ const Home = () => {
           name="Latitude"
           value={latitude}
           onChange={(e) => setLatitude(e.target.value)}
-        />
-        <TextField
+        /> */}
+        {/* <TextField
           id="standard-basic"
           label="Longitude"
           variant="outlined"
@@ -220,8 +221,8 @@ const Home = () => {
           name="Longitude"
           value={longitude}
           onChange={(e) => setLongitude(e.target.value)}
-        />
-        <TextField
+        /> */}
+        {/* <TextField
           id="standard-basic"
           label="Radius"
           variant="outlined"
@@ -230,21 +231,21 @@ const Home = () => {
           name="Radius"
           value={radius}
           onChange={(e) => setRadius(e.target.value)}
-        />
+        /> */}
         <Stack direction="row" spacing={2}>
-          <Button
+          {/* <Button
             variant="outlined"
             onClick={() => clearFields()}
             startIcon={<DeleteIcon />}
-          >
-            Reset
-          </Button>
+          > */}
+            {/* Reset
+          </Button> */}
           <Button
             variant="contained"
             onClick={() => createQueryIncident()}
             endIcon={<SendIcon />}
           >
-            Submit
+            Go to scenario 2
           </Button>
         </Stack>
       </Box>
@@ -262,7 +263,9 @@ const Home = () => {
         autoComplete="off"
       >
         <h4 className="centre">Suspect Location</h4>
-        <TextField
+        <h5> Please bare with us whilst we work on this</h5>
+        <img src="working.png" alt="Work in progress"></img>
+        {/* <TextField
           id="outlined-basic"
           label="Vehicle Reg"
           variant="outlined"
@@ -271,8 +274,8 @@ const Home = () => {
           name="Vehicle Reg"
           value={vehicleReg}
           onChange={(e) => setVehicleReg(e.target.value)}
-        />
-        <TextField
+        /> */}
+        {/* <TextField
           id="filled-basic"
           label="TimeStamp"
           variant="outlined"
@@ -281,22 +284,22 @@ const Home = () => {
           name="Time/date"
           value={fleesTimeStamp}
           onChange={(e) => setFleesTimeStamp(e.target.value)}
-        />
+        /> */}
         <Stack direction="row" spacing={2}>
-          <Button
+          {/* <Button
             variant="outlined"
             onClick={() => clearFields()}
             startIcon={<DeleteIcon />}
-          >
-            Reset
-          </Button>
-          <Button
+          > */}
+            {/* Reset
+          </Button> */}
+          {/* <Button
             variant="contained"
             onClick={() => createQuerySuspectFlees()}
             endIcon={<SendIcon />}
           >
             Submit
-          </Button>
+          </Button> */}
         </Stack>
       </Box>
       <br></br>
