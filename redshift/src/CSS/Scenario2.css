@@ -1,0 +1,73 @@
+.nav-link.active {
+    color: red !important;
+    background-color: rgb(32, 32, 27) !important;
+  }
+  
+  /* .Scenario1 {
+      font-family: sans-serif;
+      text-align: center;
+    } */
+  
+    .map-container {
+      width: 50px;
+    }
+  
+    .flex-column {
+        color:bisque;
+        background-color:rgb(173, 170, 170);
+        
+    }
+  
+    .ListGroup-Item {
+      width: 80px;
+      
+    }
+  
+    a:link {
+      color: red;
+    }
+  
+    .Spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031; /* High z-index so it is on top of the page */
+      top: 50%;
+      right: 50%; /* or: left: 50%; */
+  
+    }
+  
+    .card {
+      border: 10px;
+      transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+      overflow:hidden;
+      border-radius:20px;
+      color: cadetblue;
+       box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+       padding: 10px;
+       padding-top: 10px;
+      
+    }
+  
+    .card-footer{
+  
+       border-top: none;
+  
+       }
+     
+  
+  .S2label {
+
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .S2form {
+    justify-content: left;
+    align-items: left;
+    border-radius: 15px;
+    display: block;
+    position: relative;
+    width: 500px;
+    padding: 2px 16px;
+    left: 20px;
+  }
