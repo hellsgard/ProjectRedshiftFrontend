@@ -68,7 +68,7 @@ const Scenario2 = () => {
     return ( 
         <div>
             <Navb></Navb>
-            <h1> Scenario2 - Suspect Flees</h1>
+            <h1> Scenario 2 - Suspect Flees</h1>
 
             <Box
       className="S2form"
