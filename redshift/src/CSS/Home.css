@@ -9,15 +9,15 @@
     left: 20px;
   }
   .right {
-    justify-content: right;
     align-items: right;
     display: block;
-    width: 800px;
     position: absolute;
-    right: 0px;
-    top: 10px;
+    left: 200px;
+    right: 50px;
+    top: 50px;
     padding: 10%;
   }
+
   .center {
     display: flex;
     justify-content: space-between;

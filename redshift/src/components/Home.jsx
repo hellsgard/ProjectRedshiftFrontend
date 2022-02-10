@@ -115,24 +115,6 @@ const Home = () => {
       <div>
         <br></br>
       </div>
-
-      <Row className="right">
-        {suspects.map((suspect) => {
-          return (
-            <Col className="center">
-              <Suspect
-                citizenID={suspect.citizenID}
-                forenames={suspect.forenames}
-                surname={suspect.surname}
-                homeAddress={suspect.homeAddress}
-                dateOfBirth={suspect.dateOfBirth}
-                placeOfBirth={suspect.placeOfBirth}
-                sex={suspect.sex}
-              />
-            </Col>
-          );
-        })}
-      </Row>
       <Box
         className="homeform"
         component="form"
@@ -317,6 +299,25 @@ const Home = () => {
           </Button>
         </Stack>
       </Box>
+      <br></br>
+      
+      <Row className="right">
+        {suspects.map((suspect) => {
+          return (
+            <Col className="center">
+              <Suspect
+                citizenID={suspect.citizenID}
+                forenames={suspect.forenames}
+                surname={suspect.surname}
+                homeAddress={suspect.homeAddress}
+                dateOfBirth={suspect.dateOfBirth}
+                placeOfBirth={suspect.placeOfBirth}
+                sex={suspect.sex}
+              />
+            </Col>
+          );
+        })}
+      </Row>
       <br></br>
     </div>
   );
