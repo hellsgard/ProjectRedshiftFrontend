@@ -59,10 +59,10 @@ const Scenario2 = () => {
     return ( 
         <div>
             <Navb></Navb>
-            <h1> This is the page for scenario 2 </h1>
+            <h1> Scenario2 - Suspect Flees</h1>
 
 
-            <h3> Incident </h3>
+            <h3> Find Suspect</h3>
             <form>
             <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
@@ -77,51 +77,6 @@ const Scenario2 = () => {
 
             <Container fluid>
          <Row>
-          <Col>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-              <Row>
-                <Col sm={3}>
-                  <div>
-                  <Nav variant="pills" className="flex-column">
-                    <Nav.Item>
-                      <Nav.Link eventKey="first">Vehicles</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="second"> ATM Transactions </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="third">Financial information</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="fourth">Call records</Nav.Link>
-                    </Nav.Item>
-                  </Nav>
-                  </div>
-                </Col>
-                <Col sm={9}>
-                  <Tab.Content>
-                    <Tab.Pane eventKey="first">
-                      <IncidentVehicles incidentData={incidentData}/>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="second" title="Associates">
-                      
-                      {/* <IncidentFinancial incidentData={incidentData} /> */}
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="third">
-             
-                    
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="fourth">
-                    
-                      
-                    </Tab.Pane>
-                    
-                  </Tab.Content>
-                </Col>
-              </Row>
-            </Tab.Container>
-            
-              </Col>
               <Col>
               <MapContainer scrollWheelZoom={true}>
                 <IncidentMap incidentData={incidentData}/>

@@ -28,7 +28,6 @@ const Home = () => {
   const [radius, setRadius] = useState("");
   const [vehicleReg, setVehicleReg] = useState("");
   const [fleesTimeStamp, setFleesTimeStamp] = useState("");
-
   const [suspects, setSuspects] = useState([]);
 
   const createQueryPerson = () => {
@@ -111,11 +110,6 @@ const Home = () => {
   function setData(res) {
     setSuspects(res.data);
   }
-
-  const rowHome = {
-    color: "green",
-    fontSize: "23px",
-  };
   return (
     <div className="SomeContainer">
       <Navb></Navb>
