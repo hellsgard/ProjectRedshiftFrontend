@@ -6,6 +6,7 @@
   position: relative;
   width: 350px;
   padding: 2px 16px;
+  left: 20px;
 }
 .right {
   justify-content: right;

@@ -154,7 +154,7 @@ const Home = () => {
         {/* This is the Search Citizen Box */}
         <TextField
           id="outlined-basic"
-          label="Forname"
+          label="Forename"
           variant="outlined"
           type="text"
           placeholder="Forename"
