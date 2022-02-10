@@ -24,7 +24,7 @@ const createQueryFlees = () => {
   const queryFlees = {
     vehicleReg: vehicleReg
   };
-  axios.get("http://localhost:8080/queryIncident/querySuspectFlees", {params: queryFlees, headers: {'Authorization': `Bearer ${token}`}})
+  axios.get("http://localhost:8080/queryFlees/anpr", {params: queryFlees, headers: {'Authorization': `Bearer ${token}`}})
   .then((response) => {
       console.log(response.data)
       setFleesData(response.data);
@@ -43,11 +43,11 @@ const createQueryFlees = () => {
         <h5>Please enter a vehicle registration</h5>
       <TextField
         id="standard-basic"
-        label="Seconds"
+        label="Vehicle registration"
         variant="outlined"
         type="text"
-        placeholder="Seconds"
-        name="Seconds"
+        placeholder="Vehicle registration"
+        name="Vehicle registration"
         value={vehicleReg}
         onChange={(e) => setVehicleReg(e.target.value)}
       />
