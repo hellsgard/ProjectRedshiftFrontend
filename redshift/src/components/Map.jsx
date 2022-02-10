@@ -20,7 +20,7 @@ const Map = ({ eposMapData, anprMapData, atmMapData }) => {
   // const anprPosition = [anprMapData[0].latitude, anprMapData[0].longitude];
 
   return (
-    <div id="map">
+    <div>
 
       <MapContainer center={center} zoom={13}>
         <TileLayer
