@@ -91,3 +91,12 @@ width: 2000px;
 text-size-adjust: auto;
 left: 10px;
 }
+
+.nav-link.active {
+  color: red !important;
+  background-color: rgb(32, 32, 27) !important;
+}
+
+.S2form {
+  width: 50%;
+}
