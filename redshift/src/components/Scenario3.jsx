@@ -9,6 +9,11 @@ import Button from 'react-bootstrap/Button';
 import JWT from '../config/config.json';
 import axios from 'axios';
 import Vehicles from "./Vehicles.jsx";
+import Scenario3Map from "./Scenario3Map.jsx";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import { Container } from "react-bootstrap";
 
 
 
@@ -43,15 +48,17 @@ const createQueryFlees = () => {
     return <h1>Something bad</h1>
     } else if (pageLoaded) {
       console.log([fleesData]);
-      
-      let forenames = fleesData.forenames;
+    
+    let forenames = fleesData.forenames;
     let surname = fleesData.surname;
-    let address = fleesData.homeAddress;
-    let dob = fleesData.dateOfBirth;
-    let gender = fleesData.sex;
-    let passportNumber = fleesData.passportNumber;
-    let nationality = fleesData.nationality;
-    let placeOfBirth = fleesData.placeOfBirth;
+    let latitude = fleesData.latitude;
+    let longitude = fleesData.longitude;
+    let streetName = fleesData.streetName;
+    let vehicleRegistrationNumber = fleesData.vehicleRegistrationNumber;
+    let make = fleesData.make;
+    let model = fleesData.model;
+    let timestamp = fleesData.timestamp;
+    let driverLicenceID = fleesData.driverLicenceID;
       return (  
         <div>
           
@@ -59,7 +66,17 @@ const createQueryFlees = () => {
         <br></br>
         <h1 class="font-weight-light">
           {" "}
-          {fleesData.forenames} {fleesData.surname}{" "} data
+          Suspect: {fleesData[0].forenames} {fleesData[0].surname}{" "} 
+          <Container fluid>
+         <Row>
+              <Col>
+              <MapContainer scrollWheelZoom={true}>
+                <Scenario3Map fleesData={fleesData}/>
+              </MapContainer>
+                  
+              </Col>
+          </Row>
+          </Container> 
         </h1>
         </div>
         
