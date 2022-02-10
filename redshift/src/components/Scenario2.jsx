@@ -16,6 +16,15 @@ import Nav from "react-bootstrap/Nav";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import IncidentFinancial from './IncidentFinancial';
 import IncidentMap from './IncidentMap.jsx';
+import '../CSS/Scenario2.css';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import Stack from "@mui/material/Stack";
+import "../CSS/Home.css";
+import FormHelperText from "@mui/material/FormHelperText";
 
 
 
@@ -59,69 +68,133 @@ const Scenario2 = () => {
     return ( 
         <div>
             <Navb></Navb>
-            <h1> This is the page for scenario 2 </h1>
+            <h1> Scenario2 - Suspect Flees</h1>
+
+            {/* <Box
+      className="S2form"
+      component="form"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        "& > :not(style)": { m: 1, width: "25ch" },
+      }}
+      noValidate
+      autoComplete="off"
+    > */}
+    <form id="S2form">
+      <br>
+      </br>
+      <h4 className="centre">Find Suspect</h4>
+      <Stack direction="row" spacing={2}></Stack>
+      {/* This is the Search Citizen Box */}
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Enter a time stamp in the format (YYYY-MM-DD) (HH:MM:SS.000)</h5> 
+      
+      <TextField className='Scenario2Text'
+        id="outlined-basic"
+        label="Timestamp"
+        variant="outlined"
+        type="text"
+        placeholder="Timestamp"
+        name="Timestamp"
+        value={timeDate}
+        onChange={(e) => setTimeDate(e.target.value)}
+      />
+      </Stack>
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter a Latitude value</h5>  
+      <TextField className='Scenario2Text'
+        id="filled-basic"
+        label="Latitude"
+        variant="outlined"
+        type="text"
+        placeholder="Latitude"
+        name="Latitude"
+        value={latitude}
+        onChange={(e) => setLatitude(e.target.value)}
+      />
+      </Stack>
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter a Longitude value</h5>
+      <TextField className='Scenario2Text'
+        id="standard-basic"
+        label="Longitude"
+        variant="outlined"
+        type="text"
+        placeholder="Longitude"
+        name="Longitude"
+        value={longitude}
+        onChange={(e) => setLongitude(e.target.value)}
+      />
+      </Stack>
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter a number of seconds to search before and after</h5>
+      <TextField className='Scenario2Text'
+        id="standard-basic"
+        label="Seconds"
+        variant="outlined"
+        type="text"
+        placeholder="Seconds"
+        name="Seconds"
+        value={seconds}
+        onChange={(e) => setSeconds(e.target.value)}
+      />
+      </Stack>
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter distance to search around the location</h5>
+      <TextField className='Scenario2Text'
+        id="standard-basic"
+        label="Distance"
+        variant="outlined"
+        type="text"
+        placeholder="Distance"
+        name="Distance"
+        value={distance}
+        onChange={(e) => setDistance(e.target.value)}
+      />
+      </Stack>
+      <Stack direction="row" spacing={2}>
+        <Button
+          variant="outlined"
+          id="reset"
+          onClick={() => clearFields()}
+          startIcon={<DeleteIcon />}
+        >
+          Reset
+        </Button>
+        <Button
+          variant="contained"
+          type="button"
+          onClick={() => createQueryIncident()}
+          endIcon={<SendIcon />}
+        >
+          Submit
+        </Button>
+      </Stack>
+      </form>
+    {/* </Box> */}
 
 
-            <h3> Incident </h3>
-            <form>
+            <h3> Find Suspect</h3>
+            {/* <form>
             <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a time stamp in the format YYYY-MM-DD HH:MM:SS.000</label><br></br>
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a latitude</label><br></br>
             <input type="text" placeholder="Longitude" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a longitude</label><br></br>
             <input type="number" placeholder="Seconds" name="Seconds" value={seconds} onChange={(e) => setSeconds(e.target.value)}></input>
-            <input type="number" placeholder="Distance - 0.1, 0.01" name="Distance" value={distance} onChange={(e) => setDistance(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a number of seconds to search before and after</label><br></br>
+            <input type="number" placeholder="Distance" name="Distance" value={distance} onChange={(e) => setDistance(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter distance to search around the location (0.01 = 1 mile, 0.05 = 5 miles) </label><br></br>
             <Link to="/Scenario2">
             <button type="button" onClick={() => createQueryIncident()}>Submit</button>
             </Link>
             <button id="reset" onClick={() => clearFields()}>Reset</button> 
-            </form>
+            </form> */}
 
             <Container fluid>
          <Row>
-          <Col>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-              <Row>
-                <Col sm={3}>
-                  <div>
-                  <Nav variant="pills" className="flex-column">
-                    <Nav.Item>
-                      <Nav.Link eventKey="first">Vehicles</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="second"> ATM Transactions </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="third">Financial information</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link eventKey="fourth">Call records</Nav.Link>
-                    </Nav.Item>
-                  </Nav>
-                  </div>
-                </Col>
-                <Col sm={9}>
-                  <Tab.Content>
-                    <Tab.Pane eventKey="first">
-                      <IncidentVehicles incidentData={incidentData}/>
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="second" title="Associates">
-                      
-                      {/* <IncidentFinancial incidentData={incidentData} /> */}
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="third">
-             
-                    
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="fourth">
-                    
-                      
-                    </Tab.Pane>
-                    
-                  </Tab.Content>
-                </Col>
-              </Row>
-            </Tab.Container>
-            
-              </Col>
               <Col>
               <MapContainer scrollWheelZoom={true}>
                 <IncidentMap incidentData={incidentData}/>
