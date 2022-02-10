@@ -67,7 +67,27 @@
     border-radius: 15px;
     display: block;
     position: relative;
-    width: 500px;
+    width: 1000px;
     padding: 2px 16px;
     left: 20px;
   }
+
+  .Scenario2H5 {
+  align-items: normal;
+  border-radius: 15px;
+  display: block;
+  position: relative;
+  width: 1000px;
+  padding: 2px 16px;
+  left: 0px;
+  right: 100px;
+}
+
+.Scenario2Stack {
+  align-items: normal;
+  display: block;
+  position: relative;
+  width: 2000px;
+  text-size-adjust: auto;
+  left: 10px;
+}

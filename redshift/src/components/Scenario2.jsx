@@ -82,9 +82,9 @@ const Scenario2 = () => {
     >
       <h4 className="centre">Find Suspect</h4>
       {/* This is the Search Citizen Box */}
-      <Stack direction="row" spacing={2}>
-      <h5>Please enter a time stamp in the format YYYY-MM-DD HH:MM:SS.000</h5>
-      <TextField
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter a time stamp in the format YYYY-MM-DD HH:MM:SS.000</h5>
+      <TextField className='Scenario2Text'
         id="outlined-basic"
         label="Timestamp"
         variant="outlined"
@@ -95,9 +95,9 @@ const Scenario2 = () => {
         onChange={(e) => setTimeDate(e.target.value)}
       />
       </Stack>
-      <Stack direction="row" spacing={2}>
-      <h5>Please enter a Latitude</h5>  
-      <TextField
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter a Latitude value</h5>  
+      <TextField className='Scenario2Text'
         id="filled-basic"
         label="Latitude"
         variant="outlined"
@@ -108,9 +108,9 @@ const Scenario2 = () => {
         onChange={(e) => setLatitude(e.target.value)}
       />
       </Stack>
-      <Stack direction="row" spacing={2}>
-      <h5>Please enter a Longitude</h5>
-      <TextField
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter a Longitude value</h5>
+      <TextField className='Scenario2Text'
         id="standard-basic"
         label="Longitude"
         variant="outlined"
@@ -121,9 +121,9 @@ const Scenario2 = () => {
         onChange={(e) => setLongitude(e.target.value)}
       />
       </Stack>
-      <Stack direction="row" spacing={2}>
-      <h5>Please enter a number of seconds to search before and after</h5>
-      <TextField
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter a number of seconds to search before and after</h5>
+      <TextField className='Scenario2Text'
         id="standard-basic"
         label="Seconds"
         variant="outlined"
@@ -134,9 +134,9 @@ const Scenario2 = () => {
         onChange={(e) => setSeconds(e.target.value)}
       />
       </Stack>
-      <Stack direction="row" spacing={2}>
-      <h5>Please enter distance to search around the location</h5>
-      <TextField
+      <Stack direction="row" spacing={2} className='Scenario2Stack'>
+      <h5 className='Scenario2H5'>Please enter distance to search around the location</h5>
+      <TextField className='Scenario2Text'
         id="standard-basic"
         label="Distance"
         variant="outlined"
