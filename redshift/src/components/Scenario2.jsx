@@ -16,7 +16,6 @@ import Nav from "react-bootstrap/Nav";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import IncidentFinancial from './IncidentFinancial';
 import IncidentMap from './IncidentMap.jsx';
-import '../CSS/Scenario2.css';
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -59,7 +58,9 @@ const Scenario2 = () => {
 
         const clearFields = () => {
             console.log("function to clear search fields");
+         
         }
+       
 
 
 
