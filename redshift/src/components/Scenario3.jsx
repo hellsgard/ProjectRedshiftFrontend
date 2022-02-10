@@ -8,12 +8,16 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import JWT from '../config/config.json';
 import axios from 'axios';
+import Vehicles from "./Vehicles.jsx";
 
 
 
 const Scenario3 = () => {
 const [vehicleReg, setVehicleReg] = useState("");
 const [fleesData, setFleesData] = useState([]);
+  const [fleesLoaded, setFleesLoaded] =useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
+  const [error, setError] = useState(null);
 
 const clearFields = () => {
   console.log("function to clear search fields");
@@ -28,12 +32,41 @@ const createQueryFlees = () => {
   .then((response) => {
       console.log(response.data)
       setFleesData(response.data);
+      setPageLoaded(true);
   })
   .catch((error) => {
       console.log(error);
   })};
 
 
+  if (error) {
+    return <h1>Something bad</h1>
+    } else if (pageLoaded) {
+      console.log([fleesData]);
+      
+      let forenames = fleesData.forenames;
+    let surname = fleesData.surname;
+    let address = fleesData.homeAddress;
+    let dob = fleesData.dateOfBirth;
+    let gender = fleesData.sex;
+    let passportNumber = fleesData.passportNumber;
+    let nationality = fleesData.nationality;
+    let placeOfBirth = fleesData.placeOfBirth;
+      return (  
+        <div>
+          
+        <Navb></Navb>
+        <br></br>
+        <h1 class="font-weight-light">
+          {" "}
+          {fleesData.forenames} {fleesData.surname}{" "} data
+        </h1>
+        </div>
+        
+        
+        
+        )
+    } else {
   return (
     <div>
       <Navb></Navb>
@@ -71,6 +104,6 @@ const createQueryFlees = () => {
       </Stack>
     </div>
   );
-};
+};}
 
 export default Scenario3;
