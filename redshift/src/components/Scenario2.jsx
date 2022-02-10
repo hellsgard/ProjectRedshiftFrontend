@@ -59,10 +59,8 @@ const Scenario2 = () => {
     return ( 
         <div>
             <Navb></Navb>
-            <h1> Scenario2 - Suspect Flees</h1>
+            <h1> Scenario 2 - Suspect Flees</h1>
 
-
-            <h3> Find Suspect</h3>
             <form>
             <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
