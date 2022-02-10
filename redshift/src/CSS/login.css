@@ -10,8 +10,9 @@
       max-width: 330px;
     } */
 
-img {
+.RedShift-logo {
   height: 200px;
+  border-radius: 2%;
 }
 
 #B1 {
