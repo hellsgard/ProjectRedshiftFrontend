@@ -59,5 +59,15 @@
 
     align-items: center;
     font-weight: bold;
-    
+  }
+
+  .S2form {
+    justify-content: left;
+    align-items: left;
+    border-radius: 15px;
+    display: block;
+    position: relative;
+    width: 500px;
+    padding: 2px 16px;
+    left: 20px;
   }

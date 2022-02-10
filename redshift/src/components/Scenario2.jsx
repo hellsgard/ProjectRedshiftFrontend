@@ -70,7 +70,7 @@ const Scenario2 = () => {
             <h1> Scenario2 - Suspect Flees</h1>
 
             <Box
-      className="homeform"
+      className="S2form"
       component="form"
       sx={{
         display: "flex",
@@ -82,6 +82,7 @@ const Scenario2 = () => {
     >
       <h4 className="centre">Find Suspect</h4>
       {/* This is the Search Citizen Box */}
+      <Stack direction="row" spacing={2}>
       <h5>Please enter a time stamp in the format YYYY-MM-DD HH:MM:SS.000</h5>
       <TextField
         id="outlined-basic"
@@ -93,6 +94,8 @@ const Scenario2 = () => {
         value={timeDate}
         onChange={(e) => setTimeDate(e.target.value)}
       />
+      </Stack>
+      <Stack direction="row" spacing={2}>
       <h5>Please enter a Latitude</h5>  
       <TextField
         id="filled-basic"
@@ -104,6 +107,8 @@ const Scenario2 = () => {
         value={latitude}
         onChange={(e) => setLatitude(e.target.value)}
       />
+      </Stack>
+      <Stack direction="row" spacing={2}>
       <h5>Please enter a Longitude</h5>
       <TextField
         id="standard-basic"
@@ -115,6 +120,8 @@ const Scenario2 = () => {
         value={longitude}
         onChange={(e) => setLongitude(e.target.value)}
       />
+      </Stack>
+      <Stack direction="row" spacing={2}>
       <h5>Please enter a number of seconds to search before and after</h5>
       <TextField
         id="standard-basic"
@@ -126,6 +133,8 @@ const Scenario2 = () => {
         value={seconds}
         onChange={(e) => setSeconds(e.target.value)}
       />
+      </Stack>
+      <Stack direction="row" spacing={2}>
       <h5>Please enter distance to search around the location</h5>
       <TextField
         id="standard-basic"
@@ -137,6 +146,7 @@ const Scenario2 = () => {
         value={distance}
         onChange={(e) => setDistance(e.target.value)}
       />
+      </Stack>
       <Stack direction="row" spacing={2}>
         <Button
           variant="outlined"
