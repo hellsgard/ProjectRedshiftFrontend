@@ -4,16 +4,13 @@ import { useState } from "react";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import JWT  from "../config/config.json";
+import JWT from "../config/config.json";
 
-const Login = ({showUser ,saveUser }) => {
-  
+const Login = ({ showUser, saveUser }) => {
   const [error, setError] = useState("");
 
-  
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
- 
 
   const handleSubmit = () => {
     console.log("user function running");
@@ -21,7 +18,7 @@ const Login = ({showUser ,saveUser }) => {
     axios
       .post("http://localhost:8080/users/login", {
         username: username,
-        password: password
+        password: password,
       }) // error 400 {params: userObject}
       .then((response) => {
         console.log(response);
@@ -68,7 +65,6 @@ const Login = ({showUser ,saveUser }) => {
           type="text"
           placeholder="Username"
           name="Username"
-
           className="position-relative"
           value={username}
           onChange={(e) => {

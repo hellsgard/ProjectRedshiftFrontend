@@ -7,7 +7,6 @@ import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
 import Logout from "./components/Logout.jsx";
 
-
 import Scenario1 from "./components/Scenario1.jsx";
 import Scenario2 from "./components/Scenario2.jsx";
 import Scenario3 from "./components/Scenario3.jsx";
@@ -16,10 +15,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BasicInformation from "./components/BasicInformation";
 
 function App() {
-
   return (
-    <div>
-      <Manager/>
+    <div class="background">
+      <div>
+        <Manager />
+      </div>
     </div>
   );
 }
