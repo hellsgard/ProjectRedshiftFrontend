@@ -11,9 +11,19 @@
   justify-content: right;
   align-items: right;
   display: block;
-  width: 2000px;
+  width: 1800px;
   position: absolute;
   right: 0px;
+  top: 10px;
+  padding: 10%;
+}
+.center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 80px;
+  right: 30px;
+  padding: 1%;
 }
 
 .container {

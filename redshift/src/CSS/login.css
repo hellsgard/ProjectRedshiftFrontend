@@ -55,7 +55,7 @@
   min-height: 100vh;
 } */
 
-Form {
+#someForm {
   display: block;
   position: relative;
   background-color: rgb(204, 202, 202);

@@ -48,7 +48,7 @@ const Login = ({ showUser, saveUser }) => {
 
   return (
     <div id="main-div" className="d-grid h-100">
-      <Form className="rounded p-5 text-center w-30">
+      <Form id="someForm" className="rounded p-5 text-center w-30">
         <img
           className="mb-4 RedShift-logo"
           src="/images/RedShift.png"
