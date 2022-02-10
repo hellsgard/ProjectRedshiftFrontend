@@ -19,7 +19,7 @@ const Map = ({ eposMapData, anprMapData, atmMapData }) => {
   // const atmPosition = [atmMapData[0].latitude, atmMapData[0].longitude];
   // const anprPosition = [anprMapData[0].latitude, anprMapData[0].longitude];
 
-  return (
+  return ( 
     <div id="map">
 
       <MapContainer center={center} zoom={13}>
