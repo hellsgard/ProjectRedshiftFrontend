@@ -118,14 +118,13 @@ const clearFields = () => {
             <div>
                 <br>
                 </br>
-            </div>
-                 
+            </div> 
         <Row className="right">    
-        <h1>Page loading, please wait {' '}<Spinner animation="border" variant="danger" /></h1>    
+           
         {suspects.map((suspect) => {  
                 return(
-        
-                    <Col>
+                    
+                    <Col className>
                         <Suspect 
                         citizenID={suspect.citizenID} 
                         forenames={suspect.forenames} 
@@ -154,7 +153,7 @@ const clearFields = () => {
              Reset
             </Button>
             <Button variant="contained" type="button" onClick={() => createQueryPerson()} endIcon={<SendIcon />}>
-            Send
+            Submit
             </Button>
             </Stack>
             </Box>  
@@ -181,7 +180,7 @@ const clearFields = () => {
             Reset
             </Button>
             <Button variant="contained" onClick={() => createQueryIncident()} endIcon={<SendIcon />}>
-            Send
+            Submit
             </Button>
             </Stack>
             </Box>
@@ -205,7 +204,7 @@ const clearFields = () => {
             Reset
             </Button>
             <Button variant="contained" onClick={() => createQuerySuspectFlees()} endIcon={<SendIcon />}>
-            Send
+            Submit
             </Button>
             </Stack>
             </Box>
