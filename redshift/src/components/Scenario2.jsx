@@ -16,6 +16,7 @@ import Nav from "react-bootstrap/Nav";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import IncidentFinancial from './IncidentFinancial';
 import IncidentMap from './IncidentMap.jsx';
+import '../CSS/Scenario2.css';
 
 
 
@@ -65,10 +66,15 @@ const Scenario2 = () => {
             <h3> Find Suspect</h3>
             <form>
             <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a time stamp in the format YYYY-MM-DD HH:MM:SS.000</label><br></br>
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a latitude</label><br></br>
             <input type="text" placeholder="Longitude" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a longitude</label><br></br>
             <input type="number" placeholder="Seconds" name="Seconds" value={seconds} onChange={(e) => setSeconds(e.target.value)}></input>
-            <input type="number" placeholder="Distance - 0.1, 0.01" name="Distance" value={distance} onChange={(e) => setDistance(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter a number of seconds to search before and after</label><br></br>
+            <input type="number" placeholder="Distance" name="Distance" value={distance} onChange={(e) => setDistance(e.target.value)}></input>
+            <label className="S2label" for="timestamp">Please enter distance to search around the location (0.01 = 1 mile, 0.05 = 5 miles) </label><br></br>
             <Link to="/Scenario2">
             <button type="button" onClick={() => createQueryIncident()}>Submit</button>
             </Link>
