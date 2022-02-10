@@ -13,7 +13,7 @@ const incidentVehicle = ({incidentData})  => {
 
 
 
-    if (incidentData[0] === undefined) {
+    if (incidentData === undefined) {
         return (
             <p>Loading</p>
         ) 
@@ -22,12 +22,12 @@ const incidentVehicle = ({incidentData})  => {
             <div>
     
     
-                {incidentData[1].map((vehicle) => {
+                {incidentData.map((vehicle) => {
                     return(
                         <div>
     
                             <Card style={{ width: '18rem' }}>
-                                <p>forenmaes: {vehicle.forenames}</p>
+                                <p>forenames: {vehicle.forenames}</p>
                                 <p>surname: {vehicle.surname}</p>
                                 <p>DoB: {vehicle.dateOfBirth}</p>
                                 <p>Reg: {vehicle.vehicleRegistrationNumber}</p>
