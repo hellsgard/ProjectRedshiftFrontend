@@ -24,6 +24,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import "../CSS/Home.css";
+import FormHelperText from "@mui/material/FormHelperText";
 
 
 
@@ -69,7 +70,7 @@ const Scenario2 = () => {
             <Navb></Navb>
             <h1> Scenario2 - Suspect Flees</h1>
 
-            <Box
+            {/* <Box
       className="S2form"
       component="form"
       sx={{
@@ -79,11 +80,16 @@ const Scenario2 = () => {
       }}
       noValidate
       autoComplete="off"
-    >
+    > */}
+    <form id="S2form">
+      <br>
+      </br>
       <h4 className="centre">Find Suspect</h4>
+      <Stack direction="row" spacing={2}></Stack>
       {/* This is the Search Citizen Box */}
       <Stack direction="row" spacing={2} className='Scenario2Stack'>
-      <h5 className='Scenario2H5'>Please enter a time stamp in the format YYYY-MM-DD HH:MM:SS.000</h5>
+      <h5 className='Scenario2H5'>Enter a time stamp in the format (YYYY-MM-DD) (HH:MM:SS.000)</h5> 
+      
       <TextField className='Scenario2Text'
         id="outlined-basic"
         label="Timestamp"
@@ -165,7 +171,8 @@ const Scenario2 = () => {
           Submit
         </Button>
       </Stack>
-    </Box>
+      </form>
+    {/* </Box> */}
 
 
             <h3> Find Suspect</h3>
