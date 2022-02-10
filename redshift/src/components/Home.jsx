@@ -58,8 +58,7 @@ const createQueryIncident = () => {
     const queryIncident = {
         timeDate: timeDate,
         latitude: latitude,
-        longitude: longitude,
-        radius: radius
+        longitude: longitude
     }; 
     console.log(queryIncident);
     console.log("sending to back end");
@@ -125,7 +124,6 @@ const clearFields = () => {
             <input type="text" placeholder="Timestamp" name="Time/Date" value={timeDate} onChange={(e) => setTimeDate(e.target.value)}></input>
             <input type="text" placeholder="Latitude" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}></input>
             <input type="text" placeholder="Longitude" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}></input>
-            <input type="number" placeholder="Radius" name="Radius" value={radius} onChange={(e) => setRadius(e.target.value)}></input>
             <Link to="/Scenario2">
             <button type="button" onClick={() => createQueryIncident()}>Submit</button>
             </Link>
